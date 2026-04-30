@@ -28,21 +28,21 @@ const seedCars = async () => {
           brand: "Tata",
           price: 1500000,
           range: 300,
-          image: "https://upload.wikimedia.org/wikipedia/commons/3/3e/Tata_Nexon_EV.jpg"
+          image: "https://imgd.aeplcdn.com/664x374/n/cw/ec/107543/nexon-ev-exterior-right-front-three-quarter.jpeg"
         },
         {
           name: "Tiago EV",
           brand: "Tata",
           price: 900000,
           range: 250,
-          image: "https://upload.wikimedia.org/wikipedia/commons/7/7e/Tata_Tiago_EV.jpg"
+          image: "https://imgd.aeplcdn.com/664x374/n/cw/ec/131825/tiago-ev-exterior-right-front-three-quarter.jpeg"
         },
         {
           name: "MG ZS EV",
           brand: "MG",
           price: 2300000,
           range: 400,
-          image: "https://upload.wikimedia.org/wikipedia/commons/0/0b/MG_ZS_EV.jpg"
+          image: "https://imgd.aeplcdn.com/664x374/n/cw/ec/110437/zs-ev-exterior-right-front-three-quarter.jpeg"
         }
       ]);
 
@@ -120,3 +120,11 @@ const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
+
+mongoose.connect(process.env.MONGO_URI, {
+  dbName: "zyvevDB"
+})
+.then(() => {
+  console.log("MongoDB Connected to zyvevDB ✅");
+})
+.catch(err => console.log(err));
