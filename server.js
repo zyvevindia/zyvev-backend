@@ -21,11 +21,29 @@ const seedCars = async () => {
   try {
     const count = await Car.countDocuments();
 
-    if (count === 0) {
+    if (true) {
       await Car.insertMany([
-        { name: "Nexon EV", brand: "Tata", price: 1500000, range: 300 },
-        { name: "Tiago EV", brand: "Tata", price: 900000, range: 250 },
-        { name: "MG ZS EV", brand: "MG", price: 2300000, range: 400 }
+        {
+          name: "Nexon EV",
+          brand: "Tata",
+          price: 1500000,
+          range: 300,
+          image: "https://upload.wikimedia.org/wikipedia/commons/3/3e/Tata_Nexon_EV.jpg"
+        },
+        {
+          name: "Tiago EV",
+          brand: "Tata",
+          price: 900000,
+          range: 250,
+          image: "https://upload.wikimedia.org/wikipedia/commons/7/7e/Tata_Tiago_EV.jpg"
+        },
+        {
+          name: "MG ZS EV",
+          brand: "MG",
+          price: 2300000,
+          range: 400,
+          image: "https://upload.wikimedia.org/wikipedia/commons/0/0b/MG_ZS_EV.jpg"
+        }
       ]);
 
       console.log("🚗 Sample cars inserted");
