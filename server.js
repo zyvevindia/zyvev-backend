@@ -28,21 +28,21 @@ const seedCars = async () => {
           brand: "Tata",
           price: 1500000,
           range: 300,
-          image: "https://imgd.aeplcdn.com/664x374/n/cw/ec/107543/nexon-ev-exterior-right-front-three-quarter.jpeg"
+          image: "https://images.unsplash.com/photo-1619767886558-efdc259cde1a"
         },
         {
           name: "Tiago EV",
           brand: "Tata",
           price: 900000,
           range: 250,
-          image: "https://imgd.aeplcdn.com/664x374/n/cw/ec/131825/tiago-ev-exterior-right-front-three-quarter.jpeg"
+          image: "https://images.unsplash.com/photo-1580273916550-e323be2ae537"
         },
         {
           name: "MG ZS EV",
           brand: "MG",
           price: 2300000,
           range: 400,
-          image: "https://imgd.aeplcdn.com/664x374/n/cw/ec/110437/zs-ev-exterior-right-front-three-quarter.jpeg"
+          image: "https://images.unsplash.com/photo-1552519507-da3b142c6e3d"
         }
       ]);
 
