@@ -1,6 +1,36 @@
 services:
   - type: web
-    name: zyvev-backend
+
+    name: evsavari-backend
+
     env: node
+
+    plan: free
+
+    region: singapore
+
+    branch: main
+
+    rootDir: zyvev-backend
+
     buildCommand: npm install
-    startCommand: npm start
+
+    startCommand: node server.js
+
+    healthCheckPath: /
+
+    autoDeploy: true
+
+    envVars:
+
+      - key: NODE_VERSION
+        value: 20
+
+      - key: NODE_ENV
+        value: production
+
+      - key: PORT
+        value: 10000
+
+      - key: SEED_DATA
+        value: false

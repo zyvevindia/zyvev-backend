@@ -5,33 +5,167 @@
 require("dotenv").config();
 
 const express = require("express");
+const validateEnv = require(
+  "./config/env"
+);
+validateEnv();
+
 const mongoose = require("mongoose");
 const cors = require("cors");
-
+const helmet = require("helmet");
+const hpp = require("hpp");
+const compression = require("compression");
+const morgan = require("morgan");
+const jwt = require("jsonwebtoken");
+const bcrypt = require("bcryptjs");
+const multer = require("multer");
 const Car = require("./models/Car");
 const Lead = require("./models/Lead");
 const Admin = require("./models/Admin");
-const jwt = require("jsonwebtoken");
-const bcrypt = require("bcryptjs");
 const View = require("./models/View");
 const Notification = require("./models/Notification");
 
+const {
+
+  validateLead,
+  validateLogin,
+  validateUser,
+  validateCar,
+  safeJsonParse,
+} = require(
+  "./utils/validators"
+);
+
+const {
+  storage,
+} = require("./config/cloudinary");
+
+const errorHandler = require(
+  "./middlewares/errorHandler"
+);
+
+const notFound = require(
+  "./middlewares/notFound"
+);
+
+const {
+  apiLimiter,
+  authLimiter,
+} = require(
+  "./middlewares/rateLimiter"
+);
+
 const app = express();
+
+/* =========================================================
+   ================= UPLOAD MIDDLEWARE =====================
+   ========================================================= */
+
+const upload = multer({
+  storage,
+});
 
 /* =========================================================
    ===================== MIDDLEWARE =========================
    ========================================================= */
 
+/* =========================================================
+   ===================== SECURITY ==========================
+   ========================================================= */
+
+app.use(helmet());
+
+
+
+/* =========================================================
+   ===================== LOGGING ===========================
+   ========================================================= */
+
+if (
+  process.env.NODE_ENV !== "production"
+) {
+
+  app.use(
+    morgan("dev")
+  );
+}
+
+/* =========================================================
+   ===================== RATE LIMIT ========================
+   ========================================================= */
+
+app.use(apiLimiter);
+
+/* =========================================================
+   ===================== CORS ==============================
+   ========================================================= */
+
+const allowedOrigins = [
+
+  "http://localhost:5173",
+
+  "https://zyvev-frontend.vercel.app",
+
+  "https://evsavari.com",
+
+  "https://www.evsavari.com",
+];
+
 app.use(
   cors({
-    origin: [
-      "http://localhost:5173",
-      "https://zyvev-frontend.vercel.app",
-    ],
+
+    origin: function (
+      origin,
+      callback
+    ) {
+
+      /* ---------- ALLOW NO ORIGIN ---------- */
+      if (!origin) {
+
+        return callback(null, true);
+      }
+
+      /* ---------- ALLOW VALID ORIGIN ---------- */
+      if (
+        allowedOrigins.includes(origin)
+      ) {
+
+        return callback(null, true);
+      }
+
+      /* ---------- BLOCK INVALID ---------- */
+
+      console.log(
+        "Blocked CORS Origin:",
+        origin
+      );
+
+      return callback(null, false);
+    },
+
     credentials: true,
   })
 );
-app.use(express.json());
+
+/* =========================================================
+   ===================== BODY PARSER =======================
+   ========================================================= */
+
+app.use(
+  express.json({
+
+    limit: "1mb",
+  })
+);
+
+app.use(
+  express.urlencoded({
+
+    extended: true,
+
+    limit: "1mb",
+  })
+);
 
 /* =========================================================
    ===================== TEST ROUTE =========================
@@ -250,158 +384,275 @@ const adminOnly = (req, res, next) => {
    ===================== ADMIN LOGIN ========================
    ========================================================= */
 
-app.post("/api/admin/login", async (req, res) => {
-  try {
-
-    const { email, password } = req.body;
-
-    // ---------- Find Admin ----------
-    const admin = await Admin.findOne({ email });
-
-    if (!admin) {
-      return res.status(400).json({
-        error: "Invalid credentials"
-      });
-    }
-
-    // ---------- Verify Password ----------
-    const isMatch = await bcrypt.compare(
-      password,
-      admin.password
-    );
-
-    if (!isMatch) {
-      return res.status(400).json({
-        error: "Invalid credentials"
-      });
-    }
-
-    // ---------- Create JWT ----------
-    const token = jwt.sign(
-      {
-        id: admin._id,
-        role: admin.role
-      },
-      process.env.JWT_SECRET || "zyvev_secret",
-      {
-        expiresIn: "1d"
-      }
-    );
-
-    // ---------- Response ----------
-    res.json({
-      token,
-      role: admin.role
-    });
-
-  } catch (err) {
-
-    console.log("LOGIN ERROR:", err);
-
-    res.status(500).json({
-      error: err.message
-    });
-  }
-});
-
 /* =========================================================
-   ================= GET SALES USERS ========================
+   ===================== ADMIN LOGIN ========================
    ========================================================= */
 
-app.get(
-  "/api/admin/users",
-  auth,
-  adminOnly,
+app.post(
+  "/api/admin/login",
+
+  authLimiter,
+
   async (req, res) => {
 
     try {
 
-      const users = await Admin.find()
-        .select("-password")
-        .sort({ createdAt: -1 });
+      const {
+        email,
+        password
+      } = req.body;
 
-      res.json(users);
+      /* ================= VALIDATION ================= */
+
+      const validation =
+        validateLogin({
+
+          email,
+
+          password,
+        });
+
+      if (
+        !validation.isValid
+      ) {
+
+        return res.status(400).json({
+
+          success: false,
+
+          message:
+            "Validation failed",
+
+          errors:
+            validation.errors,
+        });
+      }
+
+      /* ================= FIND ADMIN ================= */
+
+      const admin =
+        await Admin.findOne({
+
+          email:
+            email.toLowerCase()
+        });
+
+      if (!admin) {
+
+        return res.status(400).json({
+
+          success: false,
+
+          message:
+            "Invalid credentials",
+        });
+      }
+
+      /* ================= VERIFY PASSWORD ================= */
+
+      const isMatch =
+        await bcrypt.compare(
+
+          password,
+
+          admin.password
+        );
+
+      if (!isMatch) {
+
+        return res.status(400).json({
+
+          success: false,
+
+          message:
+            "Invalid credentials",
+        });
+      }
+
+      /* ================= CREATE TOKEN ================= */
+
+      const token = jwt.sign(
+
+        {
+          id: admin._id,
+
+          role: admin.role,
+        },
+
+        process.env.JWT_SECRET,
+
+        {
+          expiresIn: "1d",
+        }
+      );
+
+      /* ================= RESPONSE ================= */
+
+      res.json({
+
+        success: true,
+
+        token,
+
+        role: admin.role,
+      });
 
     } catch (err) {
 
+      console.log(
+        "LOGIN ERROR:",
+        err
+      );
+
       res.status(500).json({
-        error: err.message
+
+        success: false,
+
+        message:
+          "Server error",
       });
     }
   }
 );
 
 /* =========================================================
+   ================= GET SALES USERS ========================
+   ========================================================= */
+
+/* =========================================================
    ================= CREATE SALES USER ======================
    ========================================================= */
 
 app.post(
+
   "/api/admin/users",
+
   auth,
+
   adminOnly,
+
   async (req, res) => {
 
     try {
 
       const {
+
         name,
+
         email,
+
         password,
-        role
+
+        role,
       } = req.body;
 
-      /* ---------- VALIDATION ---------- */
-      if (!email || !password) {
+      /* ================= VALIDATION ================= */
+
+      const validation =
+        validateUser({
+
+          email,
+
+          password,
+
+          role,
+        });
+
+      if (
+        !validation.isValid
+      ) {
 
         return res.status(400).json({
-          error: "Email and password required"
+
+          success: false,
+
+          message:
+            "Validation failed",
+
+          errors:
+            validation.errors,
         });
       }
 
-      /* ---------- DUPLICATE CHECK ---------- */
-      const existing = await Admin.findOne({
+      /* ================= NORMALIZE ================= */
+
+      const normalizedEmail =
         email
-      });
+          .trim()
+          .toLowerCase();
+
+      /* ================= DUPLICATE CHECK ================= */
+
+      const existing =
+        await Admin.findOne({
+
+          email:
+            normalizedEmail,
+        });
 
       if (existing) {
 
         return res.status(400).json({
-          error: "User already exists"
+
+          success: false,
+
+          message:
+            "User already exists",
         });
       }
 
-      /* ---------- HASH PASSWORD ---------- */
-      const hashed = await bcrypt.hash(
-        password,
-        10
-      );
+      /* ================= HASH PASSWORD ================= */
 
-      /* ---------- CREATE USER ---------- */
-      const user = await Admin.create({
+      const hashed =
+        await bcrypt.hash(
+          password,
+          10
+        );
 
-        name: name || "",
+      /* ================= CREATE USER ================= */
 
-        email,
+      const user =
+        await Admin.create({
 
-        password: hashed,
+          name:
+            name || "",
 
-        role: role || "sales",
+          email:
+            normalizedEmail,
 
-        createdBy: req.admin.id
-      });
+          password:
+            hashed,
 
-      /* ---------- SAFE RESPONSE ---------- */
+          role:
+            role || "sales",
+
+          createdBy:
+            req.admin.id,
+        });
+
+      /* ================= RESPONSE ================= */
+
       res.status(201).json({
 
-        _id: user._id,
+        success: true,
 
-        name: user.name,
+        user: {
 
-        email: user.email,
+          _id:
+            user._id,
 
-        role: user.role,
+          name:
+            user.name,
 
-        createdAt: user.createdAt
+          email:
+            user.email,
+
+          role:
+            user.role,
+
+          createdAt:
+            user.createdAt,
+        },
       });
 
     } catch (err) {
@@ -412,11 +663,16 @@ app.post(
       );
 
       res.status(500).json({
-        error: err.message
+
+        success: false,
+
+        message:
+          "Server error",
       });
     }
   }
 );
+
 
 /* =========================================================
    ===================== CAR ROUTES =========================
@@ -426,84 +682,535 @@ app.post(
   POST /cars
   Create a new car
 */
-app.post("/cars", async (req, res) => {
-  try {
-    const car = new Car(req.body);
-    await car.save();
-    res.json(car);
-  } catch (err) {
-    res.status(500).json({ error: err.message });
+/* =========================================================
+   ================= CREATE CAR API ========================
+   ========================================================= */
+
+app.post(
+  "/cars",
+
+  auth,
+
+  upload.single("heroImage"),
+
+  async (req, res) => {
+
+    try {
+
+      /* ===================================================
+         ==================== BODY ==========================
+         =================================================== */
+
+      const {
+
+        name,
+
+        brand,
+
+        slug,
+
+        category,
+
+        status,
+
+        startingPrice,
+
+        topVariantPrice,
+
+        specifications,
+
+        dimensions,
+
+        features,
+
+        safety,
+
+        overview,
+
+        colors,
+
+        variants,
+
+        galleryImages,
+
+        seo,
+
+        isFeatured,
+
+      } = req.body;
+
+      /* ===================================================
+         ================= VALIDATION =======================
+         =================================================== */
+
+        const validation =
+          validateCar({
+
+            name,
+
+            brand,
+
+            slug,
+
+            startingPrice,
+          });
+
+        if (
+          !validation.isValid
+        ) {
+
+          return res.status(400).json({
+
+            success: false,
+
+            message:
+              "Validation failed",
+
+            errors:
+              validation.errors,
+          });
+        }
+
+/* ===================================================
+   ================= NORMALIZATION ====================
+   =================================================== */
+
+const normalizedSlug =
+  slug
+    .trim()
+    .toLowerCase();
+
+
+
+      /* ===================================================
+         ================= IMAGE ============================
+         =================================================== */
+
+      const heroImage =
+        req.file?.path || "";
+
+      /* ===================================================
+         ================= DUPLICATE ========================
+         =================================================== */
+
+      const existing =
+        await Car.findOne({
+          slug: normalizedSlug,
+        });
+
+      if (existing) {
+
+        return res.status(400).json({
+          error:
+            "Car slug already exists",
+        });
+      }
+
+      /* ===================================================
+         ================= CREATE CAR =======================
+         =================================================== */
+
+      const car =
+        await Car.create({
+
+          name,
+
+          brand,
+
+          slug: normalizedSlug,
+
+          category,
+
+          status,
+
+          startingPrice,
+
+          topVariantPrice,
+
+          heroImage,
+
+          image: heroImage,
+
+          specifications:
+            specifications
+              ? safeJsonParse(
+                  specifications,
+                  {}
+                )
+              : {},
+
+          dimensions:
+            dimensions
+              ? safeJsonParse(
+                  dimensions,
+                  {}
+                )
+              : {},
+
+          features: Array.isArray(features)
+            ? features
+            : (() => {
+                try {
+                  return safeJsonParse(
+                          features,
+                          []
+                        );
+                } catch {
+                  return String(features || "")
+                    .split(",")
+                    .map((f) => f.trim())
+                    .filter(Boolean);
+                }
+              })(),
+
+          safety: Array.isArray(safety)
+            ? safety
+            : (() => {
+                try {
+                  return safeJsonParse(
+                            safety,
+                            []
+                          );
+                } catch {
+                  return String(safety || "")
+                    .split(",")
+                    .map((f) => f.trim())
+                    .filter(Boolean);
+                }
+              })(),
+
+            overview:
+              overview || "",
+
+            galleryImages:
+              (() => {
+
+                try {
+
+                  return safeJsonParse(
+                            galleryImages,
+                            []
+                          );
+
+                } catch {
+
+                  return [];
+                }
+
+              })(),
+
+            colors:
+              (() => {
+
+                try {
+
+                  return safeJsonParse(
+                            colors,
+                            []
+                          );
+
+                } catch {
+
+                  return [];
+                }
+
+              })(),
+
+            variants:
+              (() => {
+
+                try {
+
+                  return safeJsonParse(
+                            variants,
+                            []
+                          );
+
+                } catch {
+
+                  return [];
+                }
+
+              })(),  
+
+          seo:
+            seo
+              ? safeJsonParse(
+                  seo,
+                  {}
+                )
+              : {},
+
+          isFeatured:
+            isFeatured === "true",
+        });
+
+      /* ===================================================
+         ================= RESPONSE =========================
+         =================================================== */
+
+      res.status(201).json({
+
+        success: true,
+
+        message:
+          "Car created successfully",
+
+        car,
+      });
+
+    } catch (err) {
+
+      console.log(
+        "CREATE CAR ERROR:",
+        err
+      );
+
+      res.status(500).json({
+        error: err.message,
+      });
+    }
   }
-});
+);
+
 
 /* =========================================================
    =============== GET CARS (ADVANCED FILTER) ===============
    ========================================================= */
 
 app.get("/cars", async (req, res) => {
+
   try {
-    const { brand, priceRange, sortBy, search, page = 1, limit = 6 } = req.query;
+
+    const {
+      brand,
+      priceRange,
+      sortBy,
+      search,
+      page = 1,
+      limit = 6
+    } = req.query;
 
     let filter = {};
 
-    /* ---------- SEARCH (name + brand) ---------- */
+    /* ---------- SEARCH ---------- */
+
     if (search) {
+
       filter.$or = [
-        { name: { $regex: search, $options: "i" } },
-        { brand: { $regex: search, $options: "i" } }
+
+        {
+          name: {
+            $regex: search,
+            $options: "i"
+          }
+        },
+
+        {
+          brand: {
+            $regex: search,
+            $options: "i"
+          }
+        }
       ];
     }
 
     /* ---------- BRAND FILTER ---------- */
+
     if (brand) {
+
       filter.brand = brand;
     }
 
-    /* ---------- PRICE RANGE FILTER ---------- */
+    /* ---------- PRICE RANGE ---------- */
+
     if (priceRange) {
+
       if (priceRange === "low") {
-        filter.price = { $lt: 1000000 };
-      } else if (priceRange === "mid") {
-        filter.price = { $gte: 1000000, $lte: 2000000 };
-      } else if (priceRange === "high") {
-        filter.price = { $gt: 2000000 };
+
+        filter.startingPrice = {
+          $lt: 1000000
+        };
+      }
+
+      else if (priceRange === "mid") {
+
+        filter.startingPrice = {
+          $gte: 1000000,
+          $lte: 2000000
+        };
+      }
+
+      else if (priceRange === "high") {
+
+        filter.startingPrice = {
+          $gt: 2000000
+        };
       }
     }
 
     /* ---------- PAGINATION ---------- */
+
     const pageNumber = Number(page);
+
     const pageSize = Number(limit);
 
-    const skip = (pageNumber - 1) * pageSize;
+    const skip =
+      (pageNumber - 1) * pageSize;
 
     /* ---------- SORTING ---------- */
-    let sort = {};
 
-    if (sortBy === "priceLow") sort.price = 1;
-    if (sortBy === "priceHigh") sort.price = -1;
-    if (sortBy === "rangeLow") sort.range = 1;
-    if (sortBy === "rangeHigh") sort.range = -1;
+    let sort = {
 
-    /* ---------- EXECUTE QUERY ---------- */
-    const total = await Car.countDocuments(filter);
+      createdAt: -1
+    };
 
-    const cars = await Car.find(filter)
-      .sort(sort)
-      .skip(skip)
-      .limit(pageSize);
+    if (sortBy === "priceLow") {
 
-        res.json({
-          cars,
-          total,
-          page: pageNumber,
-          totalPages: Math.ceil(total / pageSize)
+      sort = {
+        startingPrice: 1
+      };
+    }
+
+    if (sortBy === "priceHigh") {
+
+      sort = {
+        startingPrice: -1
+      };
+    }
+
+    if (sortBy === "rangeLow") {
+
+      sort = {
+        "specifications.range": 1
+      };
+    }
+
+    if (sortBy === "rangeHigh") {
+
+      sort = {
+        "specifications.range": -1
+      };
+    }
+
+    /* ---------- TOTAL ---------- */
+
+    const total =
+      await Car.countDocuments(filter);
+
+    /* ---------- FETCH CARS ---------- */
+
+    const cars =
+      await Car.find(filter)
+
+        .sort(sort)
+
+        .skip(skip)
+
+        .limit(pageSize);
+
+    /* ---------- RESPONSE ---------- */
+
+    res.json({
+
+      cars,
+
+      total,
+
+      page: pageNumber,
+
+      totalPages: Math.ceil(
+        total / pageSize
+      )
+    });
+
+  } catch (err) {
+
+    console.error(
+      "GET /cars error:",
+      err
+    );
+
+    res.status(500).json({
+
+      error: "Server error"
+    });
+  }
+});
+
+/* =========================================================
+   ================= GET SINGLE CAR =========================
+   ========================================================= */
+
+app.get(
+  "/cars/slug/:slug",
+
+  async (req, res) => {
+
+    try {
+
+      const car =
+        await Car.findOne({
+          slug:
+            req.params.slug,
         });
 
-      } catch (err) {
-        console.error("GET /cars error:", err);
-        res.status(500).json({ error: "Server error" });
+      if (!car) {
+
+        return res
+          .status(404)
+          .json({
+            error:
+              "Car not found",
+          });
       }
+
+      res.json(car);
+
+    } catch (err) {
+
+      console.log(
+        "GET CAR BY SLUG ERROR:",
+        err
+      );
+
+      res.status(500).json({
+        error:
+          err.message,
+      });
+    }
+  }
+);
+
+app.get("/cars/:id", async (req, res) => {
+
+  try {
+
+    const car = await Car.findById(
+      req.params.id
+    );
+
+    if (!car) {
+
+      return res.status(404).json({
+        error: "Car not found"
+      });
+    }
+
+    res.json(car);
+
+  } catch (err) {
+
+    console.log(
+      "GET SINGLE CAR ERROR:",
+      err
+    );
+
+    res.status(500).json({
+      error: err.message
     });
+  }
+});
 
 /* =========================================================
    ===================== LEAD ROUTES ========================
@@ -513,35 +1220,97 @@ app.get("/cars", async (req, res) => {
   POST /leads
   Save user lead
 */
-app.post("/leads", async (req, res) => {
-  try {
-    const { name, phone, carId } = req.body;
+/* =========================================================
+   ====================== CREATE LEAD =======================
+   ========================================================= */
 
-    // ---------- DUPLICATE CHECK ----------
-    const existing = await Lead.findOne({
-      phone,
-      carId,
-      createdAt: {
-        $gte: new Date(Date.now() - 24 * 60 * 60 * 1000) // last 24 hours
+app.post(
+  "/leads",
+
+  async (req, res) => {
+
+    try {
+
+      const {
+
+        name,
+
+        phone,
+
+        carId,
+      } = req.body;
+
+      /* ================= VALIDATION ================= */
+
+      const validation =
+        validateLead({
+
+          name,
+
+          phone,
+        });
+
+      if (
+        !validation.isValid
+      ) {
+
+        return res.status(400).json({
+
+          success: false,
+
+          message:
+            "Validation failed",
+
+          errors:
+            validation.errors,
+        });
       }
-    });
 
-    if (existing) {
-      return res.status(400).json({
-        error: "You already submitted recently"
+      /* ================= CREATE LEAD ================= */
+
+      const lead =
+        await Lead.create({
+
+          name:
+            name.trim(),
+
+          phone:
+            phone.trim(),
+
+          carId:
+            carId || null,
+        });
+
+      /* ================= RESPONSE ================= */
+
+      res.status(201).json({
+
+        success: true,
+
+        message:
+          "Lead submitted successfully",
+
+        leadId:
+          lead._id,
+      });
+
+    } catch (err) {
+
+      console.log(
+        "LEAD CREATE ERROR:",
+        err
+      );
+
+      res.status(500).json({
+
+        success: false,
+
+        message:
+          "Unable to submit inquiry",
       });
     }
-
-    // ---------- SAVE ----------
-    const lead = new Lead({ name, phone, carId });
-    await lead.save();
-
-    res.json(lead);
-
-  } catch (err) {
-    res.status(500).json({ error: err.message });
   }
-});
+);
 
 /* =========================================================
    ===================== VIEWS API ==========================
@@ -670,7 +1439,7 @@ app.get("/api/admin/export-performance", auth, async (req, res) => {
     });
 
     // ---------- GET CAR NAMES ----------
-    const cars = await Car.find();
+    const cars = await Car.find().sort({ createdAt: -1 });
 
     let csv = "Car,Views,Leads,Conversion %,Revenue\n";
 
@@ -1708,6 +2477,171 @@ app.get("/api/admin/analytics", auth, async (req, res) => {
     res.status(500).json({ error: err.message });
   }
 });
+
+/* =========================================================
+   ====================== SITEMAP.XML =======================
+   ========================================================= */
+
+app.get(
+  "/sitemap.xml",
+
+  async (req, res) => {
+
+    try {
+
+      const cars =
+        await Car.find(
+          {},
+          "slug updatedAt"
+        );
+
+      /* ================= STATIC PAGES ================= */
+
+      const staticPages = [
+
+        "",
+
+        "/cars",
+
+        "/bikes",
+
+        "/scooters",
+
+        "/compare",
+
+        "/popular",
+
+        "/latest",
+
+        "/upcoming",
+      ];
+
+      /* ================= XML START ================= */
+
+      let xml = `<?xml version="1.0" encoding="UTF-8"?>
+
+<urlset
+  xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+>
+
+`;
+
+      /* ================= STATIC URLS ================= */
+
+      staticPages.forEach((page) => {
+
+        xml += `
+  <url>
+
+    <loc>
+      https://evsavari.com${page}
+    </loc>
+
+    <changefreq>
+      daily
+    </changefreq>
+
+    <priority>
+      ${
+        page === ""
+          ? "1.0"
+          : "0.8"
+      }
+    </priority>
+
+  </url>
+`;
+      });
+
+      /* ================= DYNAMIC CAR URLS ================= */
+
+      cars.forEach((car) => {
+
+        xml += `
+  <url>
+
+    <loc>
+      https://evsavari.com/car/${car.slug}
+    </loc>
+
+    <lastmod>
+      ${new Date(
+        car.updatedAt
+      ).toISOString()}
+    </lastmod>
+
+    <changefreq>
+      weekly
+    </changefreq>
+
+    <priority>
+      0.9
+    </priority>
+
+  </url>
+`;
+      });
+
+      /* ================= XML END ================= */
+
+      xml += `
+</urlset>
+`;
+
+      res.header(
+        "Content-Type",
+        "application/xml"
+      );
+
+      res.send(xml);
+
+    } catch (err) {
+
+      console.log(
+        "SITEMAP ERROR:",
+        err
+      );
+
+      res.status(500).send(
+        "Sitemap generation failed"
+      );
+    }
+  }
+);
+
+/* =========================================================
+   ====================== ROBOTS.TXT ========================
+   ========================================================= */
+
+app.get(
+  "/robots.txt",
+
+  (req, res) => {
+
+    const robots = `
+User-agent: *
+
+Allow: /
+
+Sitemap: https://evsavari.com/sitemap.xml
+`;
+
+    res.header(
+      "Content-Type",
+      "text/plain"
+    );
+
+    res.send(robots);
+  }
+);
+
+/* =========================================================
+   ================= ERROR HANDLING ========================
+   ========================================================= */
+
+app.use(notFound);
+
+app.use(errorHandler);
 
 /* =========================================================
    ===================== SERVER START =======================
