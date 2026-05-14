@@ -38,7 +38,7 @@ const storage =
       req,
       file
     ) => ({
-      folder: "zyvev",
+      folder: "evsavari",
 
       allowed_formats: [
         "jpg",

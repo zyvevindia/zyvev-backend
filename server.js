@@ -104,7 +104,7 @@ const allowedOrigins = [
 
   "http://localhost:5173",
 
-  "https://zyvev-frontend.vercel.app",
+  "https://evsavari.com",
 
   "https://evsavari.com",
 
@@ -172,7 +172,7 @@ app.use(
    ========================================================= */
 
 app.get("/", (req, res) => {
-  res.send("Zyvev Backend Running 🚀");
+  res.send("EVSavari Backend Running 🚀");
 });
 
 /* =========================================================
@@ -231,7 +231,7 @@ mongoose
     dbName: "zyvevDB",
   })
   .then(async () => {
-    console.log("MongoDB Connected to zyvevDB ✅");
+    console.log("MongoDB Connected ✅");
 
     // ---------- Seed Cars ----------
     if (process.env.SEED_DATA === "true") {
@@ -242,7 +242,7 @@ mongoose
     const createAdmin = async () => {
 
       const existing = await Admin.findOne({
-        email: "admin@zyvev.com"
+        email: "admin@evsavari.com"
       });
 
       if (!existing) {
