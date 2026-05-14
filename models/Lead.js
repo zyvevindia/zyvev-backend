@@ -29,13 +29,73 @@ const leadSchema = new mongoose.Schema(
     },
 
     /* =====================================================
+       ======================= EMAIL ========================
+       ===================================================== */
+
+    email: {
+      type: String,
+      trim: true,
+      default: ""
+    },
+
+    /* =====================================================
+       ======================== CITY ==========================
+       ===================================================== */
+
+    city: {
+      type: String,
+      trim: true,
+      default: ""
+    },
+
+    /* =====================================================
+       ======================= MESSAGE ======================
+       ===================================================== */
+
+    message: {
+      type: String,
+      trim: true,
+      default: ""
+    },
+
+    /* =====================================================
+       ===================== SOURCE PAGE ====================
+       ===================================================== */
+
+    sourcePage: {
+      type: String,
+      trim: true,
+      default: ""
+    },
+
+    /* =====================================================
+       ===================== VEHICLE NAME ===================
+       ===================================================== */
+
+    vehicleName: {
+      type: String,
+      trim: true,
+      default: ""
+    },
+
+    /* =====================================================
+       ===================== VEHICLE ID =====================
+       ===================================================== */
+
+    vehicleId: {
+      type: String,
+      trim: true,
+      default: ""
+    },
+
+    /* =====================================================
        ======================== CAR =========================
        ===================================================== */
 
     carId: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Car",
-      required: true
+      default: null
     },
 
     /* =====================================================
@@ -45,6 +105,44 @@ const leadSchema = new mongoose.Schema(
     assignedTo: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Admin",
+      default: null
+    },
+
+    /* =====================================================
+       ================== ASSIGNED DEALER ===================
+       ===================================================== */
+
+    assignedDealer: {
+      type: String,
+      trim: true,
+      default: ""
+    },
+
+    /* =====================================================
+       ==================== DEALER ACCOUNT ==================
+       ===================================================== */
+
+    dealer: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Dealer",
+      default: null
+    },
+
+    /* =====================================================
+       ==================== ASSIGNED AT =====================
+       ===================================================== */
+
+    assignedAt: {
+      type: Date,
+      default: null
+    },
+
+    /* =====================================================
+       ================== FIRST RESPONSE AT =================
+       ===================================================== */
+
+    firstRespondedAt: {
+      type: Date,
       default: null
     },
 
@@ -60,12 +158,53 @@ const leadSchema = new mongoose.Schema(
         "assigned",
         "contacted",
         "interested",
+        "test_drive",
         "negotiation",
+        "won",
         "converted",
         "lost"
       ],
 
       default: "new"
+    },
+
+    /* =====================================================
+       =================== STATUS HISTORY ===================
+       ===================================================== */
+
+    statusHistory: [
+      {
+        status: {
+          type: String,
+          trim: true
+        },
+
+        at: {
+          type: Date,
+          default: Date.now
+        },
+
+        changedBy: {
+          type: mongoose.Schema.Types.ObjectId,
+          ref: "Admin",
+          default: null
+        },
+
+        changedByDealer: {
+          type: mongoose.Schema.Types.ObjectId,
+          ref: "Dealer",
+          default: null
+        }
+      }
+    ],
+
+    /* =====================================================
+       ========================= READ =======================
+       ===================================================== */
+
+    readByAdmin: {
+      type: Boolean,
+      default: false
     },
 
     /* =====================================================
@@ -82,6 +221,12 @@ const leadSchema = new mongoose.Schema(
         createdBy: {
           type: mongoose.Schema.Types.ObjectId,
           ref: "Admin"
+        },
+
+        createdByDealer: {
+          type: mongoose.Schema.Types.ObjectId,
+          ref: "Dealer",
+          default: null
         },
 
         createdAt: {
@@ -142,6 +287,14 @@ const leadSchema = new mongoose.Schema(
 /* =========================================================
    ========================= EXPORT =========================
    ========================================================= */
+
+leadSchema.index({ status: 1 });
+leadSchema.index({ assignedTo: 1 });
+leadSchema.index({ dealer: 1 });
+leadSchema.index({ sourcePage: 1 });
+leadSchema.index({ city: 1 });
+leadSchema.index({ vehicleName: 1 });
+leadSchema.index({ dealer: 1, status: 1 });
 
 module.exports = mongoose.model(
   "Lead",

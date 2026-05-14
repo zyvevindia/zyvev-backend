@@ -154,6 +154,81 @@ const validateLead = ({
 };
 
 /* =========================================================
+   ============== FULL INQUIRY (WEB FORM) ==================
+   ========================================================= */
+
+const validateInquiryLead = ({
+  name,
+  phone,
+  email,
+  city,
+  vehicleName,
+  message,
+}) => {
+
+  const errors = {};
+
+  if (
+    !isValidName(name)
+  ) {
+
+    errors.name =
+      "Valid name required";
+  }
+
+  if (
+    !isValidIndianPhone(phone)
+  ) {
+
+    errors.phone =
+      "Valid mobile number required";
+  }
+
+  if (
+    !isValidEmail(email)
+  ) {
+
+    errors.email =
+      "Valid email required";
+  }
+
+  if (
+    !city ||
+    cleanString(city).length < 2
+  ) {
+
+    errors.city =
+      "City is required";
+  }
+
+  if (
+    !vehicleName ||
+    cleanString(vehicleName).length < 2
+  ) {
+
+    errors.vehicleName =
+      "Interested vehicle is required";
+  }
+
+  if (
+    message &&
+    cleanString(message).length > 2000
+  ) {
+
+    errors.message =
+      "Message too long (max 2000 characters)";
+  }
+
+  return {
+
+    isValid:
+      Object.keys(errors).length === 0,
+
+    errors,
+  };
+};
+
+/* =========================================================
    ================= LOGIN VALIDATION ======================
    ========================================================= */
 
@@ -310,6 +385,52 @@ const validateCar = ({
   };
 };
 
+const validateDealerCreate = ({
+  name,
+  email,
+  password,
+}) => {
+
+  const errors = [];
+
+  if (
+    !isValidName(name)
+  ) {
+
+    errors.push(
+      "Name required"
+    );
+  }
+
+  if (
+    !isValidEmail(email)
+  ) {
+
+    errors.push(
+      "Valid email required"
+    );
+  }
+
+  if (
+    !isStrongPassword(
+      password
+    )
+  ) {
+
+    errors.push(
+      "Password must be minimum 6 characters"
+    );
+  }
+
+  return {
+
+    isValid:
+      errors.length === 0,
+
+    errors,
+  };
+};
+
 /* =========================================================
    ===================== EXPORTS ===========================
    ========================================================= */
@@ -334,9 +455,13 @@ module.exports = {
 
   validateLead,
 
+  validateInquiryLead,
+
   validateLogin,
 
   validateUser,
 
   validateCar,
+
+  validateDealerCreate,
 };

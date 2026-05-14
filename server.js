@@ -24,14 +24,25 @@ const Lead = require("./models/Lead");
 const Admin = require("./models/Admin");
 const View = require("./models/View");
 const Notification = require("./models/Notification");
+const Dealer = require("./models/Dealer");
+
+const dealerApiRouter = require("./routes/dealerApi");
 
 const {
 
   validateLead,
+
+  validateInquiryLead,
+
   validateLogin,
+
   validateUser,
+
   validateCar,
+
   safeJsonParse,
+
+  validateDealerCreate,
 } = require(
   "./utils/validators"
 );
@@ -176,6 +187,15 @@ app.get("/", (req, res) => {
 });
 
 /* =========================================================
+   ===================== DEALER API ========================
+   ========================================================= */
+
+app.use(
+  "/api/dealer",
+  dealerApiRouter
+);
+
+/* =========================================================
    ===================== SEED DATA ==========================
    ========================================================= */
 /*
@@ -313,6 +333,14 @@ const auth = (req, res, next) => {
       process.env.JWT_SECRET
     );
 
+    if (decoded.role === "dealer") {
+
+      return res.status(403).json({
+        error:
+          "Dealer accounts must use /api/dealer routes"
+      });
+    }
+
     req.admin = decoded;
 
     next();
@@ -363,6 +391,50 @@ const createNotification = async ({
     );
   }
 };
+
+/* =========================================================
+   ================= CRM STATUS HELPERS ===================
+   ========================================================= */
+
+const CRM_PIPELINE_STATUSES = [
+
+  "new",
+
+  "contacted",
+
+  "interested",
+
+  "test_drive",
+
+  "negotiation",
+
+  "won",
+
+  "lost"
+];
+
+const normalizeIncomingLeadStatus = (status) => {
+
+  if (!status || typeof status !== "string") {
+
+    return null;
+  }
+
+  const s =
+    status.trim().toLowerCase();
+
+  if (s === "converted") {
+
+    return "won";
+  }
+
+  return s;
+};
+
+const isWonStatus = (s) =>
+
+  s === "won" ||
+  s === "converted";
 
 /* =========================================================
    ================= ADMIN ONLY MIDDLEWARE =================
@@ -993,27 +1065,40 @@ app.get("/cars", async (req, res) => {
 
     let filter = {};
 
+    const catalogFilter = {
+      $or: [
+        { dealer: null },
+        { dealer: { $exists: false } }
+      ]
+    };
+
+    const andParts = [catalogFilter];
+
     /* ---------- SEARCH ---------- */
 
     if (search) {
 
-      filter.$or = [
-
-        {
-          name: {
-            $regex: search,
-            $options: "i"
+      andParts.push({
+        $or: [
+          {
+            name: {
+              $regex: search,
+              $options: "i"
+            }
+          },
+          {
+            brand: {
+              $regex: search,
+              $options: "i"
+            }
           }
-        },
-
-        {
-          brand: {
-            $regex: search,
-            $options: "i"
-          }
-        }
-      ];
+        ]
+      });
     }
+
+    filter = {
+      $and: andParts
+    };
 
     /* ---------- BRAND FILTER ---------- */
 
@@ -1165,6 +1250,16 @@ app.get(
           });
       }
 
+      if (car.dealer) {
+
+        return res
+          .status(404)
+          .json({
+            error:
+              "Car not found",
+          });
+      }
+
       res.json(car);
 
     } catch (err) {
@@ -1191,6 +1286,13 @@ app.get("/cars/:id", async (req, res) => {
     );
 
     if (!car) {
+
+      return res.status(404).json({
+        error: "Car not found"
+      });
+    }
+
+    if (car.dealer) {
 
       return res.status(404).json({
         error: "Car not found"
@@ -1237,18 +1339,58 @@ app.post(
 
         phone,
 
+        email,
+
+        city,
+
+        message,
+
         carId,
+
+        vehicleName,
+
+        vehicleId,
+
+        sourcePage,
       } = req.body;
+
+      const hasFullInquiry =
+
+        email !== undefined &&
+        email !== null &&
+        String(email).trim() !== "";
 
       /* ================= VALIDATION ================= */
 
-      const validation =
-        validateLead({
+      let validation;
 
-          name,
+      if (hasFullInquiry) {
 
-          phone,
-        });
+        validation =
+          validateInquiryLead({
+
+            name,
+
+            phone,
+
+            email,
+
+            city,
+
+            vehicleName,
+
+            message,
+          });
+      } else {
+
+        validation =
+          validateLead({
+
+            name,
+
+            phone,
+          });
+      }
 
       if (
         !validation.isValid
@@ -1266,20 +1408,147 @@ app.post(
         });
       }
 
+      /* ================= CAR REFERENCE ================= */
+
+      let resolvedCarId = null;
+
+      const candidateId =
+
+        carId || vehicleId;
+
+      if (
+
+        candidateId &&
+        mongoose.Types.ObjectId.isValid(
+          String(candidateId)
+        )
+      ) {
+
+        const exists =
+          await Car.exists({
+            _id: candidateId,
+          });
+
+        if (exists) {
+
+          resolvedCarId =
+            candidateId;
+        }
+      }
+
       /* ================= CREATE LEAD ================= */
 
+      const leadPayload = {
+
+        name:
+          String(name).trim(),
+
+        phone:
+          String(phone).replace(
+            /\D/g,
+            ""
+          ),
+
+        carId:
+          resolvedCarId,
+
+        status: "new",
+
+        readByAdmin: false,
+
+        statusHistory: [
+          {
+            status: "new",
+
+            at: new Date()
+          }
+        ]
+      };
+
+      if (hasFullInquiry) {
+
+        Object.assign(
+          leadPayload,
+          {
+
+            email:
+              String(email)
+                .trim()
+                .toLowerCase(),
+
+            city:
+              String(city || "")
+                .trim(),
+
+            message:
+              String(message || "")
+                .trim(),
+
+            vehicleName:
+              String(vehicleName || "")
+                .trim(),
+
+            vehicleId:
+              String(vehicleId || "")
+                .trim(),
+
+            sourcePage:
+              String(sourcePage || "")
+                .trim(),
+          }
+        );
+      } else if (resolvedCarId) {
+
+        leadPayload.carId =
+          resolvedCarId;
+      }
+
       const lead =
-        await Lead.create({
+        await Lead.create(
+          leadPayload
+        );
 
-          name:
-            name.trim(),
+      /* ---------- NOTIFY ADMINS ---------- */
 
-          phone:
-            phone.trim(),
+      try {
 
-          carId:
-            carId || null,
-        });
+        const admins =
+          await Admin.find({
+
+            role: "admin"
+          });
+
+        for (const admin of admins) {
+
+          await createNotification({
+
+            user: admin._id,
+
+            title: "New lead",
+
+            message:
+              `${String(name).trim()} submitted an enquiry` +
+              (
+                hasFullInquiry &&
+                sourcePage
+                  ? ` (${String(sourcePage).trim()}).`
+                  : "."
+              ),
+
+            type: "lead_new",
+
+            priority: "medium",
+
+            lead: lead._id
+          });
+        }
+      } catch (notifyErr) {
+
+        console.log(
+          "NEW LEAD NOTIFY ERROR:",
+          notifyErr.message
+        );
+      }
 
       /* ================= RESPONSE ================= */
 
@@ -1478,6 +1747,10 @@ app.get("/api/admin/leads", auth, async (req, res) => {
       "assignedTo",
       "name email role"
     )
+    .populate(
+      "dealer",
+      "name email cities brands isActive"
+    )
     .sort({ createdAt: -1 })
     .skip(Number(skip))
     .limit(Number(limit));
@@ -1495,6 +1768,39 @@ app.get("/api/admin/leads", auth, async (req, res) => {
 });
 
 /* =========================================================
+   ================= MARK LEAD AS READ ======================
+   ========================================================= */
+
+app.put(
+  "/api/admin/leads/:id/read",
+  auth,
+  adminOnly,
+  async (req, res) => {
+
+    try {
+
+      await Lead.findByIdAndUpdate(
+
+        req.params.id,
+
+        {
+          readByAdmin: true,
+        }
+      );
+
+      res.json({
+        success: true,
+      });
+    } catch (err) {
+
+      res.status(500).json({
+        error: err.message,
+      });
+    }
+  }
+);
+
+/* =========================================================
    ================= ASSIGN LEAD ============================
    ========================================================= */
 
@@ -1506,26 +1812,85 @@ app.put(
 
     try {
 
-      const { assignedTo } = req.body;
+      const {
+        assignedTo,
+
+        assignedDealer,
+
+        dealerId
+      } = req.body;
 
       /* ---------- VALIDATION ---------- */
-      if (!assignedTo) {
+      if (
+        !assignedTo &&
+        !dealerId
+      ) {
 
         return res.status(400).json({
-          error: "Sales user required"
+          error:
+            "Sales user or dealer account required"
         });
       }
 
-      /* ---------- VERIFY SALES USER ---------- */
-      const salesUser = await Admin.findById(
-        assignedTo
-      );
+      const update = {
 
-      if (!salesUser) {
+        readByAdmin: true,
 
-        return res.status(404).json({
-          error: "Sales user not found"
-        });
+        assignedAt: new Date()
+      };
+
+      if (assignedTo) {
+
+        const salesUser =
+          await Admin.findById(
+            assignedTo
+          );
+
+        if (!salesUser) {
+
+          return res.status(404).json({
+            error: "Sales user not found"
+          });
+        }
+
+        update.assignedTo = assignedTo;
+      }
+
+      if (
+        Object.prototype.hasOwnProperty.call(
+          req.body,
+          "dealerId"
+        )
+      ) {
+
+        if (
+          !dealerId ||
+          dealerId === ""
+        ) {
+
+          update.dealer = null;
+        } else {
+
+          const dealerDoc =
+            await Dealer.findById(
+              dealerId
+            );
+
+          if (!dealerDoc) {
+
+            return res.status(404).json({
+              error: "Dealer not found"
+            });
+          }
+
+          update.dealer = dealerId;
+        }
+      }
+
+      if (assignedDealer != null) {
+
+        update.assignedDealer =
+          String(assignedDealer).trim();
       }
 
       /* ---------- UPDATE LEAD ---------- */
@@ -1533,10 +1898,7 @@ app.put(
 
         req.params.id,
 
-        {
-          assignedTo,
-          status: "assigned"
-        },
+        update,
 
         {
           new: true
@@ -1547,6 +1909,10 @@ app.put(
         .populate(
           "assignedTo",
           "name email role"
+        )
+        .populate(
+          "dealer",
+          "name email cities brands"
         );
 
       if (!lead) {
@@ -1557,22 +1923,24 @@ app.put(
       }
 
       /* ---------- CREATE NOTIFICATION ---------- */
+      if (assignedTo) {
 
-      await createNotification({
+        await createNotification({
 
-        user: assignedTo,
+          user: assignedTo,
 
-        title: "New Lead Assigned",
+          title: "New Lead Assigned",
 
-        message:
-          `${lead.name} has been assigned to you`,
+          message:
+            `${lead.name} has been assigned to you`,
 
-        type: "lead_assigned",
+          type: "lead_assigned",
 
-        priority: "high",
+          priority: "high",
 
-        lead: lead._id
-      });
+          lead: lead._id
+        });
+      }
 
       res.json(lead);
 
@@ -1582,6 +1950,264 @@ app.put(
         "ASSIGN LEAD ERROR:",
         err
       );
+
+      res.status(500).json({
+        error: err.message
+      });
+    }
+  }
+);
+
+/* =========================================================
+   =================== ADMIN DEALERS =======================
+   ========================================================= */
+
+app.post(
+  "/api/admin/dealers",
+  auth,
+  adminOnly,
+  async (req, res) => {
+
+    try {
+
+      const {
+        name,
+        email,
+        password,
+        phone,
+        cities,
+        brands,
+        isActive
+      } = req.body;
+
+      const validation =
+        validateDealerCreate({
+          name,
+          email,
+          password
+        });
+
+      if (!validation.isValid) {
+
+        return res.status(400).json({
+          errors: validation.errors
+        });
+      }
+
+      const emailNorm =
+        String(email).toLowerCase().trim();
+
+      const exists =
+        await Dealer.findOne({
+          email: emailNorm
+        });
+
+      if (exists) {
+
+        return res.status(400).json({
+          error: "Email already registered"
+        });
+      }
+
+      const hash =
+        await bcrypt.hash(
+          password,
+          10
+        );
+
+      const cityArr =
+        Array.isArray(cities)
+          ? cities.map((c) =>
+              String(c).trim()
+            ).filter(Boolean)
+          : String(cities || "")
+              .split(",")
+              .map((c) => c.trim())
+              .filter(Boolean);
+
+      const brandArr =
+        Array.isArray(brands)
+          ? brands.map((b) =>
+              String(b).trim()
+            ).filter(Boolean)
+          : String(brands || "")
+              .split(",")
+              .map((b) => b.trim())
+              .filter(Boolean);
+
+      const dealer =
+        await Dealer.create({
+
+          name:
+            String(name || "").trim(),
+
+          email: emailNorm,
+
+          password: hash,
+
+          phone:
+            String(phone || "").trim(),
+
+          cities: cityArr,
+
+          brands: brandArr,
+
+          isActive:
+            isActive !== false,
+
+          createdBy: req.admin.id
+        });
+
+      res.status(201).json({
+
+        dealer: {
+
+          id: dealer._id,
+
+          name: dealer.name,
+
+          email: dealer.email,
+
+          cities: dealer.cities,
+
+          brands: dealer.brands,
+
+          isActive: dealer.isActive
+        }
+      });
+
+    } catch (err) {
+
+      console.log(
+        "CREATE DEALER ERROR:",
+        err
+      );
+
+      res.status(500).json({
+        error: err.message
+      });
+    }
+  }
+);
+
+app.get(
+  "/api/admin/dealers",
+  auth,
+  adminOnly,
+  async (req, res) => {
+
+    try {
+
+      const dealers =
+        await Dealer.find()
+          .select("-password")
+          .sort({ createdAt: -1 });
+
+      res.json(dealers);
+
+    } catch (err) {
+
+      res.status(500).json({
+        error: err.message
+      });
+    }
+  }
+);
+
+app.put(
+  "/api/admin/dealers/:id",
+  auth,
+  adminOnly,
+  async (req, res) => {
+
+    try {
+
+      const {
+        name,
+        phone,
+        cities,
+        brands,
+        isActive,
+        password
+      } = req.body;
+
+      const dealer =
+        await Dealer.findById(
+          req.params.id
+        );
+
+      if (!dealer) {
+
+        return res.status(404).json({
+          error: "Dealer not found"
+        });
+      }
+
+      if (name != null) {
+
+        dealer.name =
+          String(name).trim();
+      }
+
+      if (phone != null) {
+
+        dealer.phone =
+          String(phone).trim();
+      }
+
+      if (cities != null) {
+
+        dealer.cities =
+          Array.isArray(cities)
+            ? cities.map((c) =>
+                String(c).trim()
+              ).filter(Boolean)
+            : String(cities)
+                .split(",")
+                .map((c) => c.trim())
+                .filter(Boolean);
+      }
+
+      if (brands != null) {
+
+        dealer.brands =
+          Array.isArray(brands)
+            ? brands.map((b) =>
+                String(b).trim()
+              ).filter(Boolean)
+            : String(brands)
+                .split(",")
+                .map((b) => b.trim())
+                .filter(Boolean);
+      }
+
+      if (typeof isActive === "boolean") {
+
+        dealer.isActive = isActive;
+      }
+
+      if (
+        password &&
+        String(password).length >= 6
+      ) {
+
+        dealer.password =
+          await bcrypt.hash(
+            password,
+            10
+          );
+      }
+
+      await dealer.save();
+
+      const out =
+        await Dealer.findById(
+          dealer._id
+        ).select("-password");
+
+      res.json(out);
+
+    } catch (err) {
 
       res.status(500).json({
         error: err.message
@@ -1623,6 +2249,26 @@ app.get(
           "assignedTo",
           "name email"
         )
+        .populate(
+          "dealer",
+          "name email cities brands isActive"
+        )
+        .populate(
+          "notes.createdBy",
+          "name email"
+        )
+        .populate(
+          "notes.createdByDealer",
+          "name email"
+        )
+        .populate(
+          "statusHistory.changedBy",
+          "name email"
+        )
+        .populate(
+          "statusHistory.changedByDealer",
+          "name email"
+        )
         .sort({ createdAt: -1 });
 
       res.json({
@@ -1633,6 +2279,232 @@ app.get(
 
       console.log(
         "SALES LEADS ERROR:",
+        err
+      );
+
+      res.status(500).json({
+        error: err.message
+      });
+    }
+  }
+);
+
+/* =========================================================
+   ================ SALES CRM DASHBOARD ====================
+   ========================================================= */
+
+app.get(
+  "/api/sales/crm-dashboard",
+  auth,
+  async (req, res) => {
+
+    try {
+
+      if (
+        req.admin.role !== "sales" &&
+        req.admin.role !== "admin"
+      ) {
+
+        return res.status(403).json({
+          error: "Sales access required"
+        });
+      }
+
+      const match =
+        req.admin.role === "admin"
+          ? {}
+          : {
+              assignedTo:
+                new mongoose.Types.ObjectId(
+                  String(req.admin.id)
+                )
+            };
+
+      const totalLeads =
+        await Lead.countDocuments(match);
+
+      const newLeads =
+        await Lead.countDocuments({
+
+          ...match,
+
+          $or: [
+            { status: "new" },
+            { status: "assigned" }
+          ]
+        });
+
+      const wonLeads =
+        await Lead.countDocuments({
+
+          ...match,
+
+          status: {
+            $in: ["won", "converted"]
+          }
+        });
+
+      const conversionRate =
+        totalLeads > 0
+
+          ? Number(
+              (
+                (wonLeads / totalLeads) *
+                100
+              ).toFixed(2)
+            )
+
+          : 0;
+
+      const topVehicles =
+        await Lead.aggregate([
+          {
+            $match: {
+              ...match,
+
+              vehicleName: {
+                $exists: true,
+
+                $nin: ["", null]
+              }
+            }
+          },
+
+          {
+            $group: {
+              _id: "$vehicleName",
+
+              count: { $sum: 1 }
+            }
+          },
+
+          { $sort: { count: -1 } },
+
+          { $limit: 8 },
+
+          {
+            $project: {
+              name: "$_id",
+
+              count: 1,
+
+              _id: 0
+            }
+          }
+        ]);
+
+      const topCities =
+        await Lead.aggregate([
+          {
+            $match: {
+              ...match,
+
+              city: {
+                $exists: true,
+
+                $nin: ["", null]
+              }
+            }
+          },
+
+          {
+            $group: {
+              _id: "$city",
+
+              count: { $sum: 1 }
+            }
+          },
+
+          { $sort: { count: -1 } },
+
+          { $limit: 8 },
+
+          {
+            $project: {
+              name: "$_id",
+
+              count: 1,
+
+              _id: 0
+            }
+          }
+        ]);
+
+      const leadSources =
+        await Lead.aggregate([
+          { $match: match },
+
+          {
+            $project: {
+              src: {
+                $cond: [
+                  {
+                    $or: [
+                      {
+                        $eq: [
+                          "$sourcePage",
+                          ""
+                        ]
+                      },
+
+                      {
+                        $not: ["$sourcePage"]
+                      }
+                    ]
+                  },
+
+                  "(not set)",
+
+                  "$sourcePage"
+                ]
+              }
+            }
+          },
+
+          {
+            $group: {
+              _id: "$src",
+
+              count: { $sum: 1 }
+            }
+          },
+
+          { $sort: { count: -1 } },
+
+          { $limit: 12 },
+
+          {
+            $project: {
+              source: "$_id",
+
+              count: 1,
+
+              _id: 0
+            }
+          }
+        ]);
+
+      res.json({
+
+        totalLeads,
+
+        newLeads,
+
+        wonLeads,
+
+        conversionRate,
+
+        topVehicles,
+
+        topCities,
+
+        leadSources
+      });
+
+    } catch (err) {
+
+      console.log(
+        "CRM DASHBOARD ERROR:",
         err
       );
 
@@ -1666,30 +2538,20 @@ app.put(
       }
 
       const {
-        status
+        status: rawStatus
       } = req.body;
 
+      const status =
+        normalizeIncomingLeadStatus(
+          rawStatus
+        );
+
       /* ---------- VALID STATUS ---------- */
-      const validStatuses = [
-
-        "new",
-
-        "assigned",
-
-        "contacted",
-
-        "interested",
-
-        "negotiation",
-
-        "converted",
-
-        "lost"
-      ];
-
       if (
         !status ||
-        !validStatuses.includes(status)
+        !CRM_PIPELINE_STATUSES.includes(
+          status
+        )
       ) {
 
         return res.status(400).json({
@@ -1714,12 +2576,36 @@ app.put(
         });
       }
 
+      const previousStatus =
+        lead.status;
+
+      /* ---------- STATUS HISTORY ---------- */
+      if (previousStatus !== status) {
+
+        lead.statusHistory.push({
+
+          status,
+
+          at: new Date(),
+
+          changedBy: req.admin.id
+        });
+      }
+
+      /* ---------- FIRST RESPONSE ---------- */
+      if (!lead.firstRespondedAt) {
+
+        lead.firstRespondedAt = new Date();
+      }
+
       /* ---------- UPDATE STATUS ---------- */
       lead.status = status;
 
-      /* ---------- NOTIFY ADMINS ON CONVERSION ---------- */
-
-      if (status === "converted") {
+      /* ---------- NOTIFY ADMINS ON WON ---------- */
+      if (
+        !isWonStatus(previousStatus) &&
+        isWonStatus(status)
+      ) {
 
         const admins = await Admin.find({
           role: "admin"
@@ -1731,12 +2617,12 @@ app.put(
 
             user: admin._id,
 
-            title: "Lead Converted",
+            title: "Lead won",
 
             message:
-              `${lead.name} was converted successfully`,
+              `${lead.name} moved to Won`,
 
-            type: "lead_converted",
+            type: "lead_won",
 
             priority: "high",
 
@@ -1755,6 +2641,22 @@ app.put(
         .populate(
           "assignedTo",
           "name email role"
+        )
+        .populate(
+          "notes.createdBy",
+          "name email"
+        )
+        .populate(
+          "notes.createdByDealer",
+          "name email"
+        )
+        .populate(
+          "statusHistory.changedBy",
+          "name email"
+        )
+        .populate(
+          "statusHistory.changedByDealer",
+          "name email"
         );
 
       res.json(updatedLead);
@@ -1833,6 +2735,11 @@ app.post(
 
       });
 
+      if (!lead.firstRespondedAt) {
+
+        lead.firstRespondedAt = new Date();
+      }
+
       await lead.save();
 
       /* ---------- FETCH UPDATED LEAD ---------- */
@@ -1846,6 +2753,18 @@ app.post(
         )
         .populate(
           "notes.createdBy",
+          "name email"
+        )
+        .populate(
+          "notes.createdByDealer",
+          "name email"
+        )
+        .populate(
+          "statusHistory.changedBy",
+          "name email"
+        )
+        .populate(
+          "statusHistory.changedByDealer",
           "name email"
         );
 
@@ -2148,14 +3067,16 @@ app.get(
               status: "negotiation"
             });
 
-          /* ---------- CONVERTED ---------- */
+          /* ---------- WON (INCL. LEGACY CONVERTED) ---------- */
 
           const converted =
             await Lead.countDocuments({
 
               assignedTo: user._id,
 
-              status: "converted"
+              status: {
+                $in: ["won", "converted"]
+              }
             });
 
           /* ---------- LOST ---------- */

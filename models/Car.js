@@ -224,11 +224,28 @@ const carSchema =
         type: Boolean,
         default: false,
       },
+
+      /* ================= DEALER INVENTORY ================= */
+
+      dealer: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Dealer",
+        default: null,
+      },
+
+      dealerListingStatus: {
+        type: String,
+        enum: ["active", "sold", "unavailable"],
+        default: "active",
+      },
     },
     {
       timestamps: true,
     }
   );
+
+carSchema.index({ dealer: 1, createdAt: -1 });
+carSchema.index({ dealer: 1, dealerListingStatus: 1 });
 
 /* =========================================================
    ====================== AUTO SLUG =========================

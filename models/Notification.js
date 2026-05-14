@@ -59,6 +59,10 @@ const notificationSchema = new mongoose.Schema(
 
         "lead_assigned",
 
+        "lead_new",
+
+        "lead_won",
+
         "followup_overdue",
 
         "lead_converted",
