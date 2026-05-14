@@ -104,7 +104,7 @@ const allowedOrigins = [
 
   "http://localhost:5173",
 
-  "https://evsavari.com",
+  "https://zyvev-frontend.vercel.app",
 
   "https://evsavari.com",
 
@@ -250,7 +250,7 @@ mongoose
         const hashed = await bcrypt.hash("123456", 10);
 
         await Admin.create({
-          email: "admin@zyvev.com",
+          email: "admin@evsavari.com",
           password: hashed,
           role: "admin"
         });
@@ -270,13 +270,13 @@ mongoose
 
   /* ================= CREATE ADMIN ================= */
   /*  const createAdmin = async () => {
-      const existing = await Admin.findOne({ email: "admin@zyvev.com" });
+      const existing = await Admin.findOne({ email: "admin@evsavari.com" });
 
       if (!existing) {
         const hashed = await bcrypt.hash("123456", 10);
 
         await Admin.create({
-          email: "admin@zyvev.com",
+          email: "admin@evsavari.com",
           password: hashed
         });
 
