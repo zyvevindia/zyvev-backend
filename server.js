@@ -69,6 +69,21 @@ const {
 const app = express();
 
 /* =========================================================
+   ================= TRUST PROXY (RENDER / PROXIES) ========
+   ========================================================= */
+
+if (
+  process.env.NODE_ENV ===
+  "production"
+) {
+
+  app.set(
+    "trust proxy",
+    1
+  );
+}
+
+/* =========================================================
    ================= UPLOAD MIDDLEWARE =====================
    ========================================================= */
 
@@ -111,7 +126,7 @@ app.use(apiLimiter);
    ===================== CORS ==============================
    ========================================================= */
 
-const allowedOrigins = [
+const defaultCorsOrigins = [
 
   "http://localhost:5173",
 
@@ -120,6 +135,27 @@ const allowedOrigins = [
   "https://evsavari.com",
 
   "https://www.evsavari.com",
+];
+
+const corsOriginsFromEnv =
+  (process.env.CORS_ORIGINS || "")
+
+    .split(",")
+
+    .map((s) =>
+      s.trim()
+    )
+
+    .filter(Boolean);
+
+const allowedOrigins = [
+
+  ...new Set([
+
+    ...defaultCorsOrigins,
+
+    ...corsOriginsFromEnv,
+  ]),
 ];
 
 app.use(
@@ -146,10 +182,17 @@ app.use(
 
       /* ---------- BLOCK INVALID ---------- */
 
-      console.log(
-        "Blocked CORS Origin:",
-        origin
-      );
+      if (
+        process.env.NODE_ENV !==
+        "production"
+      ) {
+
+        console.warn(
+          "Blocked CORS origin:",
+
+          origin
+        );
+      }
 
       return callback(null, false);
     },
