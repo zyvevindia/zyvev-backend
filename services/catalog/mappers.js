@@ -56,6 +56,83 @@ function mapBodyToCategory(bodyType) {
   return map[bodyType] || "SUV";
 }
 
+function syntheticVehicleId(slug) {
+  if (!slug) return undefined;
+  return `tier1:${slug}`;
+}
+
+function isMetadataOnlyPayload(obj) {
+  if (!obj || typeof obj !== "object" || Array.isArray(obj)) {
+    return false;
+  }
+  const keys = Object.keys(obj);
+  return keys.length === 1 && keys[0] === "metadata";
+}
+
+function isValidMarketplaceVehicle(vehicle) {
+  if (!vehicle || typeof vehicle !== "object" || isMetadataOnlyPayload(vehicle)) {
+    return false;
+  }
+  return Boolean(
+    String(vehicle.slug || "").trim() &&
+      String(vehicle.name || "").trim()
+  );
+}
+
+function finalizeMarketplaceVehicle(vehicle) {
+  if (!isValidMarketplaceVehicle(vehicle)) {
+    return null;
+  }
+
+  const slug = String(vehicle.slug).trim().toLowerCase();
+
+  return {
+    ...vehicle,
+    _id: vehicle._id || syntheticVehicleId(slug),
+    slug,
+    name: vehicle.name,
+    brand: vehicle.brand || labelBrand(slug.split("-")[0]),
+    heroImage: vehicle.heroImage || vehicle.image || "",
+    image:
+      vehicle.image ||
+      vehicle.listingThumbnail ||
+      vehicle.heroImage ||
+      "",
+    variants: Array.isArray(vehicle.variants) ? vehicle.variants : [],
+    specifications: vehicle.specifications || {
+      batteryPack: "EV Battery",
+      range: 0,
+      chargingTime: "N/A",
+      topSpeed: "N/A",
+    },
+    catalogMeta: vehicle.catalogMeta || null,
+    masterRaw: undefined,
+  };
+}
+
+/**
+ * Resolve a dual-read hit to a legacy-compatible marketplace vehicle DTO.
+ */
+function resolveMarketplacePayload(hit) {
+  if (!hit) return null;
+
+  if (isValidMarketplaceVehicle(hit.vehicle)) {
+    return finalizeMarketplaceVehicle(hit.vehicle);
+  }
+
+  if (hit.masterDetail) {
+    const remapped = toMarketplaceVehicle(hit.masterDetail);
+    if (isValidMarketplaceVehicle(remapped)) {
+      return finalizeMarketplaceVehicle({
+        ...remapped,
+        catalogSource: hit.source || remapped.catalogSource,
+      });
+    }
+  }
+
+  return null;
+}
+
 /**
  * Normalized API vehicle shape (legacy-compatible + catalog extensions).
  */
@@ -86,11 +163,13 @@ function toMarketplaceVehicle(masterDoc) {
     .join(" ")
     .trim();
 
+  const slug = String(v.identity.slug || "").trim().toLowerCase();
+
   return {
-    _id: v._id,
+    _id: v._id || syntheticVehicleId(slug),
     name,
     brand,
-    slug: v.identity.slug,
+    slug,
     category: mapBodyToCategory(v.identity.bodyType),
     status: "active",
     startingPrice: exShowroom,
@@ -263,18 +342,28 @@ function legacyCarToMarketplace(carDoc) {
       ? carDoc.toObject()
       : carDoc;
 
-  if (!c) return null;
+  if (!c || isMetadataOnlyPayload(c)) return null;
 
-  return {
+  const slug = String(c.slug || c.identity?.slug || "")
+    .trim()
+    .toLowerCase();
+  const name = String(c.name || "").trim();
+
+  if (!slug || !name) return null;
+
+  return finalizeMarketplaceVehicle({
     ...c,
+    slug,
+    name,
     catalogSource: "legacy",
     catalogMeta: {
+      ...(c.catalogMeta || {}),
       dataQualityScore: null,
       governanceStatus: c.status || "active",
       confidence: "legacy",
       verificationFlags: [],
     },
-  };
+  });
 }
 
 /**
@@ -288,8 +377,12 @@ function toMasterVariantDto(masterDoc) {
 
   if (!v) return null;
 
+  const marketplace = finalizeMarketplaceVehicle(
+    toMarketplaceVehicle(v)
+  );
+
   return {
-    id: v._id,
+    id: v._id || marketplace?._id,
     identity: v.identity,
     pricing: v.pricing,
     battery: v.battery,
@@ -327,7 +420,7 @@ function toMasterVariantDto(masterDoc) {
     ownershipPracticality: v.ownershipPracticality,
     governance: v.governance,
     verification: v.verification,
-    marketplace: toMarketplaceVehicle(v),
+    marketplace,
     createdAt: v.createdAt,
     updatedAt: v.updatedAt,
   };
@@ -357,6 +450,10 @@ module.exports = {
   legacyCarToMarketplace,
   toMasterVariantDto,
   toCompareBundle,
+  resolveMarketplacePayload,
+  finalizeMarketplaceVehicle,
+  isValidMarketplaceVehicle,
+  isMetadataOnlyPayload,
   labelBrand,
   labelModel,
 };

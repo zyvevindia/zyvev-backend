@@ -38,6 +38,10 @@ const createEditorialRouter = require("./routes/editorialRoutes");
 
 const dualReadService = require("./services/catalog/dualReadService");
 
+const {
+  resolveMarketplacePayload,
+} = require("./services/catalog/mappers");
+
 const { USE_EV_MASTER } = require("./config/catalog");
 
 const {
@@ -1180,7 +1184,9 @@ app.get(
           req.params.slug
         );
 
-      if (!hit?.vehicle) {
+      const vehicle = resolveMarketplacePayload(hit);
+
+      if (!vehicle) {
 
         return res
           .status(404)
@@ -1191,15 +1197,15 @@ app.get(
           });
       }
 
-      if (hit.source === "master") {
+      if (hit?.source === "master") {
         res.setHeader("X-Catalog-Source", "master");
-      } else if (hit.source === "tier-1-file") {
+      } else if (hit?.source === "tier-1-file") {
         res.setHeader("X-Catalog-Source", "tier-1-file");
-      } else if (hit.source === "legacy") {
+      } else if (hit?.source === "legacy") {
         res.setHeader("X-Catalog-Source", "legacy");
       }
 
-      res.json(hit.vehicle);
+      res.json(vehicle);
 
     } catch (err) {
 
@@ -1225,18 +1231,20 @@ app.get("/cars/:id", async (req, res) => {
         req.params.id
       );
 
-    if (!hit?.vehicle) {
+    const vehicle = resolveMarketplacePayload(hit);
+
+    if (!vehicle) {
 
       return res.status(404).json({
         error: "Car not found",
       });
     }
 
-    if (hit.source === "master") {
+    if (hit?.source === "master") {
       res.setHeader("X-Catalog-Source", "master");
     }
 
-    res.json(hit.vehicle);
+    res.json(vehicle);
 
   } catch (err) {
 

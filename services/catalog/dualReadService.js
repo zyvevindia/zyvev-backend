@@ -5,6 +5,8 @@ const { resolveSlugCandidates } = require("./slugUtils");
 const {
   toMarketplaceVehicle,
   legacyCarToMarketplace,
+  finalizeMarketplaceVehicle,
+  isValidMarketplaceVehicle,
 } = require("./mappers");
 
 function normalizeSortBy(sortBy) {
@@ -191,35 +193,46 @@ async function getVehicleBySlug(rawSlug, options = {}) {
         preview
       );
       if (master) {
-        return {
-          vehicle: toMarketplaceVehicle(master),
-          source: "master",
-          masterDetail: master,
-          resolvedSlug: slug,
-        };
+        const vehicle = finalizeMarketplaceVehicle(
+          toMarketplaceVehicle(master)
+        );
+        if (isValidMarketplaceVehicle(vehicle)) {
+          return {
+            vehicle,
+            source: "master",
+            masterDetail: master,
+            resolvedSlug: slug,
+          };
+        }
       }
     }
 
     const fileRecord = tier1File.findVariantBySlugFromFiles(slug);
     if (fileRecord) {
-      return {
-        vehicle: {
-          ...toMarketplaceVehicle(fileRecord),
-          catalogSource: "tier-1-file",
-        },
-        source: "tier-1-file",
-        masterDetail: fileRecord,
-        resolvedSlug: slug,
-      };
+      const vehicle = finalizeMarketplaceVehicle({
+        ...toMarketplaceVehicle(fileRecord),
+        catalogSource: "tier-1-file",
+      });
+      if (isValidMarketplaceVehicle(vehicle)) {
+        return {
+          vehicle,
+          source: "tier-1-file",
+          masterDetail: fileRecord,
+          resolvedSlug: slug,
+        };
+      }
     }
 
     const legacy = await catalogRepo.findLegacyCarBySlug(slug);
     if (legacy) {
-      return {
-        vehicle: legacyCarToMarketplace(legacy),
-        source: "legacy",
-        resolvedSlug: slug,
-      };
+      const vehicle = legacyCarToMarketplace(legacy);
+      if (isValidMarketplaceVehicle(vehicle)) {
+        return {
+          vehicle,
+          source: "legacy",
+          resolvedSlug: slug,
+        };
+      }
     }
   }
 
@@ -235,20 +248,28 @@ async function getVehicleById(id, options = {}) {
       preview
     );
     if (master) {
-      return {
-        vehicle: toMarketplaceVehicle(master),
-        source: "master",
-        masterDetail: master,
-      };
+      const vehicle = finalizeMarketplaceVehicle(
+        toMarketplaceVehicle(master)
+      );
+      if (isValidMarketplaceVehicle(vehicle)) {
+        return {
+          vehicle,
+          source: "master",
+          masterDetail: master,
+        };
+      }
     }
   }
 
   const legacy = await catalogRepo.findLegacyCarById(id);
   if (legacy) {
-    return {
-      vehicle: legacyCarToMarketplace(legacy),
-      source: "legacy",
-    };
+    const vehicle = legacyCarToMarketplace(legacy);
+    if (isValidMarketplaceVehicle(vehicle)) {
+      return {
+        vehicle,
+        source: "legacy",
+      };
+    }
   }
 
   return null;

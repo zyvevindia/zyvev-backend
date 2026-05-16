@@ -9,6 +9,8 @@ const dualRead = require("../services/catalog/dualReadService");
 const {
   toMasterVariantDto,
   toCompareBundle,
+  isValidMarketplaceVehicle,
+  resolveMarketplacePayload,
   labelBrand,
   labelModel,
 } = require("../services/catalog/mappers");
@@ -151,12 +153,18 @@ function createCatalogRouter(deps) {
           );
 
           if (doc) {
-            return res.json(toMasterVariantDto(doc));
+            const dto = toMasterVariantDto(doc);
+            if (isValidMarketplaceVehicle(dto?.marketplace)) {
+              return res.json(dto);
+            }
           }
 
           const fileDoc = tier1File.findVariantBySlugFromFiles(slug);
           if (fileDoc) {
-            return res.json(toMasterVariantDto(fileDoc));
+            const dto = toMasterVariantDto(fileDoc);
+            if (isValidMarketplaceVehicle(dto?.marketplace)) {
+              return res.json(dto);
+            }
           }
         }
 
@@ -165,18 +173,20 @@ function createCatalogRouter(deps) {
           { preview }
         );
 
-        if (!fallback) {
+        const marketplace = resolveMarketplacePayload(fallback);
+
+        if (!marketplace) {
           return res.status(404).json({ error: "Variant not found" });
         }
 
         res.json({
-          id: fallback.vehicle._id,
+          id: marketplace._id,
           identity: {
-            slug: fallback.vehicle.slug,
-            brandSlug: (fallback.vehicle.brand || "").toLowerCase(),
-            variantName: fallback.vehicle.name,
+            slug: marketplace.slug,
+            brandSlug: (marketplace.brand || "").toLowerCase(),
+            variantName: marketplace.name,
           },
-          marketplace: fallback.vehicle,
+          marketplace,
           catalogSource: fallback.source,
           governance: {
             status: "legacy",
