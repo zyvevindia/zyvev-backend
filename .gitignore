@@ -1,0 +1,15 @@
+node_modules/
+.env
+.env.local
+.env.*.local
+
+# Tier-1 staged artifacts (local only)
+data-acquisition/staging/**/*.json
+data-acquisition/versions/
+data-acquisition/real-world-observations/
+data-acquisition/logs/
+!data-acquisition/staging/**/.gitkeep
+
+# Licensed OEM PDFs — local only (placeholders may exist for workflow tests)
+data-acquisition/incoming/*.pdf
+!data-acquisition/incoming/README.md

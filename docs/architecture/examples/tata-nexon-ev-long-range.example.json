@@ -1,0 +1,218 @@
+{
+  "_comment": "Normalized master variant example — Tata Nexon EV Long Range (India). INR whole rupees unless noted.",
+
+  "identity": {
+    "brandSlug": "tata",
+    "modelSlug": "nexon-ev",
+    "variantName": "Long Range",
+    "slug": "tata-nexon-ev-long-range",
+    "bodyType": "suv",
+    "segment": "compact-suv",
+    "launchStatus": "on-sale",
+    "modelYear": 2024,
+    "fuelType": "electric"
+  },
+
+  "pricing": {
+    "exShowroom": 1649000,
+    "onRoadByCity": {
+      "delhi": 1720000,
+      "mumbai": 1755000,
+      "bangalore": 1718000
+    },
+    "emi": {
+      "monthlyInr": 28900,
+      "tenureMonths": 60,
+      "downPaymentInr": 330000,
+      "interestRateApr": 8.5,
+      "disclaimer": "Indicative; subject to lender approval"
+    },
+    "subsidy": {
+      "centralFameInr": 0,
+      "stateSubsidyInr": 0,
+      "stateCode": null,
+      "notes": "Verify state EV policy at time of purchase"
+    },
+    "ownershipCost5yr": {
+      "totalInr": 1850000,
+      "energyInr": 120000,
+      "serviceInr": 80000,
+      "insuranceInr": 350000,
+      "computedAt": "2026-05-01T00:00:00.000Z"
+    },
+    "priceLastUpdated": "2026-05-01T00:00:00.000Z"
+  },
+
+  "battery": {
+    "capacityKwh": 40.5,
+    "usableKwh": 38.5,
+    "chemistry": "LFP"
+  },
+
+  "range": {
+    "claimedKm": 465,
+    "claimedStandard": "ARAI",
+    "realWorldKm": {
+      "min": 320,
+      "max": 380,
+      "methodology": "EVSavari city-highway mix estimate"
+    }
+  },
+
+  "charging": {
+    "acKw": 7.2,
+    "acTime0to100Hours": 6.5,
+    "dcKw": 50,
+    "dcTime10to80Minutes": 56,
+    "standards": ["CCS2", "Type2"],
+    "v2l": { "supported": true, "maxWatts": 3000 },
+    "v2v": { "supported": false },
+    "regenLevels": ["low", "medium", "high", "single-pedal"]
+  },
+
+  "performance": {
+    "powerKw": 129,
+    "powerHp": 174,
+    "torqueNm": 215,
+    "acceleration0to100": 8.9,
+    "driveType": "FWD",
+    "driveModes": ["Eco", "City", "Sport"]
+  },
+
+  "practicality": {
+    "bootSpaceL": 350,
+    "familyScore": 78,
+    "highwayComfortScore": 72,
+    "cityUsabilityScore": 88,
+    "groundClearanceMm": 205,
+    "turningRadiusM": 5.3,
+    "seatingCapacity": 5
+  },
+
+  "ownership": {
+    "warrantyVehicleYears": 3,
+    "warrantyVehicleKm": 125000,
+    "warrantyBatteryYears": 8,
+    "warrantyBatteryKm": 160000,
+    "serviceCostPerKm": 0.45,
+    "chargingNetworkScore": 70,
+    "resaleConfidenceScore": 82,
+    "softwareUpdatePolicy": "OTA for infotainment; periodic dealer updates for ECU"
+  },
+
+  "psychology": {
+    "tags": [
+      "best_for_city",
+      "best_first_ev",
+      "family_friendly"
+    ],
+    "scores": {
+      "best_for_family": 78,
+      "best_for_city": 88,
+      "best_first_ev": 85,
+      "premium_feel": 62,
+      "wow_factor": 55,
+      "silent_comfort": 80,
+      "tech_appeal": 70
+    },
+    "narrative": "India's best-selling electric SUV for buyers who want proven service reach, easy city driving, and manageable running costs without premium pricing."
+  },
+
+  "availability": {
+    "availableCities": ["delhi", "mumbai", "bangalore", "hyderabad", "pune", "chennai", "kolkata", "ahmedabad"],
+    "dealerCountNational": 450,
+    "waitingPeriodWeeks": 2,
+    "testDriveAvailable": true
+  },
+
+  "compare": {
+    "segmentRivalSlugs": [
+      "mg-zs-ev-exclusive",
+      "mahindra-xuv400-el",
+      "hyundai-kona-electric-premium"
+    ],
+    "strongestAdvantages": [
+      { "key": "value", "label": "Strong ex-showroom value in compact SUV segment" },
+      { "key": "service", "label": "Wide Tata service network in Tier 1–3 cities" },
+      { "key": "city_range", "label": "Efficient real-world city range for daily commute" }
+    ],
+    "weakestAreas": [
+      { "key": "dc_charging", "label": "DC peak charging slower than newer rivals" },
+      { "key": "highway", "label": "High-speed efficiency trails some BEV SUVs" }
+    ],
+    "valueScore": 84,
+    "featureMatrix": {
+      "adasLevel2": false,
+      "ventilatedSeats": false,
+      "panoramicRoof": false,
+      "connectedCar": true,
+      "heatPump": false
+    }
+  },
+
+  "seo": {
+    "metaTitle": "Tata Nexon EV Long Range Price, Range & Charging | EVSavari",
+    "metaDescription": "Tata Nexon EV Long Range ex-showroom price, 465 km ARAI range, charging time, pros & cons, and compare with MG ZS EV and Mahindra XUV400 on EVSavari.",
+    "pros": [
+      "Strong value and India's widest EV service footprint in mass segment",
+      "Comfortable city drive with usable real-world range for daily use",
+      "LFP battery with long warranty for peace of mind"
+    ],
+    "cons": [
+      "DC fast-charging speed lags newer competitors",
+      "Interior feels less premium than some rivals at similar price"
+    ],
+    "expertSummary": "The Nexon EV Long Range remains the default recommendation for first-time EV buyers who prioritize running cost, service access, and city practicality over highway touring or luxury cabin feel. Its ARAI range is competitive, but buyers doing frequent long highway trips should compare DC charging curves and real-world efficiency against the MG ZS EV and Mahindra XUV400.",
+    "faq": [
+      {
+        "q": "What is the Tata Nexon EV Long Range price in India?",
+        "a": "Ex-showroom price starts around ₹16.49 lakh; on-road price varies by city and registration. Check EVSavari for city-wise estimates."
+      },
+      {
+        "q": "Is the Nexon EV good for first-time EV buyers?",
+        "a": "Yes — strong service network, predictable running costs, and manageable size make it one of India's most recommended first EVs."
+      }
+    ],
+    "chargingFaq": [
+      {
+        "q": "How long does the Nexon EV take to charge at home?",
+        "a": "With a 7.2 kW AC charger, a full charge typically takes about 6–7 hours depending on state of charge and grid supply."
+      },
+      {
+        "q": "Does it support CCS2 fast charging?",
+        "a": "Yes. CCS2 DC fast charging is supported; plan 50+ minutes for a meaningful top-up on a typical 50 kW public charger."
+      }
+    ],
+    "canonicalPath": "/car/tata-nexon-ev-long-range"
+  },
+
+  "media": {
+    "heroImage": "https://res.cloudinary.com/evsavari/image/upload/v1/catalog/tata/nexon-ev/hero.jpg",
+    "gallery": [
+      "https://res.cloudinary.com/evsavari/image/upload/v1/catalog/tata/nexon-ev/exterior-1.jpg",
+      "https://res.cloudinary.com/evsavari/image/upload/v1/catalog/tata/nexon-ev/exterior-2.jpg"
+    ],
+    "interior": [
+      "https://res.cloudinary.com/evsavari/image/upload/v1/catalog/tata/nexon-ev/interior-dashboard.jpg"
+    ],
+    "charging": [
+      "https://res.cloudinary.com/evsavari/image/upload/v1/catalog/tata/nexon-ev/charging-port.jpg"
+    ],
+    "videos": [
+      {
+        "title": "Nexon EV overview",
+        "url": "https://www.youtube.com/watch?v=example",
+        "provider": "youtube"
+      }
+    ]
+  },
+
+  "governance": {
+    "status": "published",
+    "source": "evsavari",
+    "dataQualityScore": 92,
+    "version": 3,
+    "publishedAt": "2026-05-01T12:00:00.000Z",
+    "legacyCarId": null
+  }
+}

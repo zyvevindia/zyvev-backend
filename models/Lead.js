@@ -270,7 +270,25 @@ const leadSchema = new mongoose.Schema(
       ],
 
       default: "medium"
-    }
+    },
+
+    /* =====================================================
+       ========= ANONYMOUS BUYER INTENT (INTERNAL) ===========
+       Not exposed to dealer APIs — foundation for future use.
+       ===================================================== */
+
+    anonymousSessionId: {
+      type: String,
+      trim: true,
+      default: "",
+      select: false,
+    },
+
+    buyerIntentContext: {
+      type: mongoose.Schema.Types.Mixed,
+      default: null,
+      select: false,
+    },
 
   },
 

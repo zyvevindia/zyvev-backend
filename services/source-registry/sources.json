@@ -1,0 +1,507 @@
+{
+  "version": 1,
+  "updatedAt": "2026-05-16T04:56:39.673Z",
+  "sources": [
+    {
+      "sourceId": "tata-nexon-ev-creative-plus-oem-slot",
+      "brand": "tata",
+      "model": "nexon-ev",
+      "tier1VariantSlug": "tata-nexon-ev-creative-plus",
+      "sourceType": "OEM_BROCHURE",
+      "sourceUrl": "",
+      "localAssetPath": "",
+      "sourceFormat": "PDF",
+      "lastFetchedAt": null,
+      "lastVerifiedAt": null,
+      "extractionStatus": "registered",
+      "reviewStatus": "needs_manual_check",
+      "notes": "Register OEM-approved brochure/local PDF path per sourcing-checklist.md. No scraping.",
+      "governanceTags": [
+        "TIER_1",
+        "INITIAL_OEM_TATA"
+      ]
+    },
+    {
+      "sourceId": "tata-nexon-ev-empowered-lr-oem-slot",
+      "brand": "tata",
+      "model": "nexon-ev",
+      "tier1VariantSlug": "tata-nexon-ev-empowered-lr",
+      "sourceType": "OEM_BROCHURE",
+      "sourceUrl": "",
+      "localAssetPath": "",
+      "sourceFormat": "PDF",
+      "lastFetchedAt": null,
+      "lastVerifiedAt": null,
+      "extractionStatus": "registered",
+      "reviewStatus": "needs_manual_check",
+      "notes": "Same model brochure may serve multiple trims; annotate trim-specific pages in extractor notes.",
+      "governanceTags": [
+        "TIER_1",
+        "INITIAL_OEM_TATA"
+      ]
+    },
+    {
+      "sourceId": "tata-punch-ev-smart-plus-oem-slot",
+      "brand": "tata",
+      "model": "punch-ev",
+      "tier1VariantSlug": "tata-punch-ev-smart-plus",
+      "sourceType": "OEM_BROCHURE",
+      "sourceUrl": "",
+      "localAssetPath": "",
+      "sourceFormat": "PDF",
+      "lastFetchedAt": null,
+      "lastVerifiedAt": null,
+      "extractionStatus": "registered",
+      "reviewStatus": "needs_manual_check",
+      "notes": "",
+      "governanceTags": [
+        "TIER_1",
+        "INITIAL_OEM_TATA"
+      ]
+    },
+    {
+      "sourceId": "tata-punch-ev-empowered-lr-oem-slot",
+      "brand": "tata",
+      "model": "punch-ev",
+      "tier1VariantSlug": "tata-punch-ev-empowered-lr",
+      "sourceType": "OEM_BROCHURE",
+      "sourceUrl": "",
+      "localAssetPath": "data-acquisition/fixtures/punch-pipeline-fixture.pdf",
+      "sourceFormat": "PDF",
+      "lastFetchedAt": null,
+      "lastVerifiedAt": null,
+      "extractionStatus": "registered",
+      "reviewStatus": "needs_manual_check",
+      "notes": "Regression fixture only — not for production intelligence. Use tata-punch-ev-empowered-lr-oem-licensed for real brochure cycle.",
+      "governanceTags": [
+        "TIER_1",
+        "INITIAL_OEM_TATA",
+        "REGRESSION_FIXTURE"
+      ]
+    },
+    {
+      "sourceId": "tata-punch-ev-empowered-lr-oem-licensed",
+      "brand": "tata",
+      "model": "punch-ev",
+      "tier1VariantSlug": "tata-punch-ev-empowered-lr",
+      "sourceType": "OEM_BROCHURE",
+      "sourceUrl": "",
+      "localAssetPath": "data-acquisition/incoming/tata-punch-ev-empowered-lr-brochure.pdf",
+      "sourceFormat": "PDF",
+      "lastFetchedAt": null,
+      "lastVerifiedAt": null,
+      "extractionStatus": "registered",
+      "reviewStatus": "pending_review",
+      "notes": "Licensed OEM path: incoming/tata-punch-ev-empowered-lr-brochure.pdf — replace placeholder with dealer/OEM licensed PDF when available.",
+      "governanceTags": [
+        "TIER_1",
+        "INITIAL_OEM_TATA",
+        "LICENSED_INGEST_CYCLE"
+      ]
+    },
+    {
+      "sourceId": "tata-curvv-ev-empowered-oem-slot",
+      "brand": "tata",
+      "model": "curvv-ev",
+      "tier1VariantSlug": "tata-curvv-ev-empowered",
+      "sourceType": "OEM_BROCHURE",
+      "sourceUrl": "",
+      "localAssetPath": "",
+      "sourceFormat": "PDF",
+      "lastFetchedAt": null,
+      "lastVerifiedAt": null,
+      "extractionStatus": "registered",
+      "reviewStatus": "needs_manual_check",
+      "notes": "",
+      "governanceTags": [
+        "TIER_1",
+        "INITIAL_OEM_TATA"
+      ]
+    },
+    {
+      "sourceId": "tata-curvv-ev-empowered-lr-oem-slot",
+      "brand": "tata",
+      "model": "curvv-ev",
+      "tier1VariantSlug": "tata-curvv-ev-empowered-lr",
+      "sourceType": "OEM_BROCHURE",
+      "sourceUrl": "",
+      "localAssetPath": "",
+      "sourceFormat": "PDF",
+      "lastFetchedAt": null,
+      "lastVerifiedAt": null,
+      "extractionStatus": "registered",
+      "reviewStatus": "needs_manual_check",
+      "notes": "",
+      "governanceTags": [
+        "TIER_1",
+        "INITIAL_OEM_TATA"
+      ]
+    },
+    {
+      "sourceId": "tata-tiago-ev-xt-oem-slot",
+      "brand": "tata",
+      "model": "tiago-ev",
+      "tier1VariantSlug": "tata-tiago-ev-xt",
+      "sourceType": "OEM_BROCHURE",
+      "sourceUrl": "",
+      "localAssetPath": "",
+      "sourceFormat": "PDF",
+      "lastFetchedAt": null,
+      "lastVerifiedAt": null,
+      "extractionStatus": "registered",
+      "reviewStatus": "needs_manual_check",
+      "notes": "",
+      "governanceTags": [
+        "TIER_1",
+        "INITIAL_OEM_TATA"
+      ]
+    },
+    {
+      "sourceId": "tata-tiago-ev-xz-plus-oem-slot",
+      "brand": "tata",
+      "model": "tiago-ev",
+      "tier1VariantSlug": "tata-tiago-ev-xz-plus",
+      "sourceType": "OEM_BROCHURE",
+      "sourceUrl": "",
+      "localAssetPath": "",
+      "sourceFormat": "PDF",
+      "lastFetchedAt": null,
+      "lastVerifiedAt": null,
+      "extractionStatus": "registered",
+      "reviewStatus": "needs_manual_check",
+      "notes": "",
+      "governanceTags": [
+        "TIER_1",
+        "INITIAL_OEM_TATA"
+      ]
+    },
+    {
+      "sourceId": "mg-zs-ev-excite-oem-slot",
+      "brand": "mg",
+      "model": "zs-ev",
+      "tier1VariantSlug": "mg-zs-ev-excite",
+      "sourceType": "OEM_PDF",
+      "sourceUrl": "",
+      "localAssetPath": "",
+      "sourceFormat": "PDF",
+      "lastFetchedAt": null,
+      "lastVerifiedAt": null,
+      "extractionStatus": "registered",
+      "reviewStatus": "needs_manual_check",
+      "notes": "",
+      "governanceTags": [
+        "TIER_1",
+        "INITIAL_OEM_MG"
+      ]
+    },
+    {
+      "sourceId": "mg-zs-ev-exclusive-plus-oem-slot",
+      "brand": "mg",
+      "model": "zs-ev",
+      "tier1VariantSlug": "mg-zs-ev-exclusive-plus",
+      "sourceType": "OEM_PDF",
+      "sourceUrl": "",
+      "localAssetPath": "",
+      "sourceFormat": "PDF",
+      "lastFetchedAt": null,
+      "lastVerifiedAt": null,
+      "extractionStatus": "registered",
+      "reviewStatus": "needs_manual_check",
+      "notes": "",
+      "governanceTags": [
+        "TIER_1",
+        "INITIAL_OEM_MG"
+      ]
+    },
+    {
+      "sourceId": "mg-comet-ev-play-oem-slot",
+      "brand": "mg",
+      "model": "comet-ev",
+      "tier1VariantSlug": "mg-comet-ev-play",
+      "sourceType": "OEM_PDF",
+      "sourceUrl": "",
+      "localAssetPath": "",
+      "sourceFormat": "PDF",
+      "lastFetchedAt": null,
+      "lastVerifiedAt": null,
+      "extractionStatus": "registered",
+      "reviewStatus": "needs_manual_check",
+      "notes": "",
+      "governanceTags": [
+        "TIER_1",
+        "INITIAL_OEM_MG"
+      ]
+    },
+    {
+      "sourceId": "mg-comet-ev-plush-plus-oem-slot",
+      "brand": "mg",
+      "model": "comet-ev",
+      "tier1VariantSlug": "mg-comet-ev-plush-plus",
+      "sourceType": "OEM_PDF",
+      "sourceUrl": "",
+      "localAssetPath": "",
+      "sourceFormat": "PDF",
+      "lastFetchedAt": null,
+      "lastVerifiedAt": null,
+      "extractionStatus": "registered",
+      "reviewStatus": "needs_manual_check",
+      "notes": "",
+      "governanceTags": [
+        "TIER_1",
+        "INITIAL_OEM_MG"
+      ]
+    },
+    {
+      "sourceId": "mahindra-xuv400-ec-pro-oem-slot",
+      "brand": "mahindra",
+      "model": "xuv400",
+      "tier1VariantSlug": "mahindra-xuv400-ec-pro",
+      "sourceType": "OEM_BROCHURE",
+      "sourceUrl": "",
+      "localAssetPath": "",
+      "sourceFormat": "PDF",
+      "lastFetchedAt": null,
+      "lastVerifiedAt": null,
+      "extractionStatus": "registered",
+      "reviewStatus": "needs_manual_check",
+      "notes": "",
+      "governanceTags": [
+        "TIER_1",
+        "INITIAL_OEM_MAHINDRA"
+      ]
+    },
+    {
+      "sourceId": "mahindra-xuv400-el-pro-oem-slot",
+      "brand": "mahindra",
+      "model": "xuv400",
+      "tier1VariantSlug": "mahindra-xuv400-el-pro",
+      "sourceType": "OEM_BROCHURE",
+      "sourceUrl": "",
+      "localAssetPath": "",
+      "sourceFormat": "PDF",
+      "lastFetchedAt": null,
+      "lastVerifiedAt": null,
+      "extractionStatus": "registered",
+      "reviewStatus": "needs_manual_check",
+      "notes": "",
+      "governanceTags": [
+        "TIER_1",
+        "INITIAL_OEM_MAHINDRA"
+      ]
+    },
+    {
+      "sourceId": "hyundai-kona-electric-premium-oem-slot",
+      "brand": "hyundai",
+      "model": "kona-electric",
+      "tier1VariantSlug": "hyundai-kona-electric-premium",
+      "sourceType": "OEM_BROCHURE",
+      "sourceUrl": "",
+      "localAssetPath": "",
+      "sourceFormat": "PDF",
+      "lastFetchedAt": null,
+      "lastVerifiedAt": null,
+      "extractionStatus": "registered",
+      "reviewStatus": "needs_manual_check",
+      "notes": "",
+      "governanceTags": [
+        "TIER_1",
+        "INITIAL_OEM_HYUNDAI"
+      ]
+    },
+    {
+      "sourceId": "byd-atto-3-dynamic-oem-slot",
+      "brand": "byd",
+      "model": "atto-3",
+      "tier1VariantSlug": "byd-atto-3-dynamic",
+      "sourceType": "OEM_PDF",
+      "sourceUrl": "",
+      "localAssetPath": "",
+      "sourceFormat": "PDF",
+      "lastFetchedAt": null,
+      "lastVerifiedAt": null,
+      "extractionStatus": "registered",
+      "reviewStatus": "needs_manual_check",
+      "notes": "",
+      "governanceTags": [
+        "TIER_1",
+        "INITIAL_OEM_BYD"
+      ]
+    },
+    {
+      "sourceId": "byd-atto-3-superior-oem-slot",
+      "brand": "byd",
+      "model": "atto-3",
+      "tier1VariantSlug": "byd-atto-3-superior",
+      "sourceType": "OEM_PDF",
+      "sourceUrl": "",
+      "localAssetPath": "",
+      "sourceFormat": "PDF",
+      "lastFetchedAt": null,
+      "lastVerifiedAt": null,
+      "extractionStatus": "registered",
+      "reviewStatus": "needs_manual_check",
+      "notes": "",
+      "governanceTags": [
+        "TIER_1",
+        "INITIAL_OEM_BYD"
+      ]
+    },
+    {
+      "sourceId": "mahindra-be-6-pack-two-oem-slot",
+      "brand": "mahindra",
+      "model": "be-6",
+      "tier1VariantSlug": "mahindra-be-6-pack-two",
+      "sourceType": "OEM_BROCHURE",
+      "sourceUrl": "",
+      "localAssetPath": "",
+      "sourceFormat": "PDF",
+      "extractionStatus": "registered",
+      "reviewStatus": "needs_manual_check",
+      "notes": "Catalog expansion sprint — register licensed brochure before extract",
+      "governanceTags": ["TIER_1", "EXPANSION_SPRINT"]
+    },
+    {
+      "sourceId": "mahindra-be-6-pack-three-select-oem-slot",
+      "brand": "mahindra",
+      "model": "be-6",
+      "tier1VariantSlug": "mahindra-be-6-pack-three-select",
+      "sourceType": "OEM_BROCHURE",
+      "sourceUrl": "",
+      "localAssetPath": "",
+      "sourceFormat": "PDF",
+      "extractionStatus": "registered",
+      "reviewStatus": "needs_manual_check",
+      "governanceTags": ["TIER_1", "EXPANSION_SPRINT"]
+    },
+    {
+      "sourceId": "mahindra-xev-9e-pack-two-oem-slot",
+      "brand": "mahindra",
+      "model": "xev-9e",
+      "tier1VariantSlug": "mahindra-xev-9e-pack-two",
+      "sourceType": "OEM_BROCHURE",
+      "sourceUrl": "",
+      "localAssetPath": "",
+      "sourceFormat": "PDF",
+      "extractionStatus": "registered",
+      "reviewStatus": "needs_manual_check",
+      "governanceTags": ["TIER_1", "EXPANSION_SPRINT"]
+    },
+    {
+      "sourceId": "mahindra-xev-9e-pack-three-select-oem-slot",
+      "brand": "mahindra",
+      "model": "xev-9e",
+      "tier1VariantSlug": "mahindra-xev-9e-pack-three-select",
+      "sourceType": "OEM_BROCHURE",
+      "sourceUrl": "",
+      "localAssetPath": "",
+      "sourceFormat": "PDF",
+      "extractionStatus": "registered",
+      "reviewStatus": "needs_manual_check",
+      "governanceTags": ["TIER_1", "EXPANSION_SPRINT"]
+    },
+    {
+      "sourceId": "citroen-ec3-live-oem-slot",
+      "brand": "citroen",
+      "model": "ec3",
+      "tier1VariantSlug": "citroen-ec3-live",
+      "sourceType": "OEM_BROCHURE",
+      "sourceUrl": "",
+      "localAssetPath": "",
+      "sourceFormat": "PDF",
+      "extractionStatus": "registered",
+      "reviewStatus": "needs_manual_check",
+      "governanceTags": ["TIER_1", "EXPANSION_SPRINT"]
+    },
+    {
+      "sourceId": "citroen-ec3-shine-oem-slot",
+      "brand": "citroen",
+      "model": "ec3",
+      "tier1VariantSlug": "citroen-ec3-shine",
+      "sourceType": "OEM_BROCHURE",
+      "sourceUrl": "",
+      "localAssetPath": "",
+      "sourceFormat": "PDF",
+      "extractionStatus": "registered",
+      "reviewStatus": "needs_manual_check",
+      "governanceTags": ["TIER_1", "EXPANSION_SPRINT"]
+    },
+    {
+      "sourceId": "kia-ev6-gt-line-oem-slot",
+      "brand": "kia",
+      "model": "ev6",
+      "tier1VariantSlug": "kia-ev6-gt-line",
+      "sourceType": "OEM_BROCHURE",
+      "sourceUrl": "",
+      "localAssetPath": "",
+      "sourceFormat": "PDF",
+      "extractionStatus": "registered",
+      "reviewStatus": "needs_manual_check",
+      "governanceTags": ["TIER_1", "EXPANSION_SPRINT"]
+    },
+    {
+      "sourceId": "bmw-ix1-xdrive30-oem-slot",
+      "brand": "bmw",
+      "model": "ix1",
+      "tier1VariantSlug": "bmw-ix1-xdrive30",
+      "sourceType": "OEM_BROCHURE",
+      "sourceUrl": "",
+      "localAssetPath": "",
+      "sourceFormat": "PDF",
+      "extractionStatus": "registered",
+      "reviewStatus": "needs_manual_check",
+      "governanceTags": ["TIER_1", "EXPANSION_SPRINT"]
+    },
+    {
+      "sourceId": "mercedes-eqa-250-plus-oem-slot",
+      "brand": "mercedes",
+      "model": "eqa",
+      "tier1VariantSlug": "mercedes-eqa-250-plus",
+      "sourceType": "OEM_BROCHURE",
+      "sourceUrl": "",
+      "localAssetPath": "",
+      "sourceFormat": "PDF",
+      "extractionStatus": "registered",
+      "reviewStatus": "needs_manual_check",
+      "governanceTags": ["TIER_1", "EXPANSION_SPRINT"]
+    },
+    {
+      "sourceId": "mercedes-eqb-250-plus-oem-slot",
+      "brand": "mercedes",
+      "model": "eqb",
+      "tier1VariantSlug": "mercedes-eqb-250-plus",
+      "sourceType": "OEM_BROCHURE",
+      "sourceUrl": "",
+      "localAssetPath": "",
+      "sourceFormat": "PDF",
+      "extractionStatus": "registered",
+      "reviewStatus": "needs_manual_check",
+      "governanceTags": ["TIER_1", "EXPANSION_SPRINT"]
+    },
+    {
+      "sourceId": "volvo-ex40-single-motor-oem-slot",
+      "brand": "volvo",
+      "model": "ex40",
+      "tier1VariantSlug": "volvo-ex40-single-motor",
+      "sourceType": "OEM_BROCHURE",
+      "sourceUrl": "",
+      "localAssetPath": "",
+      "sourceFormat": "PDF",
+      "extractionStatus": "registered",
+      "reviewStatus": "needs_manual_check",
+      "governanceTags": ["TIER_1", "EXPANSION_SPRINT"]
+    },
+    {
+      "sourceId": "volvo-ex40-twin-motor-oem-slot",
+      "brand": "volvo",
+      "model": "ex40",
+      "tier1VariantSlug": "volvo-ex40-twin-motor",
+      "sourceType": "OEM_BROCHURE",
+      "sourceUrl": "",
+      "localAssetPath": "",
+      "sourceFormat": "PDF",
+      "extractionStatus": "registered",
+      "reviewStatus": "needs_manual_check",
+      "governanceTags": ["TIER_1", "EXPANSION_SPRINT"]
+    }
+  ]
+}

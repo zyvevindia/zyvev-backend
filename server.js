@@ -256,23 +256,6 @@ app.use(
   dealerApiRouter
 );
 
-app.use(
-  "/api/catalog",
-  createCatalogRouter({ auth, adminOnly })
-);
-
-app.use("/api/seo", createSeoRouter());
-
-app.use(
-  "/api/behavioral",
-  createBehavioralRouter({ auth, adminOnly })
-);
-
-app.use(
-  "/api/editorial",
-  createEditorialRouter({ auth, adminOnly })
-);
-
 /* =========================================================
    ===================== SEED DATA ==========================
    ========================================================= */
@@ -529,6 +512,27 @@ const adminOnly = (req, res, next) => {
 
   next();
 };
+
+/* =========================================================
+   ================= API ROUTES (after auth middleware) =====
+   ========================================================= */
+
+app.use(
+  "/api/catalog",
+  createCatalogRouter({ auth, adminOnly })
+);
+
+app.use("/api/seo", createSeoRouter());
+
+app.use(
+  "/api/behavioral",
+  createBehavioralRouter({ auth, adminOnly })
+);
+
+app.use(
+  "/api/editorial",
+  createEditorialRouter({ auth, adminOnly })
+);
 
 /* =========================================================
    ===================== ADMIN LOGIN ========================

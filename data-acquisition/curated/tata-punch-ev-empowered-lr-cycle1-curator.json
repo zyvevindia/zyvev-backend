@@ -1,0 +1,27 @@
+{
+  "tier1VariantSlug": "tata-punch-ev-empowered-lr",
+  "sourceId": "tata-punch-ev-empowered-lr-oem-licensed",
+  "sourceType": "OEM_BROCHURE",
+  "extractionMethod": "MANUAL_ENTRY",
+  "confidenceLevel": "HIGH",
+  "pageHint": "incoming brochure page 2 spec excerpt",
+  "reviewerNotes": "Curator mapped only from raw extract pages[].text. Placeholder PDF in incoming/ until licensed Tata brochure supplied. Charging standards (CCS2, Type 2) omitted — not in KNOWN_FLAT_MAP. Battery warranty km cap omitted — not in flat map.",
+  "flatSpecs": {
+    "priceExShowroom": 1249000,
+    "batteryKwh": 35,
+    "batteryChemistry": "LFP",
+    "usableBatteryKwh": 33,
+    "claimedRangeKm": 421,
+    "rangeStandard": "ARAI",
+    "acChargingKw": 7.2,
+    "acChargingTimeHours": 6.5,
+    "dcChargingKw": 50,
+    "dcCharge10to80Min": 56,
+    "bootSpaceLitres": 315,
+    "warrantyVehicleYears": 3,
+    "warrantyBatteryYears": 8,
+    "airbagCount": 6,
+    "adasLevel": 0,
+    "__unsupportedProbe": "should_reject"
+  }
+}

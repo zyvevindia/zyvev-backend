@@ -1,0 +1,17 @@
+{
+  "version": 1,
+  "items": [
+    {
+      "jobId": "job_1778909591621_ph31x3",
+      "sourceId": "tata-punch-ev-empowered-lr-oem-licensed",
+      "tier1VariantSlug": "tata-punch-ev-empowered-lr",
+      "status": "approved",
+      "lifecycleStage": "pending_review",
+      "artifactPath": "staging\\approved\\job_1778909591621_ph31x3.json",
+      "createdAt": "2026-05-16T05:33:11.622Z",
+      "reviewerNotes": "Cycle1 approved: curator verified fields against raw extract page 2. Placeholder PDF governance acknowledged. No Tier-1 merge.",
+      "reviewedAt": "2026-05-16T05:33:15.234Z"
+    }
+  ],
+  "updatedAt": "2026-05-16T05:33:15.238Z"
+}

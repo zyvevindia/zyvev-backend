@@ -1,0 +1,5 @@
+pdfplumber>=0.11.0,<0.13
+PyMuPDF>=1.24.9,<2.0
+
+# Optional (requires Java for tabula; camelot extras on some platforms):
+# camelot-py[cv]>=0.11,<0.12
