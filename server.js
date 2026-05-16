@@ -1484,6 +1484,10 @@ app.post(
                 : null,
           }
         );
+
+        if (!leadPayload.city && leadMetadata?.city) {
+          leadPayload.city = String(leadMetadata.city).trim();
+        }
       } else if (resolvedCarId) {
 
         leadPayload.carId =
@@ -1536,46 +1540,13 @@ app.post(
           leadPayload
         );
 
-      /* ---------- NOTIFY ADMINS ---------- */
-
+      let autoAssigned = false;
       try {
-
-        const admins =
-          await Admin.find({
-
-            role: "admin"
-          });
-
-        for (const admin of admins) {
-
-          await createNotification({
-
-            user: admin._id,
-
-            title: "New lead",
-
-            message:
-              `${String(name).trim()} submitted an enquiry` +
-              (
-                hasFullInquiry &&
-                sourcePage
-                  ? ` (${String(sourcePage).trim()}).`
-                  : "."
-              ),
-
-            type: "lead_new",
-
-            priority: "medium",
-
-            lead: lead._id
-          });
-        }
+        const { onFormLeadCreated } = require("./services/lead/leadOperations");
+        const routed = await onFormLeadCreated(lead);
+        autoAssigned = routed.assigned;
       } catch (notifyErr) {
-
-        console.log(
-          "NEW LEAD NOTIFY ERROR:",
-          notifyErr.message
-        );
+        console.log("LEAD OPS ERROR:", notifyErr.message);
       }
 
       /* ================= RESPONSE ================= */
@@ -1589,6 +1560,8 @@ app.post(
 
         leadId:
           lead._id,
+
+        autoAssigned,
       });
 
     } catch (err) {
@@ -1608,6 +1581,45 @@ app.post(
     }
   }
 );
+
+app.post("/api/leads/whatsapp-intent", async (req, res) => {
+  try {
+    const {
+      sourcePage,
+      familySlug,
+      variantSlug,
+      city,
+      vehicleName,
+      anonymousSessionId,
+      intent,
+      brand,
+    } = req.body;
+
+    const { createWhatsAppIntentLead } = require("./services/lead/leadOperations");
+
+    const result = await createWhatsAppIntentLead({
+      sourcePage,
+      familySlug,
+      variantSlug,
+      city,
+      vehicleName,
+      anonymousSessionId,
+      intent: intent || "inquiry",
+      brand,
+    });
+
+    res.status(201).json({
+      success: true,
+      ...result,
+    });
+  } catch (err) {
+    console.log("WHATSAPP INTENT ERROR:", err);
+    res.status(500).json({
+      success: false,
+      message: "Unable to record WhatsApp intent",
+    });
+  }
+});
 
 /* =========================================================
    ===================== VIEWS API ==========================
@@ -2042,6 +2054,21 @@ app.put(
 
           lead: lead._id
         });
+      }
+
+      if (lead.dealer) {
+        try {
+          const { notifyLeadAssigned } = require("./services/notifications/opsNotify");
+          const dealerDoc =
+            lead.dealer?.email
+              ? lead.dealer
+              : await Dealer.findById(lead.dealer).select("name email");
+          if (dealerDoc) {
+            await notifyLeadAssigned(lead, dealerDoc);
+          }
+        } catch (notifyErr) {
+          console.log("DEALER ASSIGN NOTIFY:", notifyErr.message);
+        }
       }
 
       res.json(lead);
@@ -3483,6 +3510,17 @@ app.put(
 /* =========================================================
    ================= ANALYTICS ==============================
    ========================================================= */
+
+app.get("/api/admin/ops-summary", auth, adminOnly, async (req, res) => {
+  try {
+    const { buildOpsSummary } = require("./services/operations/opsSummary");
+    const summary = await buildOpsSummary();
+    res.json(summary);
+  } catch (err) {
+    console.log("OPS SUMMARY ERROR:", err);
+    res.status(500).json({ error: err.message });
+  }
+});
 
 app.get("/api/admin/traffic-ops", auth, adminOnly, async (req, res) => {
   try {

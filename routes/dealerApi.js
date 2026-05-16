@@ -268,6 +268,13 @@ router.post(
         assignedTo: String(assignedTo || "").trim(),
       });
 
+      try {
+        const { notifyDealerApplication } = require("../services/notifications/opsNotify");
+        await notifyDealerApplication(application);
+      } catch (notifyErr) {
+        console.log("DEALER APP NOTIFY:", notifyErr.message);
+      }
+
       res.status(201).json({
         success: true,
         message: "Dealer application submitted",

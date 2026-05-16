@@ -107,12 +107,31 @@ async function buildTrafficOpsReport(sinceDays = 7) {
   const leadsBySource = new Map();
   const leadsByLanding = new Map();
   const leadCityDemand = new Map();
+  const viewsByPath = new Map();
 
   for (const lead of leads) {
     const src = lead.leadSource || "form";
     incMap(leadsBySource, src);
     incMap(leadsByLanding, bucketPath(lead.sourcePage));
     if (lead.city) incMap(leadCityDemand, String(lead.city).toLowerCase());
+  }
+
+  for (const e of events) {
+    const path = bucketPath(
+      e.payload?.discoveryPath ||
+        e.payload?.sourcePage ||
+        e.payload?.path ||
+        ""
+    );
+    if (
+      path &&
+      path !== "/" &&
+      ["detail_page_viewed", "guide_viewed", "city_page_viewed", "seo_to_detail"].includes(
+        e.eventType
+      )
+    ) {
+      incMap(viewsByPath, path);
+    }
   }
 
   const detailViews = events.filter((e) => e.eventType === "detail_page_viewed").length;
@@ -124,7 +143,41 @@ async function buildTrafficOpsReport(sinceDays = 7) {
   ).length;
   const compareCompleted = events.filter((e) => e.eventType === "compare_completed").length;
   const whatsappClicks = events.filter((e) => e.eventType === "whatsapp_lead_clicked").length;
+  const whatsappLeads = leads.filter((l) => l.leadSource === "whatsapp").length;
   const formLeads = leads.filter((l) => l.leadSource !== "whatsapp").length;
+
+  const conversionRateBySource = [...leadsBySource.entries()].map(([source, count]) => {
+    const clicks =
+      source === "whatsapp"
+        ? whatsappClicks
+        : events.filter(
+            (e) =>
+              e.eventType === "lead_submitted" &&
+              (e.payload?.leadSource || "form") === source
+          ).length || count;
+    const denominator = source === "whatsapp" ? Math.max(whatsappClicks, count) : Math.max(count, 1);
+    return {
+      source,
+      leads: count,
+      clicks: source === "whatsapp" ? whatsappClicks : null,
+      conversionRate:
+        denominator > 0 ? Math.round((count / denominator) * 1000) / 10 : 0,
+    };
+  });
+
+  const topConvertingPages = [...leadsByLanding.entries()]
+    .map(([path, leadCount]) => {
+      const views = viewsByPath.get(path) || 0;
+      return {
+        path,
+        leads: leadCount,
+        views,
+        conversionRate:
+          views > 0 ? Math.round((leadCount / views) * 1000) / 10 : leadCount > 0 ? 100 : 0,
+      };
+    })
+    .sort((a, b) => b.conversionRate - a.conversionRate || b.leads - a.leads)
+    .slice(0, 12);
 
   const toRanked = (map, labelKey = "label") =>
     [...map.entries()]
@@ -151,6 +204,20 @@ async function buildTrafficOpsReport(sinceDays = 7) {
     })
     .sort((a, b) => b.started - a.started)
     .slice(0, 12);
+
+  const compareToLeadTrends = compareTrends.map((row) => {
+    const compareLeads = leads.filter((l) =>
+      String(l.sourcePage || "").includes(row.slug)
+    ).length;
+    return {
+      ...row,
+      leads: compareLeads,
+      leadConversionRate:
+        row.started > 0
+          ? Math.round((compareLeads / row.started) * 1000) / 10
+          : null,
+    };
+  });
 
   return {
     periodDays: sinceDays,
@@ -203,6 +270,28 @@ async function buildTrafficOpsReport(sinceDays = 7) {
         label: r.path,
         count: r.count,
       })),
+      conversionRateBySource,
+    },
+    whatsappConversions: {
+      clicks: whatsappClicks,
+      leads: whatsappLeads,
+      conversionRate:
+        whatsappClicks > 0
+          ? Math.round((whatsappLeads / whatsappClicks) * 1000) / 10
+          : whatsappLeads > 0
+            ? 100
+            : 0,
+    },
+    topConvertingPages: topConvertingPages.map((r) => ({
+      label: r.path,
+      count: r.leads,
+      meta: r,
+    })),
+    compareToLead: {
+      trends: compareToLeadTrends,
+      totalCompareLeads: leads.filter((l) =>
+        String(l.sourcePage || "").includes("/compare/")
+      ).length,
     },
     ctaClicks: toRanked(ctaByType, "type").map((r) => ({
       label: r.type,
