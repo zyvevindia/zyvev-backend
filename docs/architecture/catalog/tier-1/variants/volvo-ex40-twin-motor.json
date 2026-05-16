@@ -1,0 +1,1022 @@
+{
+  "identity": {
+    "brandSlug": "volvo",
+    "modelSlug": "ex40",
+    "variantName": "Twin Motor",
+    "slug": "volvo-ex40-twin-motor",
+    "bodyType": "suv",
+    "segment": "luxury-suv",
+    "launchStatus": "on-sale",
+    "modelYear": 2024,
+    "fuelType": "electric"
+  },
+  "pricing": {
+    "exShowroom": 5490000,
+    "priceLastUpdated": "2026-05-15T00:00:00.000Z"
+  },
+  "battery": {
+    "capacityKwh": 69,
+    "chemistry": "NMC"
+  },
+  "range": {
+    "claimedKm": 510,
+    "claimedStandard": "ARAI",
+    "realWorldKm": {
+      "min": 311,
+      "max": 383,
+      "methodology": "EVSavari mixed city-highway estimate; flag for owner-data refresh"
+    }
+  },
+  "charging": {
+    "acKw": 11,
+    "dcKw": 150,
+    "standards": [
+      "CCS2",
+      "Type2"
+    ],
+    "v2l": {
+      "supported": true,
+      "maxWatts": 3000
+    },
+    "v2v": {
+      "supported": false
+    },
+    "regenLevels": [
+      "low",
+      "medium",
+      "high"
+    ],
+    "acTime0to100Hours": 7,
+    "dcTime10to80Minutes": 28
+  },
+  "performance": {
+    "powerKw": 300,
+    "driveType": "AWD",
+    "acceleration0to100": 4.7
+  },
+  "practicality": {
+    "bootSpaceL": 419,
+    "familyScore": 82,
+    "highwayComfortScore": 88,
+    "cityUsabilityScore": 74,
+    "seatingCapacity": 5
+  },
+  "ownership": {
+    "warrantyVehicleYears": 3,
+    "warrantyBatteryYears": 8,
+    "warrantyBatteryKm": 160000,
+    "chargingNetworkScore": 74,
+    "resaleConfidenceScore": 81,
+    "serviceCostPerKm": 0.6
+  },
+  "psychology": {
+    "tags": [
+      "premium_feel",
+      "best_for_family"
+    ],
+    "scores": {
+      "premium_feel": 90,
+      "best_for_family": 84,
+      "tech_appeal": 86,
+      "anxietyReduction": 78,
+      "premiumPerception": 90,
+      "enthusiastAppeal": 86,
+      "chauffeurSuitability": 60,
+      "womenDriverFriendliness": 75,
+      "seniorCitizenFriendliness": 79
+    },
+    "narrative": "Performance EX40 for buyers who want Volvo safety positioning with strong acceleration."
+  },
+  "availability": {
+    "availableCities": [
+      "delhi",
+      "mumbai",
+      "bangalore"
+    ],
+    "waitingPeriodWeeks": 5,
+    "testDriveAvailable": true
+  },
+  "compare": {
+    "segmentRivalSlugs": [
+      "kia-ev6-gt-line",
+      "bmw-ix1-xdrive30",
+      "mercedes-eqb-250-plus"
+    ],
+    "strongestAdvantages": [
+      {
+        "key": "adv_1",
+        "label": "Safety brand equity"
+      },
+      {
+        "key": "adv_2",
+        "label": "Clean Scandinavian interior"
+      }
+    ],
+    "weakestAreas": [
+      {
+        "key": "weak_1",
+        "label": "Premium pricing"
+      },
+      {
+        "key": "weak_2",
+        "label": "Boot space vs boxy EQB"
+      }
+    ],
+    "valueScore": 75,
+    "featureMatrix": {},
+    "picks": {
+      "strongestAdvantageLabel": "Safety brand equity",
+      "biggestWeaknessLabel": "Premium pricing",
+      "bestValuePick": false,
+      "bestLongTermOwnershipPick": false
+    },
+    "narrative": {
+      "betterFor": [
+        "family weekend trips",
+        "planned long-distance travel",
+        "home or workplace AC charging routines"
+      ],
+      "betterAlignedReason": "Better aligned with buyers who need family weekend trips — strength area: Safety brand equity.",
+      "tradeoffSummary": "Trade-off to weigh: Premium pricing. Compare charging access and on-road price in your city before deciding."
+    }
+  },
+  "seo": {
+    "metaTitle": "Volvo EX40 Twin Motor Price, Range & Charging | EVSavari",
+    "metaDescription": "Volvo EX40 Twin Motor ex-showroom from ₹54.90 lakh, 510 km ARAI range, charging, pros & cons on EVSavari.",
+    "canonicalPath": "/cars/volvo-ex40-twin-motor",
+    "pros": [
+      "Strong safety narrative",
+      "Comfortable highway cruiser"
+    ],
+    "cons": [
+      "Luxury service costs"
+    ],
+    "expertSummary": "Performance EX40 for buyers who want Volvo safety positioning with strong acceleration.",
+    "faq": [],
+    "chargingFaq": [
+      {
+        "q": "How long does AC charging take on a 11 kW home/work charger?",
+        "a": "Indicative full charge (0–100%) around 7 hours at 11 kW AC — actual time depends on SoC window, ambient temperature, and onboard charger limits."
+      },
+      {
+        "q": "What should I expect at a DC fast charger?",
+        "a": "Plan for roughly 28 minutes from 10–80% when the charger delivers near the vehicle's 150 kW peak — route and battery temperature affect real sessions."
+      },
+      {
+        "q": "Is this suitable for apartment buyers?",
+        "a": "With overnight AC charging, many city buyers cover daily use well below the 510 km ARAI claim — confirm society charger permissions before purchase."
+      }
+    ]
+  },
+  "media": {
+    "heroImage": "https://cdn.evsavari.com/catalog/volvo-ex40-twin-motor/hero.jpg",
+    "listingThumbnail": "https://cdn.evsavari.com/catalog/volvo-ex40-twin-motor/listing-thumb.jpg",
+    "compareThumbnail": "https://cdn.evsavari.com/catalog/volvo-ex40-twin-motor/compare-thumb.jpg",
+    "ogImage": "https://cdn.evsavari.com/catalog/volvo-ex40-twin-motor/og.jpg",
+    "gallery": [
+      "https://cdn.evsavari.com/catalog/volvo-ex40-twin-motor/exterior-1.jpg",
+      "https://cdn.evsavari.com/catalog/volvo-ex40-twin-motor/exterior-2.jpg",
+      "https://cdn.evsavari.com/catalog/volvo-ex40-twin-motor/exterior-3.jpg"
+    ],
+    "interior": [
+      "https://cdn.evsavari.com/catalog/volvo-ex40-twin-motor/interior-1.jpg"
+    ],
+    "charging": [
+      "https://cdn.evsavari.com/catalog/volvo-ex40-twin-motor/charging-port.jpg"
+    ],
+    "videos": [],
+    "assets": [
+      {
+        "key": "hero",
+        "url": "https://cdn.evsavari.com/catalog/volvo-ex40-twin-motor/hero.jpg",
+        "filename": "hero.jpg",
+        "role": "hero",
+        "category": "exterior",
+        "angle": "front-three-quarter",
+        "variant": "light",
+        "tags": [
+          "exterior",
+          "hero"
+        ],
+        "attribution": {
+          "sourceType": "oem_press",
+          "usage": "editorial_marketplace",
+          "rightsNote": "OEM press / brochure — verify brand media terms before publish",
+          "capturedAt": null
+        }
+      },
+      {
+        "key": "listing_thumb",
+        "url": "https://cdn.evsavari.com/catalog/volvo-ex40-twin-motor/listing-thumb.jpg",
+        "filename": "listing-thumb.jpg",
+        "role": "listing",
+        "category": "exterior",
+        "angle": "front-three-quarter",
+        "variant": "light",
+        "tags": [
+          "listing",
+          "exterior"
+        ],
+        "attribution": {
+          "sourceType": "oem_press",
+          "usage": "editorial_marketplace",
+          "rightsNote": "OEM press / brochure — verify brand media terms before publish",
+          "capturedAt": null
+        }
+      },
+      {
+        "key": "compare_thumb",
+        "url": "https://cdn.evsavari.com/catalog/volvo-ex40-twin-motor/compare-thumb.jpg",
+        "filename": "compare-thumb.jpg",
+        "role": "compare",
+        "category": "exterior",
+        "angle": "side-profile",
+        "variant": "light",
+        "tags": [
+          "compare",
+          "exterior"
+        ],
+        "attribution": {
+          "sourceType": "oem_press",
+          "usage": "editorial_marketplace",
+          "rightsNote": "OEM press / brochure — verify brand media terms before publish",
+          "capturedAt": null
+        }
+      },
+      {
+        "key": "og",
+        "url": "https://cdn.evsavari.com/catalog/volvo-ex40-twin-motor/og.jpg",
+        "filename": "og.jpg",
+        "role": "social",
+        "category": "exterior",
+        "angle": "front-three-quarter",
+        "variant": "light",
+        "tags": [
+          "og",
+          "social"
+        ],
+        "attribution": {
+          "sourceType": "oem_press",
+          "usage": "editorial_marketplace",
+          "rightsNote": "OEM press / brochure — verify brand media terms before publish",
+          "capturedAt": null
+        }
+      },
+      {
+        "key": "exterior_1",
+        "url": "https://cdn.evsavari.com/catalog/volvo-ex40-twin-motor/exterior-1.jpg",
+        "filename": "exterior-1.jpg",
+        "role": "gallery",
+        "category": "exterior",
+        "angle": "front-three-quarter",
+        "variant": "light",
+        "tags": [
+          "exterior",
+          "gallery"
+        ],
+        "attribution": {
+          "sourceType": "oem_press",
+          "usage": "editorial_marketplace",
+          "rightsNote": "OEM press / brochure — verify brand media terms before publish",
+          "capturedAt": null
+        }
+      },
+      {
+        "key": "exterior_2",
+        "url": "https://cdn.evsavari.com/catalog/volvo-ex40-twin-motor/exterior-2.jpg",
+        "filename": "exterior-2.jpg",
+        "role": "gallery",
+        "category": "exterior",
+        "angle": "rear-three-quarter",
+        "variant": "light",
+        "tags": [
+          "exterior",
+          "gallery"
+        ],
+        "attribution": {
+          "sourceType": "oem_press",
+          "usage": "editorial_marketplace",
+          "rightsNote": "OEM press / brochure — verify brand media terms before publish",
+          "capturedAt": null
+        }
+      },
+      {
+        "key": "exterior_3",
+        "url": "https://cdn.evsavari.com/catalog/volvo-ex40-twin-motor/exterior-3.jpg",
+        "filename": "exterior-3.jpg",
+        "role": "gallery",
+        "category": "exterior",
+        "angle": "side-profile",
+        "variant": "light",
+        "tags": [
+          "exterior",
+          "gallery"
+        ],
+        "attribution": {
+          "sourceType": "oem_press",
+          "usage": "editorial_marketplace",
+          "rightsNote": "OEM press / brochure — verify brand media terms before publish",
+          "capturedAt": null
+        }
+      },
+      {
+        "key": "interior_1",
+        "url": "https://cdn.evsavari.com/catalog/volvo-ex40-twin-motor/interior-1.jpg",
+        "filename": "interior-1.jpg",
+        "role": "gallery",
+        "category": "interior",
+        "angle": "dashboard",
+        "variant": "light",
+        "tags": [
+          "interior",
+          "gallery"
+        ],
+        "attribution": {
+          "sourceType": "oem_press",
+          "usage": "editorial_marketplace",
+          "rightsNote": "OEM press / brochure — verify brand media terms before publish",
+          "capturedAt": null
+        }
+      },
+      {
+        "key": "charging_port",
+        "url": "https://cdn.evsavari.com/catalog/volvo-ex40-twin-motor/charging-port.jpg",
+        "filename": "charging-port.jpg",
+        "role": "gallery",
+        "category": "charging",
+        "angle": "charging-port",
+        "variant": "light",
+        "tags": [
+          "charging",
+          "ccs2",
+          "gallery"
+        ],
+        "attribution": {
+          "sourceType": "oem_press",
+          "usage": "editorial_marketplace",
+          "rightsNote": "OEM press / brochure — verify brand media terms before publish",
+          "capturedAt": null
+        }
+      }
+    ],
+    "resolveOrder": [
+      "listingThumbnail",
+      "heroImage",
+      "compareThumbnail"
+    ]
+  },
+  "governance": {
+    "status": "review",
+    "source": "evsavari",
+    "dataQualityScore": 90,
+    "version": 1,
+    "publishedAt": null,
+    "legacyCarId": null,
+    "confidence": "high"
+  },
+  "verification": {
+    "dataQualityScore": 90,
+    "confidence": "high",
+    "flags": [
+      {
+        "path": "pricing.exShowroom",
+        "status": "needs_review",
+        "note": "Confirm twin-motor pricing",
+        "reviewBy": "2026-06-15"
+      }
+    ],
+    "lastReviewedAt": null,
+    "sources": [
+      {
+        "type": "oem_web",
+        "note": "Primary specs — verify URL at import",
+        "accessedAt": "2026-05-15"
+      }
+    ]
+  },
+  "safety": {
+    "bharatNcap": null,
+    "globalNcap": null,
+    "adultOccupantScore": null,
+    "childOccupantScore": null,
+    "airbags": {
+      "count": 6,
+      "curtains": true
+    },
+    "adas": {
+      "level": 0,
+      "features": []
+    },
+    "cameraSystems": [
+      "rear camera",
+      "parking sensors"
+    ],
+    "parkingAssist": [
+      "rear sensors"
+    ],
+    "stability": {
+      "esc": true,
+      "hillHold": true
+    }
+  },
+  "comfort": {
+    "seatVentilation": false,
+    "seatHeating": false,
+    "rearSeatComfortScore": 82,
+    "bootPracticalityScore": 95,
+    "familySuitabilityScore": 82,
+    "cityManeuverabilityScore": 74,
+    "ingressEgressScore": 74,
+    "rearAcVents": true,
+    "panoramicRoof": false
+  },
+  "chargingEcosystem": {
+    "networkCompatibility": [
+      "Tata Power",
+      "ChargeZone",
+      "Statiq",
+      "Jio-bp pulse"
+    ],
+    "homeCharging": {
+      "supported": true,
+      "recommendedKw": 11,
+      "wallboxRecommended": true
+    },
+    "fastChargeCurve": {
+      "peakKw": 150,
+      "time10to80Min": 28,
+      "note": "Indicative; real curve varies by charger and temperature"
+    },
+    "estimatedChargingCost": {
+      "dcPerKwhInr": 18,
+      "acPerKwhInr": 8,
+      "disclaimer": "Indicative India averages; varies by state DISCOM and CPO"
+    }
+  },
+  "ownershipIntelligence": {
+    "estimatedServiceCostPerKm": 0.6,
+    "annualServiceInr": null,
+    "batteryReplacementEstimateInr": null,
+    "insuranceAnnualRangeInr": {
+      "min": 98820,
+      "max": 175680
+    },
+    "resaleConfidenceScore": 81,
+    "resaleHorizonYears": 5
+  },
+  "ownershipPracticality": {
+    "apartmentChargingSuitability": 72,
+    "highwayUsability": 85,
+    "familyPracticality": 82,
+    "luggagePracticality": 95,
+    "cityDrivingPracticality": 74,
+    "ingressEgressPracticality": 72,
+    "rearSeatPracticality": 77,
+    "ownershipConfidenceIndicator": 78,
+    "chargingAnxietyReductionNotes": [
+      "Plan weekly top-ups on AC if daily driving stays under ~60 km.",
+      "Use DC stops for planned highway legs — not as a daily fuel-station substitute."
+    ],
+    "methodology": "EVSavari ownership practicality model — editorial scores, not OEM guarantees."
+  },
+  "psychologyExtended": {
+    "scores": {
+      "anxietyReduction": 78,
+      "premiumPerception": 90,
+      "enthusiastAppeal": 86,
+      "chauffeurSuitability": 60,
+      "womenDriverFriendliness": 75,
+      "seniorCitizenFriendliness": 79
+    },
+    "narrative": "Performance EX40 for buyers who want Volvo safety positioning with strong acceleration."
+  },
+  "decision": {
+    "whoShouldBuy": [
+      "Buyers with regular highway use who plan DC fast-charging on routes",
+      "Small families needing rear space and predictable ownership costs"
+    ],
+    "whoShouldAvoid": [
+      "Buyers who need maximum third-row space or heavy towing"
+    ],
+    "bestAlternativeSlug": "kia-ev6-gt-line",
+    "upgradePathSlug": "kia-ev6-gt-line",
+    "downgradePathSlug": null
+  },
+  "personaFit": {
+    "cityCommuter": 74,
+    "familyEv": 84,
+    "highwayTourer": 88,
+    "firstEv": 70,
+    "premiumEv": 90,
+    "valueEv": 75
+  },
+  "commercial": {
+    "subscription": {
+      "ready": false,
+      "notes": null
+    },
+    "batteryLeasing": {
+      "ready": false,
+      "notes": null
+    },
+    "fleet": {
+      "suitabilityScore": 82
+    },
+    "taxiCommercial": {
+      "suitabilityScore": 50
+    },
+    "notes": "Future commercial modules — not active in marketplace UI"
+  },
+  "rangeReality": {
+    "citySummerKm": {
+      "min": 311,
+      "max": 383,
+      "note": "Mixed city traffic, moderate AC use",
+      "disclaimer": "Editorial estimate for planning — not ARAI certified. Actual range varies with driving style, traffic, and temperature."
+    },
+    "cityWinterKm": {
+      "min": 274,
+      "max": 345,
+      "note": "Cooler ambient temperatures; conservative AC/heating impact",
+      "disclaimer": "Editorial estimate for planning — not ARAI certified. Actual range varies with driving style, traffic, and temperature."
+    },
+    "highwayKm": {
+      "min": 265,
+      "max": 347,
+      "note": "Steady highway speeds 80–100 km/h; fewer regenerative gains",
+      "disclaimer": "Editorial estimate for planning — not ARAI certified. Actual range varies with driving style, traffic, and temperature."
+    },
+    "withACKm": {
+      "min": 280,
+      "max": 352,
+      "note": "AC on throughout trip",
+      "disclaimer": "Editorial estimate for planning — not ARAI certified. Actual range varies with driving style, traffic, and temperature."
+    },
+    "fullLoadKm": {
+      "min": 274,
+      "max": 345,
+      "note": "Passengers + luggage",
+      "disclaimer": "Editorial estimate for planning — not ARAI certified. Actual range varies with driving style, traffic, and temperature."
+    },
+    "ecoDrivingKm": {
+      "min": 364,
+      "max": 391,
+      "note": "Gentle driving; still below certified claim",
+      "disclaimer": "Editorial estimate for planning — not ARAI certified. Actual range varies with driving style, traffic, and temperature."
+    },
+    "claimedKm": 510,
+    "confidenceBand": {
+      "level": "medium",
+      "methodology": "evsavari_conservative_derived_v1",
+      "neverExceedsClaim": true
+    },
+    "metadata": {
+      "sourceType": "DERIVED_LOGIC",
+      "confidenceLevel": "medium",
+      "verificationStatus": "pending_review",
+      "lastVerifiedAt": null,
+      "verificationMethod": "evsavari_range_reality_v1",
+      "interpretation": "Planning bands derived from ARAI claim and mixed-use heuristics — verify with owner reports over time."
+    }
+  },
+  "chargingReality": {
+    "overnightFriendly": true,
+    "apartmentFriendly": true,
+    "officeChargingFriendly": false,
+    "societyApprovalRisk": "low",
+    "chargingStressLevel": "low",
+    "roadTripConfidence": "high",
+    "indiaNotes": [
+      "RWAs may restrict home charger installation — confirm society bylaws before purchase.",
+      "Office charging depends on employer policy; not assumed in range planning.",
+      "Highway trips need pre-planned CCS2 stops on your route."
+    ],
+    "metadata": {
+      "sourceType": "DERIVED_LOGIC",
+      "confidenceLevel": "medium",
+      "verificationStatus": "pending_review",
+      "lastVerifiedAt": null,
+      "verificationMethod": "evsavari_charging_reality_v1",
+      "interpretation": "Lifestyle practicality model for Indian ownership — not a guarantee of charger access."
+    }
+  },
+  "buyerAssurance": {
+    "firstEVFriendly": {
+      "score": 70,
+      "label": "First-time EV readiness",
+      "disclaimer": "Editorial confidence score — not a warranty or guarantee."
+    },
+    "servicePredictability": {
+      "score": 86,
+      "label": "Service & support predictability",
+      "disclaimer": "Editorial confidence score — not a warranty or guarantee."
+    },
+    "batteryConfidence": {
+      "score": 88,
+      "label": "Battery peace-of-mind",
+      "disclaimer": "Editorial confidence score — not a warranty or guarantee."
+    },
+    "maintenanceStress": {
+      "score": 52,
+      "label": "Maintenance stress (higher = lower stress)",
+      "disclaimer": "Editorial confidence score — not a warranty or guarantee."
+    },
+    "familyConfidence": {
+      "score": 82,
+      "label": "Family daily-use confidence",
+      "disclaimer": "Editorial confidence score — not a warranty or guarantee."
+    },
+    "dailyUseConfidence": {
+      "score": 80,
+      "label": "Everyday usability confidence",
+      "disclaimer": "Editorial confidence score — not a warranty or guarantee."
+    },
+    "metadata": {
+      "sourceType": "DERIVED_LOGIC",
+      "confidenceLevel": "medium",
+      "verificationStatus": "pending_review",
+      "lastVerifiedAt": null,
+      "verificationMethod": "evsavari_buyer_assurance_v1",
+      "interpretation": "Psychological ownership confidence model — pair with specs and real-world range bands."
+    }
+  },
+  "ownershipTradeoffs": {
+    "primaryStrength": "Safety brand equity",
+    "primaryCompromise": "Premium pricing",
+    "idealUsagePattern": "planned highway use with mapped DC stops",
+    "lessSuitableFor": [
+      "Buyers who need maximum third-row space or heavy towing"
+    ],
+    "metadata": {
+      "sourceType": "EDITORIAL_ESTIMATE",
+      "confidenceLevel": "medium",
+      "verificationStatus": "pending_review",
+      "lastVerifiedAt": null,
+      "verificationMethod": "evsavari_tradeoff_v1",
+      "interpretation": "Transparent tradeoff summary — weaknesses are intentional for buyer trust."
+    }
+  },
+  "scenarioCompare": {
+    "dailyOfficeCommute": {
+      "alignmentScore": 75,
+      "explanation": "Well suited for office commutes when daily distance fits a 311–383 km real-world city band.",
+      "tradeoffSummary": "Premium pricing"
+    },
+    "familyWeekendTrips": {
+      "alignmentScore": 70,
+      "explanation": "Practical for family weekend trips within its range band with planned stops.",
+      "tradeoffSummary": "Packed highway weekends need charging discipline — not a petrol-style fill-and-go rhythm."
+    },
+    "budgetOwnership": {
+      "alignmentScore": 75,
+      "explanation": "Better aligned with value-focused buyers at this ex-showroom band (EVSavari value score 75/100).",
+      "tradeoffSummary": "Lower upfront price trims may trade range, features, or highway comfort versus rivals."
+    },
+    "highwayConfidence": {
+      "alignmentScore": 65,
+      "explanation": "Highway planning band roughly 265–347 km — road-trip confidence rated high.",
+      "tradeoffSummary": "Frequent high-speed touring without charging planning is less suitable."
+    },
+    "firstTimeEVOwnership": {
+      "alignmentScore": 72,
+      "explanation": "Practical for first-time EV buyers who accept a learning curve on charging habits.",
+      "tradeoffSummary": "Buyers wanting zero lifestyle change on long routes should cross-shop longer-range options."
+    },
+    "metadata": {
+      "sourceType": "EDITORIAL_ESTIMATE",
+      "confidenceLevel": "medium",
+      "verificationStatus": "pending_review",
+      "lastVerifiedAt": null,
+      "verificationMethod": "evsavari_scenario_compare_v1",
+      "interpretation": "Scenario alignment for compare context — not a single winner label."
+    }
+  },
+  "rangeRealityExpanded": {
+    "confidenceBands": {
+      "cityDriving": "moderate",
+      "highway": "strong",
+      "acImpact": "moderate",
+      "traffic": "moderate",
+      "drivingStyle": "moderate",
+      "seasonal": "moderate"
+    },
+    "editorialSummaries": [
+      "Works for city commuting with mindful daily distance planning — not a long-commute specialist.",
+      "Highway range confidence is relatively strong for planned inter-city legs with DC stops.",
+      "AC usage has moderate range impact in Indian summers."
+    ],
+    "planningNote": "Use EVSavari planning bands below ARAI claim — not certified real-world guarantees.",
+    "referencesExistingBands": true,
+    "metadata": {
+      "sourceType": "EDITORIAL_ESTIMATE",
+      "confidenceLevel": "medium",
+      "verificationStatus": "pending_review",
+      "lastVerifiedAt": null,
+      "verificationMethod": "evsavari_range_reality_expanded_v1",
+      "interpretation": "Editorial confidence language derived from existing range bands and practicality scores — no new km figures invented here."
+    }
+  },
+  "chargingPracticality": {
+    "apartmentSuitability": "strong",
+    "officePracticality": "moderate",
+    "overnightFriendliness": "strong",
+    "fastChargePracticality": "strong",
+    "cityChargingFriendliness": "moderate",
+    "chargingAnxietyLevel": "low",
+    "networkDependency": "moderate",
+    "editorialNotes": [
+      "Works well for overnight home or dedicated parking charging.",
+      "Reasonably suited for apartment owners with reliable parking access.",
+      "Fast-charging sessions are practical for planned highway legs (~28 min 10–80% indicative)."
+    ],
+    "metadata": {
+      "sourceType": "EDITORIAL_ESTIMATE",
+      "confidenceLevel": "medium",
+      "verificationStatus": "pending_review",
+      "lastVerifiedAt": null,
+      "verificationMethod": "evsavari_charging_practicality_v1",
+      "interpretation": "Editorial charging lifestyle guidance — not a guarantee of charger availability."
+    }
+  },
+  "ownershipConfidence": {
+    "firstTimeEvFriendliness": "moderate",
+    "familyConfidence": "strong",
+    "cityPracticality": "moderate",
+    "longTermOwnership": "moderate",
+    "maintenanceSimplicity": "limited",
+    "easeOfUse": "moderate",
+    "seniorPracticality": "moderate",
+    "ingressPracticality": "moderate",
+    "chauffeurPracticality": "limited",
+    "editorialGuidance": [
+      "Manageable for first-time EV buyers who accept a short learning curve on charging.",
+      "Family practicality is strong for regular city and weekend use within range bands."
+    ],
+    "metadata": {
+      "sourceType": "EDITORIAL_ESTIMATE",
+      "confidenceLevel": "medium",
+      "verificationStatus": "pending_review",
+      "lastVerifiedAt": null,
+      "verificationMethod": "evsavari_ownership_confidence_v1",
+      "interpretation": "Qualitative confidence indicators — pair with warranty and charging access facts."
+    }
+  },
+  "trustPresentation": {
+    "indicators": [
+      {
+        "id": "first_ev",
+        "label": "First-time EV friendly with charging planning",
+        "tone": "neutral"
+      },
+      {
+        "id": "apartment",
+        "label": "Apartment charging confidence: strong",
+        "tone": "positive"
+      },
+      {
+        "id": "highway",
+        "label": "Highway practicality: strong",
+        "tone": "positive"
+      },
+      {
+        "id": "family",
+        "label": "Family practicality: strong",
+        "tone": "positive"
+      },
+      {
+        "id": "charging_stress",
+        "label": "Charging planning stress: low",
+        "tone": "positive"
+      }
+    ],
+    "headline": "Practical EV for buyers who match its charging and range profile.",
+    "disclaimer": "Editorial confidence indicators — not user reviews, star ratings, or guarantees."
+  },
+  "compareTrust": {
+    "chargingPracticality": {
+      "dimension": "charging",
+      "label": "Charging practicality",
+      "strength": "strong",
+      "note": "Works well for overnight home or dedicated parking charging."
+    },
+    "ownershipConfidence": {
+      "dimension": "ownership",
+      "label": "Ownership confidence",
+      "strength": "moderate",
+      "note": "Manageable for first-time EV buyers who accept a short learning curve on charging."
+    },
+    "familyPracticality": {
+      "dimension": "family",
+      "label": "Family practicality",
+      "strength": "strong",
+      "note": "Boot space, rear seat comfort, and weekend range bands matter for families."
+    },
+    "highwayUsability": {
+      "dimension": "highway",
+      "label": "Highway usability",
+      "strength": "strong",
+      "note": "Highway range confidence is relatively strong for planned inter-city legs with DC stops."
+    },
+    "cityUsability": {
+      "dimension": "city",
+      "label": "City usability",
+      "strength": "moderate",
+      "note": "Parking footprint and city range bands drive daily confidence."
+    },
+    "anxietyReduction": {
+      "dimension": "anxiety",
+      "label": "Anxiety reduction",
+      "strength": "strong",
+      "note": "May need more charging planning discipline."
+    },
+    "apartmentFit": {
+      "dimension": "apartment",
+      "label": "Apartment owners",
+      "strength": "strong",
+      "note": "Better suited for apartment owners with parking access."
+    }
+  },
+  "intelligenceGovernance": {
+    "schemaVersion": 1,
+    "generatedAt": "2026-05-16T08:45:52.245Z",
+    "fields": {
+      "pricing.exShowroom": {
+        "metadata": {
+          "sourceType": "OFFICIAL_OEM",
+          "confidenceLevel": "high",
+          "verificationStatus": "pending_review",
+          "lastVerifiedAt": "2026-05-15T00:00:00.000Z",
+          "verificationMethod": "oem_price_list"
+        }
+      },
+      "range.claimedKm": {
+        "metadata": {
+          "sourceType": "OFFICIAL_OEM",
+          "confidenceLevel": "verified",
+          "verificationStatus": "pending_review",
+          "lastVerifiedAt": null,
+          "verificationMethod": "arai_certification"
+        }
+      },
+      "range.realWorldKm": {
+        "metadata": {
+          "sourceType": "EDITORIAL_ESTIMATE",
+          "confidenceLevel": "medium",
+          "verificationStatus": "pending_review",
+          "lastVerifiedAt": null,
+          "verificationMethod": "evsavari_mixed_cycle_model"
+        }
+      },
+      "battery.capacityKwh": {
+        "metadata": {
+          "sourceType": "OFFICIAL_OEM",
+          "confidenceLevel": "high",
+          "verificationStatus": "pending_review",
+          "lastVerifiedAt": null,
+          "verificationMethod": "oem_spec_sheet"
+        }
+      },
+      "charging.dcTime10to80Minutes": {
+        "metadata": {
+          "sourceType": "OFFICIAL_OEM",
+          "confidenceLevel": "high",
+          "verificationStatus": "pending_review",
+          "lastVerifiedAt": null,
+          "verificationMethod": "oem_charging_spec"
+        }
+      },
+      "safety.airbags.count": {
+        "metadata": {
+          "sourceType": "OFFICIAL_OEM",
+          "confidenceLevel": "high",
+          "verificationStatus": "pending_review",
+          "lastVerifiedAt": null,
+          "verificationMethod": "oem_spec_sheet"
+        }
+      },
+      "safety.adas.level": {
+        "metadata": {
+          "sourceType": "DERIVED_LOGIC",
+          "confidenceLevel": "medium",
+          "verificationStatus": "unverified",
+          "lastVerifiedAt": null,
+          "verificationMethod": "feature_matrix_inference"
+        }
+      },
+      "personaFit": {
+        "metadata": {
+          "sourceType": "DERIVED_LOGIC",
+          "confidenceLevel": "medium",
+          "verificationStatus": "pending_review",
+          "lastVerifiedAt": null,
+          "verificationMethod": "score_composite"
+        }
+      },
+      "scenarioFit": {
+        "metadata": {
+          "sourceType": "DERIVED_LOGIC",
+          "confidenceLevel": "medium",
+          "verificationStatus": "pending_review",
+          "lastVerifiedAt": null,
+          "verificationMethod": "scenario_model_v1"
+        }
+      },
+      "decision.whoShouldBuy": {
+        "metadata": {
+          "sourceType": "EDITORIAL_ESTIMATE",
+          "confidenceLevel": "medium",
+          "verificationStatus": "pending_review",
+          "lastVerifiedAt": null,
+          "verificationMethod": "editorial_template"
+        }
+      },
+      "compare.narrative": {
+        "metadata": {
+          "sourceType": "EDITORIAL_ESTIMATE",
+          "confidenceLevel": "medium",
+          "verificationStatus": "pending_review",
+          "lastVerifiedAt": null,
+          "verificationMethod": "compare_template_v1"
+        }
+      },
+      "psychologyExtended.scores": {
+        "metadata": {
+          "sourceType": "DERIVED_LOGIC",
+          "confidenceLevel": "medium",
+          "verificationStatus": "pending_review",
+          "lastVerifiedAt": null,
+          "verificationMethod": "psychology_composite"
+        }
+      },
+      "ownershipIntelligence.insuranceAnnualRangeInr": {
+        "metadata": {
+          "sourceType": "INDUSTRY_ESTIMATE",
+          "confidenceLevel": "low",
+          "verificationStatus": "unverified",
+          "lastVerifiedAt": null,
+          "verificationMethod": "ex_showroom_heuristic"
+        }
+      },
+      "rangeReality": {
+        "metadata": {
+          "sourceType": "DERIVED_LOGIC",
+          "confidenceLevel": "medium",
+          "verificationStatus": "pending_review",
+          "lastVerifiedAt": null,
+          "verificationMethod": "evsavari_range_reality_v1"
+        }
+      },
+      "chargingReality": {
+        "metadata": {
+          "sourceType": "DERIVED_LOGIC",
+          "confidenceLevel": "medium",
+          "verificationStatus": "pending_review",
+          "lastVerifiedAt": null,
+          "verificationMethod": "evsavari_charging_reality_v1"
+        }
+      },
+      "buyerAssurance": {
+        "metadata": {
+          "sourceType": "DERIVED_LOGIC",
+          "confidenceLevel": "medium",
+          "verificationStatus": "pending_review",
+          "lastVerifiedAt": null,
+          "verificationMethod": "evsavari_buyer_assurance_v1"
+        }
+      },
+      "ownershipTradeoffs": {
+        "metadata": {
+          "sourceType": "EDITORIAL_ESTIMATE",
+          "confidenceLevel": "medium",
+          "verificationStatus": "pending_review",
+          "lastVerifiedAt": null,
+          "verificationMethod": "evsavari_tradeoff_v1"
+        }
+      },
+      "scenarioCompare": {
+        "metadata": {
+          "sourceType": "EDITORIAL_ESTIMATE",
+          "confidenceLevel": "medium",
+          "verificationStatus": "pending_review",
+          "lastVerifiedAt": null,
+          "verificationMethod": "evsavari_scenario_compare_v1"
+        }
+      }
+    }
+  },
+  "scenarioFit": {
+    "dailyOfficeCommute": 74,
+    "familyWeekendTrips": 82,
+    "longDistanceTravel": 96,
+    "apartmentChargingFriendliness": 78,
+    "firstTimeEVBuyer": 70,
+    "chauffeurDrivenUsage": 60
+  },
+  "editorialNarratives": {
+    "ownership": "Ownership on volvo EVs is generally practical for Indian buyers who value predictable service intervals and an 8-year battery warranty narrative. Resale confidence is modeled at 81/100 — interpret as editorial guidance, not a guarantee.",
+    "charging": "Home or workplace AC charging at 11 kW is well suited for overnight top-ups; DC sessions around 28 minutes (10–80%) are practical for planned highway stops — not a fuel-station-style minute fill; against a certified 510 km ARAI figure.",
+    "familySuitability": "Family suitability scores 82/100 in our model — well suited for small families with regular city and weekend use; boot space around 419 L should be checked against your stroller or luggage routine.",
+    "firstTimeEv": "First-time EV friendliness is rated 72/100 with anxiety-reduction at 78/100. This variant is practical for buyers who want clear warranty terms and manageable charging habits — less ideal if you expect zero planning on long routes.",
+    "compare": "In the luxury suv set on EVSavari, this variant is better aligned with buyers who prioritise safety brand equity; trade-off: premium pricing."
+  }
+}

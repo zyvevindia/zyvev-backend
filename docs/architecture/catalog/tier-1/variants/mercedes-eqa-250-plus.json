@@ -1,0 +1,1026 @@
+{
+  "identity": {
+    "brandSlug": "mercedes",
+    "modelSlug": "eqa",
+    "variantName": "250+",
+    "slug": "mercedes-eqa-250-plus",
+    "bodyType": "suv",
+    "segment": "luxury-suv",
+    "launchStatus": "on-sale",
+    "modelYear": 2024,
+    "fuelType": "electric"
+  },
+  "pricing": {
+    "exShowroom": 4990000,
+    "priceLastUpdated": "2026-05-15T00:00:00.000Z"
+  },
+  "battery": {
+    "capacityKwh": 70.5,
+    "chemistry": "NMC"
+  },
+  "range": {
+    "claimedKm": 459,
+    "claimedStandard": "ARAI",
+    "realWorldKm": {
+      "min": 275,
+      "max": 340,
+      "methodology": "EVSavari mixed city-highway estimate; flag for owner-data refresh"
+    }
+  },
+  "charging": {
+    "acKw": 11,
+    "dcKw": 100,
+    "standards": [
+      "CCS2",
+      "Type2"
+    ],
+    "v2l": {
+      "supported": true,
+      "maxWatts": 3000
+    },
+    "v2v": {
+      "supported": false
+    },
+    "regenLevels": [
+      "low",
+      "medium",
+      "high"
+    ],
+    "acTime0to100Hours": 7.5,
+    "dcTime10to80Minutes": 32
+  },
+  "performance": {
+    "powerKw": 140,
+    "driveType": "FWD",
+    "acceleration0to100": 8.6
+  },
+  "practicality": {
+    "bootSpaceL": 340,
+    "familyScore": 80,
+    "highwayComfortScore": 86,
+    "cityUsabilityScore": 72,
+    "seatingCapacity": 5
+  },
+  "ownership": {
+    "warrantyVehicleYears": 3,
+    "warrantyBatteryYears": 8,
+    "warrantyBatteryKm": 160000,
+    "chargingNetworkScore": 76,
+    "resaleConfidenceScore": 82,
+    "serviceCostPerKm": 0.65
+  },
+  "psychology": {
+    "tags": [
+      "premium_feel"
+    ],
+    "scores": {
+      "premium_feel": 95,
+      "tech_appeal": 88,
+      "best_for_family": 72,
+      "anxietyReduction": 79,
+      "premiumPerception": 95,
+      "enthusiastAppeal": 88,
+      "chauffeurSuitability": 60,
+      "womenDriverFriendliness": 74,
+      "seniorCitizenFriendliness": 73
+    },
+    "narrative": "Entry Mercedes EQ crossover for luxury-first buyers who want compact footprint with star badge assurance."
+  },
+  "availability": {
+    "availableCities": [
+      "delhi",
+      "mumbai",
+      "bangalore"
+    ],
+    "waitingPeriodWeeks": 5,
+    "testDriveAvailable": true
+  },
+  "compare": {
+    "segmentRivalSlugs": [
+      "bmw-ix1-xdrive30",
+      "volvo-ex40-single-motor",
+      "kia-ev6-gt-line"
+    ],
+    "strongestAdvantages": [
+      {
+        "key": "adv_1",
+        "label": "Mercedes ownership prestige"
+      },
+      {
+        "key": "adv_2",
+        "label": "Refined highway manners"
+      }
+    ],
+    "weakestAreas": [
+      {
+        "key": "weak_1",
+        "label": "Running costs at luxury tier"
+      },
+      {
+        "key": "weak_2",
+        "label": "DC speeds below 800V rivals"
+      }
+    ],
+    "valueScore": 72,
+    "featureMatrix": {},
+    "picks": {
+      "strongestAdvantageLabel": "Mercedes ownership prestige",
+      "biggestWeaknessLabel": "Running costs at luxury tier",
+      "bestValuePick": false,
+      "bestLongTermOwnershipPick": true
+    },
+    "narrative": {
+      "betterFor": [
+        "family weekend trips",
+        "planned long-distance travel",
+        "home or workplace AC charging routines"
+      ],
+      "betterAlignedReason": "Better aligned with buyers who need family weekend trips — strength area: Mercedes ownership prestige.",
+      "tradeoffSummary": "Trade-off to weigh: Running costs at luxury tier. Compare charging access and on-road price in your city before deciding."
+    }
+  },
+  "seo": {
+    "metaTitle": "Mercedes-Benz EQA 250+ Price, Range & Charging | EVSavari",
+    "metaDescription": "Mercedes-Benz EQA 250+ ex-showroom from ₹49.90 lakh, 459 km ARAI range, charging, pros & cons on EVSavari.",
+    "canonicalPath": "/cars/mercedes-eqa-250-plus",
+    "pros": [
+      "Luxury cabin",
+      "Strong brand-led resale narrative"
+    ],
+    "cons": [
+      "Verify final on-road and charging equipment packages"
+    ],
+    "expertSummary": "Entry Mercedes EQ crossover for luxury-first buyers who want compact footprint with star badge assurance.",
+    "faq": [],
+    "chargingFaq": [
+      {
+        "q": "How long does AC charging take on a 11 kW home/work charger?",
+        "a": "Indicative full charge (0–100%) around 7.5 hours at 11 kW AC — actual time depends on SoC window, ambient temperature, and onboard charger limits."
+      },
+      {
+        "q": "What should I expect at a DC fast charger?",
+        "a": "Plan for roughly 32 minutes from 10–80% when the charger delivers near the vehicle's 100 kW peak — route and battery temperature affect real sessions."
+      },
+      {
+        "q": "Is this suitable for apartment buyers?",
+        "a": "With overnight AC charging, many city buyers cover daily use well below the 459 km ARAI claim — confirm society charger permissions before purchase."
+      }
+    ]
+  },
+  "media": {
+    "heroImage": "https://cdn.evsavari.com/catalog/mercedes-eqa-250-plus/hero.jpg",
+    "listingThumbnail": "https://cdn.evsavari.com/catalog/mercedes-eqa-250-plus/listing-thumb.jpg",
+    "compareThumbnail": "https://cdn.evsavari.com/catalog/mercedes-eqa-250-plus/compare-thumb.jpg",
+    "ogImage": "https://cdn.evsavari.com/catalog/mercedes-eqa-250-plus/og.jpg",
+    "gallery": [
+      "https://cdn.evsavari.com/catalog/mercedes-eqa-250-plus/exterior-1.jpg",
+      "https://cdn.evsavari.com/catalog/mercedes-eqa-250-plus/exterior-2.jpg",
+      "https://cdn.evsavari.com/catalog/mercedes-eqa-250-plus/exterior-3.jpg"
+    ],
+    "interior": [
+      "https://cdn.evsavari.com/catalog/mercedes-eqa-250-plus/interior-1.jpg"
+    ],
+    "charging": [
+      "https://cdn.evsavari.com/catalog/mercedes-eqa-250-plus/charging-port.jpg"
+    ],
+    "videos": [],
+    "assets": [
+      {
+        "key": "hero",
+        "url": "https://cdn.evsavari.com/catalog/mercedes-eqa-250-plus/hero.jpg",
+        "filename": "hero.jpg",
+        "role": "hero",
+        "category": "exterior",
+        "angle": "front-three-quarter",
+        "variant": "light",
+        "tags": [
+          "exterior",
+          "hero"
+        ],
+        "attribution": {
+          "sourceType": "oem_press",
+          "usage": "editorial_marketplace",
+          "rightsNote": "OEM press / brochure — verify brand media terms before publish",
+          "capturedAt": null
+        }
+      },
+      {
+        "key": "listing_thumb",
+        "url": "https://cdn.evsavari.com/catalog/mercedes-eqa-250-plus/listing-thumb.jpg",
+        "filename": "listing-thumb.jpg",
+        "role": "listing",
+        "category": "exterior",
+        "angle": "front-three-quarter",
+        "variant": "light",
+        "tags": [
+          "listing",
+          "exterior"
+        ],
+        "attribution": {
+          "sourceType": "oem_press",
+          "usage": "editorial_marketplace",
+          "rightsNote": "OEM press / brochure — verify brand media terms before publish",
+          "capturedAt": null
+        }
+      },
+      {
+        "key": "compare_thumb",
+        "url": "https://cdn.evsavari.com/catalog/mercedes-eqa-250-plus/compare-thumb.jpg",
+        "filename": "compare-thumb.jpg",
+        "role": "compare",
+        "category": "exterior",
+        "angle": "side-profile",
+        "variant": "light",
+        "tags": [
+          "compare",
+          "exterior"
+        ],
+        "attribution": {
+          "sourceType": "oem_press",
+          "usage": "editorial_marketplace",
+          "rightsNote": "OEM press / brochure — verify brand media terms before publish",
+          "capturedAt": null
+        }
+      },
+      {
+        "key": "og",
+        "url": "https://cdn.evsavari.com/catalog/mercedes-eqa-250-plus/og.jpg",
+        "filename": "og.jpg",
+        "role": "social",
+        "category": "exterior",
+        "angle": "front-three-quarter",
+        "variant": "light",
+        "tags": [
+          "og",
+          "social"
+        ],
+        "attribution": {
+          "sourceType": "oem_press",
+          "usage": "editorial_marketplace",
+          "rightsNote": "OEM press / brochure — verify brand media terms before publish",
+          "capturedAt": null
+        }
+      },
+      {
+        "key": "exterior_1",
+        "url": "https://cdn.evsavari.com/catalog/mercedes-eqa-250-plus/exterior-1.jpg",
+        "filename": "exterior-1.jpg",
+        "role": "gallery",
+        "category": "exterior",
+        "angle": "front-three-quarter",
+        "variant": "light",
+        "tags": [
+          "exterior",
+          "gallery"
+        ],
+        "attribution": {
+          "sourceType": "oem_press",
+          "usage": "editorial_marketplace",
+          "rightsNote": "OEM press / brochure — verify brand media terms before publish",
+          "capturedAt": null
+        }
+      },
+      {
+        "key": "exterior_2",
+        "url": "https://cdn.evsavari.com/catalog/mercedes-eqa-250-plus/exterior-2.jpg",
+        "filename": "exterior-2.jpg",
+        "role": "gallery",
+        "category": "exterior",
+        "angle": "rear-three-quarter",
+        "variant": "light",
+        "tags": [
+          "exterior",
+          "gallery"
+        ],
+        "attribution": {
+          "sourceType": "oem_press",
+          "usage": "editorial_marketplace",
+          "rightsNote": "OEM press / brochure — verify brand media terms before publish",
+          "capturedAt": null
+        }
+      },
+      {
+        "key": "exterior_3",
+        "url": "https://cdn.evsavari.com/catalog/mercedes-eqa-250-plus/exterior-3.jpg",
+        "filename": "exterior-3.jpg",
+        "role": "gallery",
+        "category": "exterior",
+        "angle": "side-profile",
+        "variant": "light",
+        "tags": [
+          "exterior",
+          "gallery"
+        ],
+        "attribution": {
+          "sourceType": "oem_press",
+          "usage": "editorial_marketplace",
+          "rightsNote": "OEM press / brochure — verify brand media terms before publish",
+          "capturedAt": null
+        }
+      },
+      {
+        "key": "interior_1",
+        "url": "https://cdn.evsavari.com/catalog/mercedes-eqa-250-plus/interior-1.jpg",
+        "filename": "interior-1.jpg",
+        "role": "gallery",
+        "category": "interior",
+        "angle": "dashboard",
+        "variant": "light",
+        "tags": [
+          "interior",
+          "gallery"
+        ],
+        "attribution": {
+          "sourceType": "oem_press",
+          "usage": "editorial_marketplace",
+          "rightsNote": "OEM press / brochure — verify brand media terms before publish",
+          "capturedAt": null
+        }
+      },
+      {
+        "key": "charging_port",
+        "url": "https://cdn.evsavari.com/catalog/mercedes-eqa-250-plus/charging-port.jpg",
+        "filename": "charging-port.jpg",
+        "role": "gallery",
+        "category": "charging",
+        "angle": "charging-port",
+        "variant": "light",
+        "tags": [
+          "charging",
+          "ccs2",
+          "gallery"
+        ],
+        "attribution": {
+          "sourceType": "oem_press",
+          "usage": "editorial_marketplace",
+          "rightsNote": "OEM press / brochure — verify brand media terms before publish",
+          "capturedAt": null
+        }
+      }
+    ],
+    "resolveOrder": [
+      "listingThumbnail",
+      "heroImage",
+      "compareThumbnail"
+    ]
+  },
+  "governance": {
+    "status": "review",
+    "source": "evsavari",
+    "dataQualityScore": 88,
+    "version": 1,
+    "publishedAt": null,
+    "legacyCarId": null,
+    "confidence": "medium"
+  },
+  "verification": {
+    "dataQualityScore": 88,
+    "confidence": "medium",
+    "flags": [
+      {
+        "path": "pricing.exShowroom",
+        "status": "needs_review",
+        "note": "Confirm EQA 250+ India pricing",
+        "reviewBy": "2026-06-15"
+      },
+      {
+        "path": "range.claimedKm",
+        "status": "needs_review",
+        "note": "Verify ARAI certification",
+        "reviewBy": "2026-06-15"
+      }
+    ],
+    "lastReviewedAt": null,
+    "sources": [
+      {
+        "type": "oem_web",
+        "note": "Primary specs — verify URL at import",
+        "accessedAt": "2026-05-15"
+      }
+    ]
+  },
+  "safety": {
+    "bharatNcap": null,
+    "globalNcap": null,
+    "adultOccupantScore": null,
+    "childOccupantScore": null,
+    "airbags": {
+      "count": 6,
+      "curtains": true
+    },
+    "adas": {
+      "level": 0,
+      "features": []
+    },
+    "cameraSystems": [
+      "rear camera",
+      "parking sensors"
+    ],
+    "parkingAssist": [
+      "rear sensors"
+    ],
+    "stability": {
+      "esc": true,
+      "hillHold": true
+    }
+  },
+  "comfort": {
+    "seatVentilation": false,
+    "seatHeating": false,
+    "rearSeatComfortScore": 80,
+    "bootPracticalityScore": 92.5,
+    "familySuitabilityScore": 80,
+    "cityManeuverabilityScore": 72,
+    "ingressEgressScore": 74,
+    "rearAcVents": true,
+    "panoramicRoof": false
+  },
+  "chargingEcosystem": {
+    "networkCompatibility": [
+      "Tata Power",
+      "ChargeZone",
+      "Statiq",
+      "Jio-bp pulse"
+    ],
+    "homeCharging": {
+      "supported": true,
+      "recommendedKw": 11,
+      "wallboxRecommended": true
+    },
+    "fastChargeCurve": {
+      "peakKw": 100,
+      "time10to80Min": 32,
+      "note": "Indicative; real curve varies by charger and temperature"
+    },
+    "estimatedChargingCost": {
+      "dcPerKwhInr": 18,
+      "acPerKwhInr": 8,
+      "disclaimer": "Indicative India averages; varies by state DISCOM and CPO"
+    }
+  },
+  "ownershipIntelligence": {
+    "estimatedServiceCostPerKm": 0.65,
+    "annualServiceInr": null,
+    "batteryReplacementEstimateInr": null,
+    "insuranceAnnualRangeInr": {
+      "min": 89820,
+      "max": 159680
+    },
+    "resaleConfidenceScore": 82,
+    "resaleHorizonYears": 5
+  },
+  "ownershipPracticality": {
+    "apartmentChargingSuitability": 72,
+    "highwayUsability": 85,
+    "familyPracticality": 80,
+    "luggagePracticality": 95,
+    "cityDrivingPracticality": 72,
+    "ingressEgressPracticality": 72,
+    "rearSeatPracticality": 76,
+    "ownershipConfidenceIndicator": 79,
+    "chargingAnxietyReductionNotes": [
+      "Plan weekly top-ups on AC if daily driving stays under ~60 km.",
+      "Use DC stops for planned highway legs — not as a daily fuel-station substitute."
+    ],
+    "methodology": "EVSavari ownership practicality model — editorial scores, not OEM guarantees."
+  },
+  "psychologyExtended": {
+    "scores": {
+      "anxietyReduction": 79,
+      "premiumPerception": 95,
+      "enthusiastAppeal": 88,
+      "chauffeurSuitability": 60,
+      "womenDriverFriendliness": 74,
+      "seniorCitizenFriendliness": 73
+    },
+    "narrative": "Entry Mercedes EQ crossover for luxury-first buyers who want compact footprint with star badge assurance."
+  },
+  "decision": {
+    "whoShouldBuy": [
+      "Buyers with regular highway use who plan DC fast-charging on routes",
+      "Small families needing rear space and predictable ownership costs"
+    ],
+    "whoShouldAvoid": [
+      "Buyers who need maximum third-row space or heavy towing"
+    ],
+    "bestAlternativeSlug": "bmw-ix1-xdrive30",
+    "upgradePathSlug": "bmw-ix1-xdrive30",
+    "downgradePathSlug": null
+  },
+  "personaFit": {
+    "cityCommuter": 72,
+    "familyEv": 72,
+    "highwayTourer": 86,
+    "firstEv": 70,
+    "premiumEv": 95,
+    "valueEv": 72
+  },
+  "commercial": {
+    "subscription": {
+      "ready": false,
+      "notes": null
+    },
+    "batteryLeasing": {
+      "ready": false,
+      "notes": null
+    },
+    "fleet": {
+      "suitabilityScore": 80
+    },
+    "taxiCommercial": {
+      "suitabilityScore": 50
+    },
+    "notes": "Future commercial modules — not active in marketplace UI"
+  },
+  "rangeReality": {
+    "citySummerKm": {
+      "min": 275,
+      "max": 340,
+      "note": "Mixed city traffic, moderate AC use",
+      "disclaimer": "Editorial estimate for planning — not ARAI certified. Actual range varies with driving style, traffic, and temperature."
+    },
+    "cityWinterKm": {
+      "min": 242,
+      "max": 306,
+      "note": "Cooler ambient temperatures; conservative AC/heating impact",
+      "disclaimer": "Editorial estimate for planning — not ARAI certified. Actual range varies with driving style, traffic, and temperature."
+    },
+    "highwayKm": {
+      "min": 239,
+      "max": 312,
+      "note": "Steady highway speeds 80–100 km/h; fewer regenerative gains",
+      "disclaimer": "Editorial estimate for planning — not ARAI certified. Actual range varies with driving style, traffic, and temperature."
+    },
+    "withACKm": {
+      "min": 248,
+      "max": 313,
+      "note": "AC on throughout trip",
+      "disclaimer": "Editorial estimate for planning — not ARAI certified. Actual range varies with driving style, traffic, and temperature."
+    },
+    "fullLoadKm": {
+      "min": 242,
+      "max": 306,
+      "note": "Passengers + luggage",
+      "disclaimer": "Editorial estimate for planning — not ARAI certified. Actual range varies with driving style, traffic, and temperature."
+    },
+    "ecoDrivingKm": {
+      "min": 323,
+      "max": 347,
+      "note": "Gentle driving; still below certified claim",
+      "disclaimer": "Editorial estimate for planning — not ARAI certified. Actual range varies with driving style, traffic, and temperature."
+    },
+    "claimedKm": 459,
+    "confidenceBand": {
+      "level": "medium",
+      "methodology": "evsavari_conservative_derived_v1",
+      "neverExceedsClaim": true
+    },
+    "metadata": {
+      "sourceType": "DERIVED_LOGIC",
+      "confidenceLevel": "medium",
+      "verificationStatus": "pending_review",
+      "lastVerifiedAt": null,
+      "verificationMethod": "evsavari_range_reality_v1",
+      "interpretation": "Planning bands derived from ARAI claim and mixed-use heuristics — verify with owner reports over time."
+    }
+  },
+  "chargingReality": {
+    "overnightFriendly": true,
+    "apartmentFriendly": true,
+    "officeChargingFriendly": false,
+    "societyApprovalRisk": "low",
+    "chargingStressLevel": "low",
+    "roadTripConfidence": "high",
+    "indiaNotes": [
+      "RWAs may restrict home charger installation — confirm society bylaws before purchase.",
+      "Office charging depends on employer policy; not assumed in range planning.",
+      "Highway trips need pre-planned CCS2 stops on your route."
+    ],
+    "metadata": {
+      "sourceType": "DERIVED_LOGIC",
+      "confidenceLevel": "medium",
+      "verificationStatus": "pending_review",
+      "lastVerifiedAt": null,
+      "verificationMethod": "evsavari_charging_reality_v1",
+      "interpretation": "Lifestyle practicality model for Indian ownership — not a guarantee of charger access."
+    }
+  },
+  "buyerAssurance": {
+    "firstEVFriendly": {
+      "score": 70,
+      "label": "First-time EV readiness",
+      "disclaimer": "Editorial confidence score — not a warranty or guarantee."
+    },
+    "servicePredictability": {
+      "score": 85,
+      "label": "Service & support predictability",
+      "disclaimer": "Editorial confidence score — not a warranty or guarantee."
+    },
+    "batteryConfidence": {
+      "score": 89,
+      "label": "Battery peace-of-mind",
+      "disclaimer": "Editorial confidence score — not a warranty or guarantee."
+    },
+    "maintenanceStress": {
+      "score": 48,
+      "label": "Maintenance stress (higher = lower stress)",
+      "disclaimer": "Editorial confidence score — not a warranty or guarantee."
+    },
+    "familyConfidence": {
+      "score": 80,
+      "label": "Family daily-use confidence",
+      "disclaimer": "Editorial confidence score — not a warranty or guarantee."
+    },
+    "dailyUseConfidence": {
+      "score": 79,
+      "label": "Everyday usability confidence",
+      "disclaimer": "Editorial confidence score — not a warranty or guarantee."
+    },
+    "metadata": {
+      "sourceType": "DERIVED_LOGIC",
+      "confidenceLevel": "medium",
+      "verificationStatus": "pending_review",
+      "lastVerifiedAt": null,
+      "verificationMethod": "evsavari_buyer_assurance_v1",
+      "interpretation": "Psychological ownership confidence model — pair with specs and real-world range bands."
+    }
+  },
+  "ownershipTradeoffs": {
+    "primaryStrength": "Mercedes ownership prestige",
+    "primaryCompromise": "Running costs at luxury tier",
+    "idealUsagePattern": "planned highway use with mapped DC stops",
+    "lessSuitableFor": [
+      "Buyers who need maximum third-row space or heavy towing"
+    ],
+    "metadata": {
+      "sourceType": "EDITORIAL_ESTIMATE",
+      "confidenceLevel": "medium",
+      "verificationStatus": "pending_review",
+      "lastVerifiedAt": null,
+      "verificationMethod": "evsavari_tradeoff_v1",
+      "interpretation": "Transparent tradeoff summary — weaknesses are intentional for buyer trust."
+    }
+  },
+  "scenarioCompare": {
+    "dailyOfficeCommute": {
+      "alignmentScore": 75,
+      "explanation": "Well suited for office commutes when daily distance fits a 275–340 km real-world city band.",
+      "tradeoffSummary": "Running costs at luxury tier"
+    },
+    "familyWeekendTrips": {
+      "alignmentScore": 70,
+      "explanation": "Practical for family weekend trips within its range band with planned stops.",
+      "tradeoffSummary": "Packed highway weekends need charging discipline — not a petrol-style fill-and-go rhythm."
+    },
+    "budgetOwnership": {
+      "alignmentScore": 72,
+      "explanation": "Better aligned with value-focused buyers at this ex-showroom band (EVSavari value score 72/100).",
+      "tradeoffSummary": "Lower upfront price trims may trade range, features, or highway comfort versus rivals."
+    },
+    "highwayConfidence": {
+      "alignmentScore": 65,
+      "explanation": "Highway planning band roughly 239–312 km — road-trip confidence rated high.",
+      "tradeoffSummary": "Frequent high-speed touring without charging planning is less suitable."
+    },
+    "firstTimeEVOwnership": {
+      "alignmentScore": 72,
+      "explanation": "Practical for first-time EV buyers who accept a learning curve on charging habits.",
+      "tradeoffSummary": "Buyers wanting zero lifestyle change on long routes should cross-shop longer-range options."
+    },
+    "metadata": {
+      "sourceType": "EDITORIAL_ESTIMATE",
+      "confidenceLevel": "medium",
+      "verificationStatus": "pending_review",
+      "lastVerifiedAt": null,
+      "verificationMethod": "evsavari_scenario_compare_v1",
+      "interpretation": "Scenario alignment for compare context — not a single winner label."
+    }
+  },
+  "rangeRealityExpanded": {
+    "confidenceBands": {
+      "cityDriving": "moderate",
+      "highway": "strong",
+      "acImpact": "moderate",
+      "traffic": "moderate",
+      "drivingStyle": "moderate",
+      "seasonal": "moderate"
+    },
+    "editorialSummaries": [
+      "Works for city commuting with mindful daily distance planning — not a long-commute specialist.",
+      "Highway range confidence is relatively strong for planned inter-city legs with DC stops.",
+      "AC usage has moderate range impact in Indian summers."
+    ],
+    "planningNote": "Use EVSavari planning bands below ARAI claim — not certified real-world guarantees.",
+    "referencesExistingBands": true,
+    "metadata": {
+      "sourceType": "EDITORIAL_ESTIMATE",
+      "confidenceLevel": "medium",
+      "verificationStatus": "pending_review",
+      "lastVerifiedAt": null,
+      "verificationMethod": "evsavari_range_reality_expanded_v1",
+      "interpretation": "Editorial confidence language derived from existing range bands and practicality scores — no new km figures invented here."
+    }
+  },
+  "chargingPracticality": {
+    "apartmentSuitability": "strong",
+    "officePracticality": "moderate",
+    "overnightFriendliness": "strong",
+    "fastChargePracticality": "strong",
+    "cityChargingFriendliness": "moderate",
+    "chargingAnxietyLevel": "low",
+    "networkDependency": "moderate",
+    "editorialNotes": [
+      "Works well for overnight home or dedicated parking charging.",
+      "Reasonably suited for apartment owners with reliable parking access.",
+      "Fast-charging sessions are practical for planned highway legs (~32 min 10–80% indicative)."
+    ],
+    "metadata": {
+      "sourceType": "EDITORIAL_ESTIMATE",
+      "confidenceLevel": "medium",
+      "verificationStatus": "pending_review",
+      "lastVerifiedAt": null,
+      "verificationMethod": "evsavari_charging_practicality_v1",
+      "interpretation": "Editorial charging lifestyle guidance — not a guarantee of charger availability."
+    }
+  },
+  "ownershipConfidence": {
+    "firstTimeEvFriendliness": "moderate",
+    "familyConfidence": "moderate",
+    "cityPracticality": "moderate",
+    "longTermOwnership": "strong",
+    "maintenanceSimplicity": "limited",
+    "easeOfUse": "moderate",
+    "seniorPracticality": "moderate",
+    "ingressPracticality": "moderate",
+    "chauffeurPracticality": "limited",
+    "editorialGuidance": [
+      "Manageable for first-time EV buyers who accept a short learning curve on charging."
+    ],
+    "metadata": {
+      "sourceType": "EDITORIAL_ESTIMATE",
+      "confidenceLevel": "medium",
+      "verificationStatus": "pending_review",
+      "lastVerifiedAt": null,
+      "verificationMethod": "evsavari_ownership_confidence_v1",
+      "interpretation": "Qualitative confidence indicators — pair with warranty and charging access facts."
+    }
+  },
+  "trustPresentation": {
+    "indicators": [
+      {
+        "id": "first_ev",
+        "label": "First-time EV friendly with charging planning",
+        "tone": "neutral"
+      },
+      {
+        "id": "apartment",
+        "label": "Apartment charging confidence: strong",
+        "tone": "positive"
+      },
+      {
+        "id": "highway",
+        "label": "Highway practicality: strong",
+        "tone": "positive"
+      },
+      {
+        "id": "family",
+        "label": "Family practicality: moderate",
+        "tone": "neutral"
+      },
+      {
+        "id": "charging_stress",
+        "label": "Charging planning stress: low",
+        "tone": "positive"
+      }
+    ],
+    "headline": "Practical EV for buyers who match its charging and range profile.",
+    "disclaimer": "Editorial confidence indicators — not user reviews, star ratings, or guarantees."
+  },
+  "compareTrust": {
+    "chargingPracticality": {
+      "dimension": "charging",
+      "label": "Charging practicality",
+      "strength": "strong",
+      "note": "Works well for overnight home or dedicated parking charging."
+    },
+    "ownershipConfidence": {
+      "dimension": "ownership",
+      "label": "Ownership confidence",
+      "strength": "strong",
+      "note": "Manageable for first-time EV buyers who accept a short learning curve on charging."
+    },
+    "familyPracticality": {
+      "dimension": "family",
+      "label": "Family practicality",
+      "strength": "moderate",
+      "note": "Boot space, rear seat comfort, and weekend range bands matter for families."
+    },
+    "highwayUsability": {
+      "dimension": "highway",
+      "label": "Highway usability",
+      "strength": "strong",
+      "note": "Highway range confidence is relatively strong for planned inter-city legs with DC stops."
+    },
+    "cityUsability": {
+      "dimension": "city",
+      "label": "City usability",
+      "strength": "moderate",
+      "note": "Parking footprint and city range bands drive daily confidence."
+    },
+    "anxietyReduction": {
+      "dimension": "anxiety",
+      "label": "Anxiety reduction",
+      "strength": "strong",
+      "note": "May need more charging planning discipline."
+    },
+    "apartmentFit": {
+      "dimension": "apartment",
+      "label": "Apartment owners",
+      "strength": "strong",
+      "note": "Better suited for apartment owners with parking access."
+    }
+  },
+  "intelligenceGovernance": {
+    "schemaVersion": 1,
+    "generatedAt": "2026-05-16T08:45:52.240Z",
+    "fields": {
+      "pricing.exShowroom": {
+        "metadata": {
+          "sourceType": "OFFICIAL_OEM",
+          "confidenceLevel": "high",
+          "verificationStatus": "pending_review",
+          "lastVerifiedAt": "2026-05-15T00:00:00.000Z",
+          "verificationMethod": "oem_price_list"
+        }
+      },
+      "range.claimedKm": {
+        "metadata": {
+          "sourceType": "OFFICIAL_OEM",
+          "confidenceLevel": "verified",
+          "verificationStatus": "pending_review",
+          "lastVerifiedAt": null,
+          "verificationMethod": "arai_certification"
+        }
+      },
+      "range.realWorldKm": {
+        "metadata": {
+          "sourceType": "EDITORIAL_ESTIMATE",
+          "confidenceLevel": "medium",
+          "verificationStatus": "pending_review",
+          "lastVerifiedAt": null,
+          "verificationMethod": "evsavari_mixed_cycle_model"
+        }
+      },
+      "battery.capacityKwh": {
+        "metadata": {
+          "sourceType": "OFFICIAL_OEM",
+          "confidenceLevel": "high",
+          "verificationStatus": "pending_review",
+          "lastVerifiedAt": null,
+          "verificationMethod": "oem_spec_sheet"
+        }
+      },
+      "charging.dcTime10to80Minutes": {
+        "metadata": {
+          "sourceType": "OFFICIAL_OEM",
+          "confidenceLevel": "high",
+          "verificationStatus": "pending_review",
+          "lastVerifiedAt": null,
+          "verificationMethod": "oem_charging_spec"
+        }
+      },
+      "safety.airbags.count": {
+        "metadata": {
+          "sourceType": "OFFICIAL_OEM",
+          "confidenceLevel": "high",
+          "verificationStatus": "pending_review",
+          "lastVerifiedAt": null,
+          "verificationMethod": "oem_spec_sheet"
+        }
+      },
+      "safety.adas.level": {
+        "metadata": {
+          "sourceType": "DERIVED_LOGIC",
+          "confidenceLevel": "medium",
+          "verificationStatus": "unverified",
+          "lastVerifiedAt": null,
+          "verificationMethod": "feature_matrix_inference"
+        }
+      },
+      "personaFit": {
+        "metadata": {
+          "sourceType": "DERIVED_LOGIC",
+          "confidenceLevel": "medium",
+          "verificationStatus": "pending_review",
+          "lastVerifiedAt": null,
+          "verificationMethod": "score_composite"
+        }
+      },
+      "scenarioFit": {
+        "metadata": {
+          "sourceType": "DERIVED_LOGIC",
+          "confidenceLevel": "medium",
+          "verificationStatus": "pending_review",
+          "lastVerifiedAt": null,
+          "verificationMethod": "scenario_model_v1"
+        }
+      },
+      "decision.whoShouldBuy": {
+        "metadata": {
+          "sourceType": "EDITORIAL_ESTIMATE",
+          "confidenceLevel": "medium",
+          "verificationStatus": "pending_review",
+          "lastVerifiedAt": null,
+          "verificationMethod": "editorial_template"
+        }
+      },
+      "compare.narrative": {
+        "metadata": {
+          "sourceType": "EDITORIAL_ESTIMATE",
+          "confidenceLevel": "medium",
+          "verificationStatus": "pending_review",
+          "lastVerifiedAt": null,
+          "verificationMethod": "compare_template_v1"
+        }
+      },
+      "psychologyExtended.scores": {
+        "metadata": {
+          "sourceType": "DERIVED_LOGIC",
+          "confidenceLevel": "medium",
+          "verificationStatus": "pending_review",
+          "lastVerifiedAt": null,
+          "verificationMethod": "psychology_composite"
+        }
+      },
+      "ownershipIntelligence.insuranceAnnualRangeInr": {
+        "metadata": {
+          "sourceType": "INDUSTRY_ESTIMATE",
+          "confidenceLevel": "low",
+          "verificationStatus": "unverified",
+          "lastVerifiedAt": null,
+          "verificationMethod": "ex_showroom_heuristic"
+        }
+      },
+      "rangeReality": {
+        "metadata": {
+          "sourceType": "DERIVED_LOGIC",
+          "confidenceLevel": "medium",
+          "verificationStatus": "pending_review",
+          "lastVerifiedAt": null,
+          "verificationMethod": "evsavari_range_reality_v1"
+        }
+      },
+      "chargingReality": {
+        "metadata": {
+          "sourceType": "DERIVED_LOGIC",
+          "confidenceLevel": "medium",
+          "verificationStatus": "pending_review",
+          "lastVerifiedAt": null,
+          "verificationMethod": "evsavari_charging_reality_v1"
+        }
+      },
+      "buyerAssurance": {
+        "metadata": {
+          "sourceType": "DERIVED_LOGIC",
+          "confidenceLevel": "medium",
+          "verificationStatus": "pending_review",
+          "lastVerifiedAt": null,
+          "verificationMethod": "evsavari_buyer_assurance_v1"
+        }
+      },
+      "ownershipTradeoffs": {
+        "metadata": {
+          "sourceType": "EDITORIAL_ESTIMATE",
+          "confidenceLevel": "medium",
+          "verificationStatus": "pending_review",
+          "lastVerifiedAt": null,
+          "verificationMethod": "evsavari_tradeoff_v1"
+        }
+      },
+      "scenarioCompare": {
+        "metadata": {
+          "sourceType": "EDITORIAL_ESTIMATE",
+          "confidenceLevel": "medium",
+          "verificationStatus": "pending_review",
+          "lastVerifiedAt": null,
+          "verificationMethod": "evsavari_scenario_compare_v1"
+        }
+      }
+    }
+  },
+  "scenarioFit": {
+    "dailyOfficeCommute": 72,
+    "familyWeekendTrips": 80,
+    "longDistanceTravel": 89,
+    "apartmentChargingFriendliness": 78,
+    "firstTimeEVBuyer": 70,
+    "chauffeurDrivenUsage": 60
+  },
+  "editorialNarratives": {
+    "ownership": "Ownership on mercedes EVs is generally practical for Indian buyers who value predictable service intervals and an 8-year battery warranty narrative. Resale confidence is modeled at 82/100 — interpret as editorial guidance, not a guarantee.",
+    "charging": "Home or workplace AC charging at 11 kW is well suited for overnight top-ups; DC sessions around 32 minutes (10–80%) are practical for planned highway stops — not a fuel-station-style minute fill; against a certified 459 km ARAI figure.",
+    "familySuitability": "Family suitability scores 80/100 in our model — well suited for small families with regular city and weekend use; boot space around 340 L should be checked against your stroller or luggage routine.",
+    "firstTimeEv": "First-time EV friendliness is rated 72/100 with anxiety-reduction at 79/100. This variant is practical for buyers who want clear warranty terms and manageable charging habits — less ideal if you expect zero planning on long routes.",
+    "compare": "In the luxury suv set on EVSavari, this variant is better aligned with buyers who prioritise mercedes ownership prestige; trade-off: running costs at luxury tier."
+  }
+}

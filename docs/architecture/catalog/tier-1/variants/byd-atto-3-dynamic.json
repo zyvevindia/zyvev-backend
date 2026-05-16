@@ -1,0 +1,1034 @@
+{
+  "identity": {
+    "brandSlug": "byd",
+    "modelSlug": "atto-3",
+    "variantName": "Dynamic",
+    "slug": "byd-atto-3-dynamic",
+    "bodyType": "suv",
+    "segment": "compact-suv",
+    "launchStatus": "on-sale",
+    "modelYear": 2024,
+    "fuelType": "electric"
+  },
+  "pricing": {
+    "exShowroom": 2499000,
+    "priceLastUpdated": "2026-05-15T00:00:00.000Z"
+  },
+  "battery": {
+    "capacityKwh": 49.92,
+    "chemistry": "LFP",
+    "usableKwh": 47.424
+  },
+  "range": {
+    "claimedKm": 468,
+    "claimedStandard": "ARAI",
+    "realWorldKm": {
+      "min": 337,
+      "max": 402,
+      "methodology": "EVSavari mixed city-highway estimate; flag for owner-data refresh"
+    }
+  },
+  "charging": {
+    "acKw": 7,
+    "dcKw": 88,
+    "dcTime10to80Minutes": 45,
+    "standards": [
+      "CCS2",
+      "Type2"
+    ],
+    "v2l": {
+      "supported": true,
+      "maxWatts": 2200
+    }
+  },
+  "performance": {
+    "powerKw": 150,
+    "torqueNm": 310,
+    "acceleration0to100": 7.3,
+    "driveType": "FWD"
+  },
+  "practicality": {
+    "bootSpaceL": 400,
+    "familyScore": 84,
+    "highwayComfortScore": 82,
+    "cityUsabilityScore": 78,
+    "seatingCapacity": 5
+  },
+  "ownership": {
+    "warrantyVehicleYears": 5,
+    "warrantyBatteryYears": 8,
+    "warrantyBatteryKm": 150000,
+    "chargingNetworkScore": 62,
+    "resaleConfidenceScore": 74,
+    "serviceCostPerKm": 0.5
+  },
+  "psychology": {
+    "tags": [
+      "tech_appeal",
+      "wow_factor",
+      "premium_feel"
+    ],
+    "scores": {
+      "tech_appeal": 90,
+      "wow_factor": 85,
+      "premium_feel": 80,
+      "best_for_family": 82,
+      "silent_comfort": 83,
+      "best_first_ev": 65,
+      "anxietyReduction": 68,
+      "firstTimeEvFriendliness": 65,
+      "premiumPerception": 80,
+      "enthusiastAppeal": 90,
+      "chauffeurSuitability": 60,
+      "womenDriverFriendliness": 81,
+      "seniorCitizenFriendliness": 78
+    },
+    "narrative": "Tech-forward Atto 3 for buyers who want Blade Battery narrative, strong efficiency, and modern cabin at a premium mass price."
+  },
+  "availability": {
+    "availableCities": [
+      "delhi",
+      "mumbai",
+      "bangalore",
+      "hyderabad",
+      "chennai"
+    ],
+    "waitingPeriodWeeks": 6,
+    "testDriveAvailable": true
+  },
+  "compare": {
+    "segmentRivalSlugs": [
+      "hyundai-kona-electric-premium",
+      "mg-zs-ev-exclusive-plus",
+      "mahindra-xuv400-el-pro"
+    ],
+    "strongestAdvantages": [
+      {
+        "key": "adv_1",
+        "label": "Strong tech and efficiency story vs legacy OEM EVs"
+      },
+      {
+        "key": "adv_2",
+        "label": "Competitive DC charging and LFP durability messaging"
+      },
+      {
+        "key": "adv_3",
+        "label": "Spacious cabin for segment"
+      }
+    ],
+    "weakestAreas": [
+      {
+        "key": "weak_1",
+        "label": "Service network still maturing outside major metros"
+      },
+      {
+        "key": "weak_2",
+        "label": "Resale track record shorter than Tata/Mahindra"
+      }
+    ],
+    "valueScore": 82,
+    "featureMatrix": {
+      "adasLevel2": true,
+      "connectedCar": true,
+      "v2l": true,
+      "heatPump": true
+    },
+    "picks": {
+      "strongestAdvantageLabel": "Strong tech and efficiency story vs legacy OEM EVs",
+      "biggestWeaknessLabel": "Service network still maturing outside major metros",
+      "bestValuePick": false,
+      "bestLongTermOwnershipPick": false
+    },
+    "narrative": {
+      "betterFor": [
+        "family weekend trips",
+        "planned long-distance travel",
+        "home or workplace AC charging routines"
+      ],
+      "betterAlignedReason": "Better aligned with buyers who need family weekend trips — strength area: Strong tech and efficiency story vs legacy OEM EVs.",
+      "tradeoffSummary": "Trade-off to weigh: Service network still maturing outside major metros. Compare charging access and on-road price in your city before deciding."
+    }
+  },
+  "seo": {
+    "metaTitle": "BYD Atto 3 Dynamic Price, Range & Charging | EVSavari",
+    "metaDescription": "BYD Atto 3 Dynamic ex-showroom from ₹24.99 lakh, 468 km ARAI range, charging, pros & cons on EVSavari. Compare with Kona Electric, ZS EV.",
+    "canonicalPath": "/cars/byd-atto-3-dynamic",
+    "pros": [
+      "Standout infotainment and EV-native cabin design",
+      "Blade Battery LFP positioning for safety-conscious buyers",
+      "Strong performance and charging for the price band"
+    ],
+    "cons": [
+      "Premium pricing vs Nexon/XUV400 value set",
+      "Dealer/service density still building in India"
+    ],
+    "expertSummary": "Tech-forward Atto 3 for buyers who want Blade Battery narrative, strong efficiency, and modern cabin at a premium mass price.",
+    "faq": [
+      {
+        "q": "Is BYD Atto 3 good for first-time EV buyers?",
+        "a": "Better for tech-comfortable buyers in metros; first-timers on tight budget should compare Nexon and Punch."
+      }
+    ],
+    "chargingFaq": [
+      {
+        "q": "Does Atto 3 support V2L?",
+        "a": "Yes on supported trims — verify inverter limits in owner manual."
+      }
+    ]
+  },
+  "media": {
+    "heroImage": "https://cdn.evsavari.com/catalog/byd-atto-3-dynamic/hero.jpg",
+    "listingThumbnail": "https://cdn.evsavari.com/catalog/byd-atto-3-dynamic/listing-thumb.jpg",
+    "compareThumbnail": "https://cdn.evsavari.com/catalog/byd-atto-3-dynamic/compare-thumb.jpg",
+    "ogImage": "https://cdn.evsavari.com/catalog/byd-atto-3-dynamic/og.jpg",
+    "gallery": [
+      "https://cdn.evsavari.com/catalog/byd-atto-3-dynamic/exterior-1.jpg",
+      "https://cdn.evsavari.com/catalog/byd-atto-3-dynamic/exterior-2.jpg",
+      "https://cdn.evsavari.com/catalog/byd-atto-3-dynamic/exterior-3.jpg"
+    ],
+    "interior": [
+      "https://cdn.evsavari.com/catalog/byd-atto-3-dynamic/interior-1.jpg"
+    ],
+    "charging": [
+      "https://cdn.evsavari.com/catalog/byd-atto-3-dynamic/charging-port.jpg"
+    ],
+    "videos": [],
+    "assets": [
+      {
+        "key": "hero",
+        "url": "https://cdn.evsavari.com/catalog/byd-atto-3-dynamic/hero.jpg",
+        "filename": "hero.jpg",
+        "role": "hero",
+        "category": "exterior",
+        "angle": "front-three-quarter",
+        "variant": "light",
+        "tags": [
+          "exterior",
+          "hero"
+        ],
+        "attribution": {
+          "sourceType": "oem_press",
+          "usage": "editorial_marketplace",
+          "rightsNote": "OEM press / brochure — verify brand media terms before publish",
+          "capturedAt": null
+        }
+      },
+      {
+        "key": "listing_thumb",
+        "url": "https://cdn.evsavari.com/catalog/byd-atto-3-dynamic/listing-thumb.jpg",
+        "filename": "listing-thumb.jpg",
+        "role": "listing",
+        "category": "exterior",
+        "angle": "front-three-quarter",
+        "variant": "light",
+        "tags": [
+          "listing",
+          "exterior"
+        ],
+        "attribution": {
+          "sourceType": "oem_press",
+          "usage": "editorial_marketplace",
+          "rightsNote": "OEM press / brochure — verify brand media terms before publish",
+          "capturedAt": null
+        }
+      },
+      {
+        "key": "compare_thumb",
+        "url": "https://cdn.evsavari.com/catalog/byd-atto-3-dynamic/compare-thumb.jpg",
+        "filename": "compare-thumb.jpg",
+        "role": "compare",
+        "category": "exterior",
+        "angle": "side-profile",
+        "variant": "light",
+        "tags": [
+          "compare",
+          "exterior"
+        ],
+        "attribution": {
+          "sourceType": "oem_press",
+          "usage": "editorial_marketplace",
+          "rightsNote": "OEM press / brochure — verify brand media terms before publish",
+          "capturedAt": null
+        }
+      },
+      {
+        "key": "og",
+        "url": "https://cdn.evsavari.com/catalog/byd-atto-3-dynamic/og.jpg",
+        "filename": "og.jpg",
+        "role": "social",
+        "category": "exterior",
+        "angle": "front-three-quarter",
+        "variant": "light",
+        "tags": [
+          "og",
+          "social"
+        ],
+        "attribution": {
+          "sourceType": "oem_press",
+          "usage": "editorial_marketplace",
+          "rightsNote": "OEM press / brochure — verify brand media terms before publish",
+          "capturedAt": null
+        }
+      },
+      {
+        "key": "exterior_1",
+        "url": "https://cdn.evsavari.com/catalog/byd-atto-3-dynamic/exterior-1.jpg",
+        "filename": "exterior-1.jpg",
+        "role": "gallery",
+        "category": "exterior",
+        "angle": "front-three-quarter",
+        "variant": "light",
+        "tags": [
+          "exterior",
+          "gallery"
+        ],
+        "attribution": {
+          "sourceType": "oem_press",
+          "usage": "editorial_marketplace",
+          "rightsNote": "OEM press / brochure — verify brand media terms before publish",
+          "capturedAt": null
+        }
+      },
+      {
+        "key": "exterior_2",
+        "url": "https://cdn.evsavari.com/catalog/byd-atto-3-dynamic/exterior-2.jpg",
+        "filename": "exterior-2.jpg",
+        "role": "gallery",
+        "category": "exterior",
+        "angle": "rear-three-quarter",
+        "variant": "light",
+        "tags": [
+          "exterior",
+          "gallery"
+        ],
+        "attribution": {
+          "sourceType": "oem_press",
+          "usage": "editorial_marketplace",
+          "rightsNote": "OEM press / brochure — verify brand media terms before publish",
+          "capturedAt": null
+        }
+      },
+      {
+        "key": "exterior_3",
+        "url": "https://cdn.evsavari.com/catalog/byd-atto-3-dynamic/exterior-3.jpg",
+        "filename": "exterior-3.jpg",
+        "role": "gallery",
+        "category": "exterior",
+        "angle": "side-profile",
+        "variant": "light",
+        "tags": [
+          "exterior",
+          "gallery"
+        ],
+        "attribution": {
+          "sourceType": "oem_press",
+          "usage": "editorial_marketplace",
+          "rightsNote": "OEM press / brochure — verify brand media terms before publish",
+          "capturedAt": null
+        }
+      },
+      {
+        "key": "interior_1",
+        "url": "https://cdn.evsavari.com/catalog/byd-atto-3-dynamic/interior-1.jpg",
+        "filename": "interior-1.jpg",
+        "role": "gallery",
+        "category": "interior",
+        "angle": "dashboard",
+        "variant": "light",
+        "tags": [
+          "interior",
+          "gallery"
+        ],
+        "attribution": {
+          "sourceType": "oem_press",
+          "usage": "editorial_marketplace",
+          "rightsNote": "OEM press / brochure — verify brand media terms before publish",
+          "capturedAt": null
+        }
+      },
+      {
+        "key": "charging_port",
+        "url": "https://cdn.evsavari.com/catalog/byd-atto-3-dynamic/charging-port.jpg",
+        "filename": "charging-port.jpg",
+        "role": "gallery",
+        "category": "charging",
+        "angle": "charging-port",
+        "variant": "light",
+        "tags": [
+          "charging",
+          "ccs2",
+          "gallery"
+        ],
+        "attribution": {
+          "sourceType": "oem_press",
+          "usage": "editorial_marketplace",
+          "rightsNote": "OEM press / brochure — verify brand media terms before publish",
+          "capturedAt": null
+        }
+      }
+    ],
+    "resolveOrder": [
+      "listingThumbnail",
+      "heroImage",
+      "compareThumbnail"
+    ]
+  },
+  "governance": {
+    "status": "review",
+    "source": "evsavari",
+    "dataQualityScore": 90,
+    "version": 1,
+    "publishedAt": null,
+    "legacyCarId": null,
+    "confidence": "high"
+  },
+  "verification": {
+    "dataQualityScore": 90,
+    "confidence": "high",
+    "flags": [
+      {
+        "path": "pricing.exShowroom",
+        "status": "estimated",
+        "note": "Verify BYD India Atto 3 Dynamic pricing",
+        "reviewBy": "2026-06-15"
+      }
+    ],
+    "lastReviewedAt": null,
+    "sources": [
+      {
+        "type": "oem_web",
+        "note": "Primary specs — verify URL at import",
+        "accessedAt": "2026-05-15"
+      }
+    ]
+  },
+  "safety": {
+    "bharatNcap": null,
+    "globalNcap": null,
+    "adultOccupantScore": null,
+    "childOccupantScore": null,
+    "airbags": {
+      "count": 6,
+      "curtains": true
+    },
+    "adas": {
+      "level": 2,
+      "features": [
+        "AEB",
+        "lane assist"
+      ]
+    },
+    "cameraSystems": [
+      "rear camera",
+      "parking sensors"
+    ],
+    "parkingAssist": [
+      "reverse assist"
+    ],
+    "stability": {
+      "esc": true,
+      "hillHold": true
+    }
+  },
+  "comfort": {
+    "seatVentilation": false,
+    "seatHeating": false,
+    "rearSeatComfortScore": 84,
+    "bootPracticalityScore": 95,
+    "familySuitabilityScore": 84,
+    "cityManeuverabilityScore": 78,
+    "ingressEgressScore": 74,
+    "rearAcVents": true,
+    "panoramicRoof": false
+  },
+  "chargingEcosystem": {
+    "networkCompatibility": [
+      "Tata Power",
+      "ChargeZone",
+      "Statiq",
+      "Jio-bp pulse"
+    ],
+    "homeCharging": {
+      "supported": true,
+      "recommendedKw": 7,
+      "wallboxRecommended": true
+    },
+    "fastChargeCurve": {
+      "peakKw": 88,
+      "time10to80Min": 45,
+      "note": "Indicative; real curve varies by charger and temperature"
+    },
+    "estimatedChargingCost": {
+      "dcPerKwhInr": 18,
+      "acPerKwhInr": 8,
+      "disclaimer": "Indicative India averages; varies by state DISCOM and CPO"
+    }
+  },
+  "ownershipIntelligence": {
+    "estimatedServiceCostPerKm": 0.5,
+    "annualServiceInr": null,
+    "batteryReplacementEstimateInr": null,
+    "insuranceAnnualRangeInr": {
+      "min": 44982,
+      "max": 79968
+    },
+    "resaleConfidenceScore": 74,
+    "resaleHorizonYears": 5
+  },
+  "ownershipPracticality": {
+    "apartmentChargingSuitability": 72,
+    "highwayUsability": 85,
+    "familyPracticality": 84,
+    "luggagePracticality": 95,
+    "cityDrivingPracticality": 78,
+    "ingressEgressPracticality": 72,
+    "rearSeatPracticality": 78,
+    "ownershipConfidenceIndicator": 68,
+    "chargingAnxietyReductionNotes": [
+      "Plan weekly top-ups on AC if daily driving stays under ~60 km.",
+      "Use DC stops for planned highway legs — not as a daily fuel-station substitute."
+    ],
+    "methodology": "EVSavari ownership practicality model — editorial scores, not OEM guarantees."
+  },
+  "psychologyExtended": {
+    "scores": {
+      "anxietyReduction": 68,
+      "firstTimeEvFriendliness": 65,
+      "premiumPerception": 80,
+      "enthusiastAppeal": 90,
+      "chauffeurSuitability": 60,
+      "womenDriverFriendliness": 81,
+      "seniorCitizenFriendliness": 78
+    },
+    "narrative": "Tech-forward Atto 3 for buyers who want Blade Battery narrative, strong efficiency, and modern cabin at a premium mass price."
+  },
+  "decision": {
+    "whoShouldBuy": [
+      "Buyers with regular highway use who plan DC fast-charging on routes",
+      "Small families needing rear space and predictable ownership costs"
+    ],
+    "whoShouldAvoid": [
+      "Buyers who need maximum third-row space or heavy towing"
+    ],
+    "bestAlternativeSlug": "hyundai-kona-electric-premium",
+    "upgradePathSlug": "byd-atto-3-superior",
+    "downgradePathSlug": null
+  },
+  "personaFit": {
+    "cityCommuter": 78,
+    "familyEv": 82,
+    "highwayTourer": 82,
+    "firstEv": 65,
+    "premiumEv": 80,
+    "valueEv": 82
+  },
+  "commercial": {
+    "subscription": {
+      "ready": false,
+      "notes": null
+    },
+    "batteryLeasing": {
+      "ready": false,
+      "notes": null
+    },
+    "fleet": {
+      "suitabilityScore": 84
+    },
+    "taxiCommercial": {
+      "suitabilityScore": 50
+    },
+    "notes": "Future commercial modules — not active in marketplace UI"
+  },
+  "rangeReality": {
+    "citySummerKm": {
+      "min": 337,
+      "max": 402,
+      "note": "Mixed city traffic, moderate AC use",
+      "disclaimer": "Editorial estimate for planning — not ARAI certified. Actual range varies with driving style, traffic, and temperature."
+    },
+    "cityWinterKm": {
+      "min": 297,
+      "max": 362,
+      "note": "Cooler ambient temperatures; conservative AC/heating impact",
+      "disclaimer": "Editorial estimate for planning — not ARAI certified. Actual range varies with driving style, traffic, and temperature."
+    },
+    "highwayKm": {
+      "min": 243,
+      "max": 318,
+      "note": "Steady highway speeds 80–100 km/h; fewer regenerative gains",
+      "disclaimer": "Editorial estimate for planning — not ARAI certified. Actual range varies with driving style, traffic, and temperature."
+    },
+    "withACKm": {
+      "min": 303,
+      "max": 370,
+      "note": "AC on throughout trip",
+      "disclaimer": "Editorial estimate for planning — not ARAI certified. Actual range varies with driving style, traffic, and temperature."
+    },
+    "fullLoadKm": {
+      "min": 297,
+      "max": 362,
+      "note": "Passengers + luggage",
+      "disclaimer": "Editorial estimate for planning — not ARAI certified. Actual range varies with driving style, traffic, and temperature."
+    },
+    "ecoDrivingKm": {
+      "min": 382,
+      "max": 410,
+      "note": "Gentle driving; still below certified claim",
+      "disclaimer": "Editorial estimate for planning — not ARAI certified. Actual range varies with driving style, traffic, and temperature."
+    },
+    "claimedKm": 468,
+    "confidenceBand": {
+      "level": "medium",
+      "methodology": "evsavari_conservative_derived_v1",
+      "neverExceedsClaim": true
+    },
+    "metadata": {
+      "sourceType": "DERIVED_LOGIC",
+      "confidenceLevel": "medium",
+      "verificationStatus": "pending_review",
+      "lastVerifiedAt": null,
+      "verificationMethod": "evsavari_range_reality_v1",
+      "interpretation": "Planning bands derived from ARAI claim and mixed-use heuristics — verify with owner reports over time."
+    }
+  },
+  "chargingReality": {
+    "overnightFriendly": true,
+    "apartmentFriendly": false,
+    "officeChargingFriendly": true,
+    "societyApprovalRisk": "medium",
+    "chargingStressLevel": "low",
+    "roadTripConfidence": "high",
+    "indiaNotes": [
+      "RWAs may restrict home charger installation — confirm society bylaws before purchase.",
+      "Office charging depends on employer policy; not assumed in range planning.",
+      "Highway trips need pre-planned CCS2 stops on your route."
+    ],
+    "metadata": {
+      "sourceType": "DERIVED_LOGIC",
+      "confidenceLevel": "medium",
+      "verificationStatus": "pending_review",
+      "lastVerifiedAt": null,
+      "verificationMethod": "evsavari_charging_reality_v1",
+      "interpretation": "Lifestyle practicality model for Indian ownership — not a guarantee of charger access."
+    }
+  },
+  "buyerAssurance": {
+    "firstEVFriendly": {
+      "score": 65,
+      "label": "First-time EV readiness",
+      "disclaimer": "Editorial confidence score — not a warranty or guarantee."
+    },
+    "servicePredictability": {
+      "score": 82,
+      "label": "Service & support predictability",
+      "disclaimer": "Editorial confidence score — not a warranty or guarantee."
+    },
+    "batteryConfidence": {
+      "score": 83,
+      "label": "Battery peace-of-mind",
+      "disclaimer": "Editorial confidence score — not a warranty or guarantee."
+    },
+    "maintenanceStress": {
+      "score": 60,
+      "label": "Maintenance stress (higher = lower stress)",
+      "disclaimer": "Editorial confidence score — not a warranty or guarantee."
+    },
+    "familyConfidence": {
+      "score": 84,
+      "label": "Family daily-use confidence",
+      "disclaimer": "Editorial confidence score — not a warranty or guarantee."
+    },
+    "dailyUseConfidence": {
+      "score": 82,
+      "label": "Everyday usability confidence",
+      "disclaimer": "Editorial confidence score — not a warranty or guarantee."
+    },
+    "metadata": {
+      "sourceType": "DERIVED_LOGIC",
+      "confidenceLevel": "medium",
+      "verificationStatus": "pending_review",
+      "lastVerifiedAt": null,
+      "verificationMethod": "evsavari_buyer_assurance_v1",
+      "interpretation": "Psychological ownership confidence model — pair with specs and real-world range bands."
+    }
+  },
+  "ownershipTradeoffs": {
+    "primaryStrength": "Strong tech and efficiency story vs legacy OEM EVs",
+    "primaryCompromise": "Service network still maturing outside major metros",
+    "idealUsagePattern": "daily city commuting with predictable home or office charging; planned highway use with mapped DC stops",
+    "lessSuitableFor": [
+      "Buyers who need maximum third-row space or heavy towing"
+    ],
+    "metadata": {
+      "sourceType": "EDITORIAL_ESTIMATE",
+      "confidenceLevel": "medium",
+      "verificationStatus": "pending_review",
+      "lastVerifiedAt": null,
+      "verificationMethod": "evsavari_tradeoff_v1",
+      "interpretation": "Transparent tradeoff summary — weaknesses are intentional for buyer trust."
+    }
+  },
+  "scenarioCompare": {
+    "dailyOfficeCommute": {
+      "alignmentScore": 75,
+      "explanation": "Well suited for office commutes when daily distance fits a 337–402 km real-world city band.",
+      "tradeoffSummary": "Service network still maturing outside major metros"
+    },
+    "familyWeekendTrips": {
+      "alignmentScore": 70,
+      "explanation": "Practical for family weekend trips within its range band with planned stops.",
+      "tradeoffSummary": "Packed highway weekends need charging discipline — not a petrol-style fill-and-go rhythm."
+    },
+    "budgetOwnership": {
+      "alignmentScore": 82,
+      "explanation": "Better aligned with value-focused buyers at this ex-showroom band (EVSavari value score 82/100).",
+      "tradeoffSummary": "Lower upfront price trims may trade range, features, or highway comfort versus rivals."
+    },
+    "highwayConfidence": {
+      "alignmentScore": 65,
+      "explanation": "Highway planning band roughly 243–318 km — road-trip confidence rated high.",
+      "tradeoffSummary": "Frequent high-speed touring without charging planning is less suitable."
+    },
+    "firstTimeEVOwnership": {
+      "alignmentScore": 72,
+      "explanation": "Practical for first-time EV buyers who accept a learning curve on charging habits.",
+      "tradeoffSummary": "Buyers wanting zero lifestyle change on long routes should cross-shop longer-range options."
+    },
+    "metadata": {
+      "sourceType": "EDITORIAL_ESTIMATE",
+      "confidenceLevel": "medium",
+      "verificationStatus": "pending_review",
+      "lastVerifiedAt": null,
+      "verificationMethod": "evsavari_scenario_compare_v1",
+      "interpretation": "Scenario alignment for compare context — not a single winner label."
+    }
+  },
+  "rangeRealityExpanded": {
+    "confidenceBands": {
+      "cityDriving": "strong",
+      "highway": "strong",
+      "acImpact": "moderate",
+      "traffic": "moderate",
+      "drivingStyle": "moderate",
+      "seasonal": "moderate"
+    },
+    "editorialSummaries": [
+      "Excellent for dense city commuting when daily distance stays within conservative planning bands.",
+      "Highway range confidence is relatively strong for planned inter-city legs with DC stops.",
+      "AC usage has moderate range impact in Indian summers."
+    ],
+    "planningNote": "Use EVSavari planning bands below ARAI claim — not certified real-world guarantees.",
+    "referencesExistingBands": true,
+    "metadata": {
+      "sourceType": "EDITORIAL_ESTIMATE",
+      "confidenceLevel": "medium",
+      "verificationStatus": "pending_review",
+      "lastVerifiedAt": null,
+      "verificationMethod": "evsavari_range_reality_expanded_v1",
+      "interpretation": "Editorial confidence language derived from existing range bands and practicality scores — no new km figures invented here."
+    }
+  },
+  "chargingPracticality": {
+    "apartmentSuitability": "moderate",
+    "officePracticality": "strong",
+    "overnightFriendliness": "strong",
+    "fastChargePracticality": "moderate",
+    "cityChargingFriendliness": "moderate",
+    "chargingAnxietyLevel": "low",
+    "networkDependency": "moderate",
+    "editorialNotes": [
+      "Works well for overnight home or dedicated parking charging.",
+      "Better suited for owners who can confirm society/workplace charging access before purchase.",
+      "Fast-charging sessions are practical for planned highway legs (~45 min 10–80% indicative)."
+    ],
+    "metadata": {
+      "sourceType": "EDITORIAL_ESTIMATE",
+      "confidenceLevel": "medium",
+      "verificationStatus": "pending_review",
+      "lastVerifiedAt": null,
+      "verificationMethod": "evsavari_charging_practicality_v1",
+      "interpretation": "Editorial charging lifestyle guidance — not a guarantee of charger availability."
+    }
+  },
+  "ownershipConfidence": {
+    "firstTimeEvFriendliness": "moderate",
+    "familyConfidence": "strong",
+    "cityPracticality": "moderate",
+    "longTermOwnership": "moderate",
+    "maintenanceSimplicity": "limited",
+    "easeOfUse": "moderate",
+    "seniorPracticality": "moderate",
+    "ingressPracticality": "moderate",
+    "chauffeurPracticality": "limited",
+    "editorialGuidance": [
+      "Manageable for first-time EV buyers who accept a short learning curve on charging.",
+      "Family practicality is strong for regular city and weekend use within range bands."
+    ],
+    "metadata": {
+      "sourceType": "EDITORIAL_ESTIMATE",
+      "confidenceLevel": "medium",
+      "verificationStatus": "pending_review",
+      "lastVerifiedAt": null,
+      "verificationMethod": "evsavari_ownership_confidence_v1",
+      "interpretation": "Qualitative confidence indicators — pair with warranty and charging access facts."
+    }
+  },
+  "trustPresentation": {
+    "indicators": [
+      {
+        "id": "first_ev",
+        "label": "First-time EV friendly with charging planning",
+        "tone": "neutral"
+      },
+      {
+        "id": "apartment",
+        "label": "Apartment charging confidence: moderate",
+        "tone": "neutral"
+      },
+      {
+        "id": "highway",
+        "label": "Highway practicality: strong",
+        "tone": "positive"
+      },
+      {
+        "id": "family",
+        "label": "Family practicality: strong",
+        "tone": "positive"
+      },
+      {
+        "id": "charging_stress",
+        "label": "Charging planning stress: low",
+        "tone": "positive"
+      }
+    ],
+    "headline": "Value Atto 3 with usable DC — strong cross-shop against mass-market SUVs.",
+    "disclaimer": "Editorial confidence guidance for Indian ownership — not reviews, ratings, or range guarantees."
+  },
+  "compareTrust": {
+    "chargingPracticality": {
+      "dimension": "charging",
+      "label": "Charging practicality",
+      "strength": "strong",
+      "note": "Works well for overnight home or dedicated parking charging."
+    },
+    "ownershipConfidence": {
+      "dimension": "ownership",
+      "label": "Ownership confidence",
+      "strength": "moderate",
+      "note": "Manageable for first-time EV buyers who accept a short learning curve on charging."
+    },
+    "familyPracticality": {
+      "dimension": "family",
+      "label": "Family practicality",
+      "strength": "strong",
+      "note": "Boot space, rear seat comfort, and weekend range bands matter for families."
+    },
+    "highwayUsability": {
+      "dimension": "highway",
+      "label": "Highway usability",
+      "strength": "strong",
+      "note": "Highway range confidence is relatively strong for planned inter-city legs with DC stops."
+    },
+    "cityUsability": {
+      "dimension": "city",
+      "label": "City usability",
+      "strength": "moderate",
+      "note": "Parking footprint and city range bands drive daily confidence."
+    },
+    "anxietyReduction": {
+      "dimension": "anxiety",
+      "label": "Anxiety reduction",
+      "strength": "strong",
+      "note": "May need more charging planning discipline."
+    },
+    "apartmentFit": {
+      "dimension": "apartment",
+      "label": "Apartment owners",
+      "strength": "moderate",
+      "note": "Confirm society charging before purchase."
+    }
+  },
+  "intelligenceGovernance": {
+    "schemaVersion": 1,
+    "generatedAt": "2026-05-16T08:45:52.231Z",
+    "fields": {
+      "pricing.exShowroom": {
+        "metadata": {
+          "sourceType": "OFFICIAL_OEM",
+          "confidenceLevel": "high",
+          "verificationStatus": "pending_review",
+          "lastVerifiedAt": "2026-05-15T00:00:00.000Z",
+          "verificationMethod": "oem_price_list"
+        }
+      },
+      "range.claimedKm": {
+        "metadata": {
+          "sourceType": "OFFICIAL_OEM",
+          "confidenceLevel": "verified",
+          "verificationStatus": "pending_review",
+          "lastVerifiedAt": null,
+          "verificationMethod": "arai_certification"
+        }
+      },
+      "range.realWorldKm": {
+        "metadata": {
+          "sourceType": "EDITORIAL_ESTIMATE",
+          "confidenceLevel": "medium",
+          "verificationStatus": "pending_review",
+          "lastVerifiedAt": null,
+          "verificationMethod": "evsavari_mixed_cycle_model"
+        }
+      },
+      "battery.capacityKwh": {
+        "metadata": {
+          "sourceType": "OFFICIAL_OEM",
+          "confidenceLevel": "high",
+          "verificationStatus": "pending_review",
+          "lastVerifiedAt": null,
+          "verificationMethod": "oem_spec_sheet"
+        }
+      },
+      "charging.dcTime10to80Minutes": {
+        "metadata": {
+          "sourceType": "OFFICIAL_OEM",
+          "confidenceLevel": "high",
+          "verificationStatus": "pending_review",
+          "lastVerifiedAt": null,
+          "verificationMethod": "oem_charging_spec"
+        }
+      },
+      "safety.airbags.count": {
+        "metadata": {
+          "sourceType": "OFFICIAL_OEM",
+          "confidenceLevel": "high",
+          "verificationStatus": "pending_review",
+          "lastVerifiedAt": null,
+          "verificationMethod": "oem_spec_sheet"
+        }
+      },
+      "safety.adas.level": {
+        "metadata": {
+          "sourceType": "DERIVED_LOGIC",
+          "confidenceLevel": "medium",
+          "verificationStatus": "unverified",
+          "lastVerifiedAt": null,
+          "verificationMethod": "feature_matrix_inference"
+        }
+      },
+      "personaFit": {
+        "metadata": {
+          "sourceType": "DERIVED_LOGIC",
+          "confidenceLevel": "medium",
+          "verificationStatus": "pending_review",
+          "lastVerifiedAt": null,
+          "verificationMethod": "score_composite"
+        }
+      },
+      "scenarioFit": {
+        "metadata": {
+          "sourceType": "DERIVED_LOGIC",
+          "confidenceLevel": "medium",
+          "verificationStatus": "pending_review",
+          "lastVerifiedAt": null,
+          "verificationMethod": "scenario_model_v1"
+        }
+      },
+      "decision.whoShouldBuy": {
+        "metadata": {
+          "sourceType": "EDITORIAL_ESTIMATE",
+          "confidenceLevel": "medium",
+          "verificationStatus": "pending_review",
+          "lastVerifiedAt": null,
+          "verificationMethod": "editorial_template"
+        }
+      },
+      "compare.narrative": {
+        "metadata": {
+          "sourceType": "EDITORIAL_ESTIMATE",
+          "confidenceLevel": "medium",
+          "verificationStatus": "pending_review",
+          "lastVerifiedAt": null,
+          "verificationMethod": "compare_template_v1"
+        }
+      },
+      "psychologyExtended.scores": {
+        "metadata": {
+          "sourceType": "DERIVED_LOGIC",
+          "confidenceLevel": "medium",
+          "verificationStatus": "pending_review",
+          "lastVerifiedAt": null,
+          "verificationMethod": "psychology_composite"
+        }
+      },
+      "ownershipIntelligence.insuranceAnnualRangeInr": {
+        "metadata": {
+          "sourceType": "INDUSTRY_ESTIMATE",
+          "confidenceLevel": "low",
+          "verificationStatus": "unverified",
+          "lastVerifiedAt": null,
+          "verificationMethod": "ex_showroom_heuristic"
+        }
+      },
+      "rangeReality": {
+        "metadata": {
+          "sourceType": "DERIVED_LOGIC",
+          "confidenceLevel": "medium",
+          "verificationStatus": "pending_review",
+          "lastVerifiedAt": null,
+          "verificationMethod": "evsavari_range_reality_v1"
+        }
+      },
+      "chargingReality": {
+        "metadata": {
+          "sourceType": "DERIVED_LOGIC",
+          "confidenceLevel": "medium",
+          "verificationStatus": "pending_review",
+          "lastVerifiedAt": null,
+          "verificationMethod": "evsavari_charging_reality_v1"
+        }
+      },
+      "buyerAssurance": {
+        "metadata": {
+          "sourceType": "DERIVED_LOGIC",
+          "confidenceLevel": "medium",
+          "verificationStatus": "pending_review",
+          "lastVerifiedAt": null,
+          "verificationMethod": "evsavari_buyer_assurance_v1"
+        }
+      },
+      "ownershipTradeoffs": {
+        "metadata": {
+          "sourceType": "EDITORIAL_ESTIMATE",
+          "confidenceLevel": "medium",
+          "verificationStatus": "pending_review",
+          "lastVerifiedAt": null,
+          "verificationMethod": "evsavari_tradeoff_v1"
+        }
+      },
+      "scenarioCompare": {
+        "metadata": {
+          "sourceType": "EDITORIAL_ESTIMATE",
+          "confidenceLevel": "medium",
+          "verificationStatus": "pending_review",
+          "lastVerifiedAt": null,
+          "verificationMethod": "evsavari_scenario_compare_v1"
+        }
+      }
+    }
+  },
+  "scenarioFit": {
+    "dailyOfficeCommute": 78,
+    "familyWeekendTrips": 84,
+    "longDistanceTravel": 89,
+    "apartmentChargingFriendliness": 78,
+    "firstTimeEVBuyer": 65,
+    "chauffeurDrivenUsage": 60
+  },
+  "editorialNarratives": {
+    "ownership": "Ownership on byd EVs is generally practical for Indian buyers who value predictable service intervals and an 8-year battery warranty narrative. Resale confidence is modeled at 74/100 — interpret as editorial guidance, not a guarantee.",
+    "charging": "Home or workplace AC charging at 7 kW is well suited for overnight top-ups; DC sessions around 45 minutes (10–80%) are practical for planned highway stops — not a fuel-station-style minute fill; against a certified 468 km ARAI figure.",
+    "familySuitability": "Family suitability scores 84/100 in our model — well suited for small families with regular city and weekend use; boot space around 400 L should be checked against your stroller or luggage routine.",
+    "firstTimeEv": "First-time EV friendliness is rated 65/100 with anxiety-reduction at 68/100. This variant is practical for buyers who want clear warranty terms and manageable charging habits — less ideal if you expect zero planning on long routes.",
+    "compare": "In the compact suv set on EVSavari, this variant is better aligned with buyers who prioritise strong tech and efficiency story vs legacy oem evs; trade-off: service network still maturing outside major metros."
+  }
+}

@@ -1,0 +1,50 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "EVSavariCatalogMediaAsset",
+  "type": "object",
+  "required": ["key", "url", "filename", "role", "category"],
+  "properties": {
+    "key": { "type": "string" },
+    "url": { "type": "string", "format": "uri" },
+    "filename": { "type": "string" },
+    "role": {
+      "enum": ["hero", "listing", "compare", "social", "gallery"]
+    },
+    "category": {
+      "enum": ["exterior", "interior", "charging"]
+    },
+    "angle": {
+      "type": ["string", "null"],
+      "examples": [
+        "front-three-quarter",
+        "side-profile",
+        "dashboard",
+        "charging-port"
+      ]
+    },
+    "variant": {
+      "enum": ["light", "dark"],
+      "default": "light"
+    },
+    "tags": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "attribution": {
+      "type": "object",
+      "properties": {
+        "sourceType": {
+          "enum": [
+            "oem_press",
+            "brochure",
+            "evsavari_shoot",
+            "dealer_bank"
+          ]
+        },
+        "usage": { "type": "string" },
+        "rightsNote": { "type": "string" },
+        "capturedAt": { "type": ["string", "null"], "format": "date" }
+      }
+    }
+  }
+}

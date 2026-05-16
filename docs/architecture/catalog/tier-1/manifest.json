@@ -1,0 +1,100 @@
+{
+  "catalogId": "tier-1-india-2026-q2",
+  "generatedAt": "2026-05-16T08:45:52.246Z",
+  "variantCount": 29,
+  "targetRange": "25-35",
+  "slugs": [
+    "tata-nexon-ev-creative-plus",
+    "tata-nexon-ev-empowered-lr",
+    "tata-punch-ev-smart-plus",
+    "tata-punch-ev-empowered-lr",
+    "tata-curvv-ev-empowered",
+    "tata-curvv-ev-empowered-lr",
+    "tata-tiago-ev-xt",
+    "tata-tiago-ev-xz-plus",
+    "mg-zs-ev-excite",
+    "mg-zs-ev-exclusive-plus",
+    "mg-comet-ev-play",
+    "mg-comet-ev-plush-plus",
+    "mahindra-xuv400-ec-pro",
+    "mahindra-xuv400-el-pro",
+    "mahindra-be-6-pack-two",
+    "mahindra-be-6-pack-three-select",
+    "mahindra-xev-9e-pack-two",
+    "mahindra-xev-9e-pack-three-select",
+    "hyundai-kona-electric-premium",
+    "byd-atto-3-dynamic",
+    "byd-atto-3-superior",
+    "citroen-ec3-live",
+    "citroen-ec3-shine",
+    "kia-ev6-gt-line",
+    "bmw-ix1-xdrive30",
+    "mercedes-eqa-250-plus",
+    "mercedes-eqb-250-plus",
+    "volvo-ex40-single-motor",
+    "volvo-ex40-twin-motor"
+  ],
+  "compareTriangles": [
+    [
+      "tata-nexon-ev-empowered-lr",
+      "mahindra-xuv400-el-pro",
+      "mg-zs-ev-exclusive-plus"
+    ],
+    [
+      "tata-punch-ev-empowered-lr",
+      "mg-comet-ev-plush-plus",
+      "tata-tiago-ev-xz-plus"
+    ],
+    [
+      "byd-atto-3-superior",
+      "hyundai-kona-electric-premium",
+      "mg-zs-ev-exclusive-plus"
+    ],
+    [
+      "mahindra-be-6-pack-three-select",
+      "tata-curvv-ev-empowered-lr",
+      "byd-atto-3-superior"
+    ],
+    [
+      "kia-ev6-gt-line",
+      "bmw-ix1-xdrive30",
+      "mercedes-eqb-250-plus"
+    ],
+    [
+      "citroen-ec3-live",
+      "tata-tiago-ev-xt",
+      "mg-comet-ev-play"
+    ]
+  ],
+  "brands": [
+    "tata",
+    "mg",
+    "mahindra",
+    "hyundai",
+    "byd",
+    "citroen",
+    "kia",
+    "bmw",
+    "mercedes",
+    "volvo"
+  ],
+  "models": [
+    "nexon-ev",
+    "punch-ev",
+    "curvv-ev",
+    "tiago-ev",
+    "zs-ev",
+    "comet-ev",
+    "xuv400",
+    "be-6",
+    "xev-9e",
+    "kona-electric",
+    "atto-3",
+    "ec3",
+    "ev6",
+    "ix1",
+    "eqa",
+    "eqb",
+    "ex40"
+  ]
+}

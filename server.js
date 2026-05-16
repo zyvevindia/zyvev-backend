@@ -28,6 +28,18 @@ const Dealer = require("./models/Dealer");
 
 const dealerApiRouter = require("./routes/dealerApi");
 
+const createCatalogRouter = require("./routes/catalogRoutes");
+
+const createSeoRouter = require("./routes/seoRoutes");
+
+const createBehavioralRouter = require("./routes/behavioralRoutes");
+
+const createEditorialRouter = require("./routes/editorialRoutes");
+
+const dualReadService = require("./services/catalog/dualReadService");
+
+const { USE_EV_MASTER } = require("./config/catalog");
+
 const {
 
   validateLead,
@@ -229,6 +241,12 @@ app.get("/", (req, res) => {
   res.send("EVSavari Backend Running 🚀");
 });
 
+/* TEMP: Tier-1 file catalog diagnostics — remove after Render path verified */
+app.get("/debug/tier1-status", (req, res) => {
+  const tier1File = require("./services/catalog/tier1FileCatalog");
+  res.json(tier1File.getTier1DiagnosticStatus());
+});
+
 /* =========================================================
    ===================== DEALER API ========================
    ========================================================= */
@@ -236,6 +254,23 @@ app.get("/", (req, res) => {
 app.use(
   "/api/dealer",
   dealerApiRouter
+);
+
+app.use(
+  "/api/catalog",
+  createCatalogRouter({ auth, adminOnly })
+);
+
+app.use("/api/seo", createSeoRouter());
+
+app.use(
+  "/api/behavioral",
+  createBehavioralRouter({ auth, adminOnly })
+);
+
+app.use(
+  "/api/editorial",
+  createEditorialRouter({ auth, adminOnly })
 );
 
 /* =========================================================
@@ -1097,160 +1132,19 @@ app.get("/cars", async (req, res) => {
 
   try {
 
-    const {
-      brand,
-      priceRange,
-      sortBy,
-      search,
-      page = 1,
-      limit = 6
-    } = req.query;
+    const result =
+      await dualReadService.listCatalogVehicles(
+        req.query
+      );
 
-    let filter = {};
-
-    const catalogFilter = {
-      $or: [
-        { dealer: null },
-        { dealer: { $exists: false } }
-      ]
-    };
-
-    const andParts = [catalogFilter];
-
-    /* ---------- SEARCH ---------- */
-
-    if (search) {
-
-      andParts.push({
-        $or: [
-          {
-            name: {
-              $regex: search,
-              $options: "i"
-            }
-          },
-          {
-            brand: {
-              $regex: search,
-              $options: "i"
-            }
-          }
-        ]
-      });
+    if (USE_EV_MASTER) {
+      res.setHeader(
+        "X-Catalog-Mode",
+        result.catalogMode || "dual-read"
+      );
     }
 
-    filter = {
-      $and: andParts
-    };
-
-    /* ---------- BRAND FILTER ---------- */
-
-    if (brand) {
-
-      filter.brand = brand;
-    }
-
-    /* ---------- PRICE RANGE ---------- */
-
-    if (priceRange) {
-
-      if (priceRange === "low") {
-
-        filter.startingPrice = {
-          $lt: 1000000
-        };
-      }
-
-      else if (priceRange === "mid") {
-
-        filter.startingPrice = {
-          $gte: 1000000,
-          $lte: 2000000
-        };
-      }
-
-      else if (priceRange === "high") {
-
-        filter.startingPrice = {
-          $gt: 2000000
-        };
-      }
-    }
-
-    /* ---------- PAGINATION ---------- */
-
-    const pageNumber = Number(page);
-
-    const pageSize = Number(limit);
-
-    const skip =
-      (pageNumber - 1) * pageSize;
-
-    /* ---------- SORTING ---------- */
-
-    let sort = {
-
-      createdAt: -1
-    };
-
-    if (sortBy === "priceLow") {
-
-      sort = {
-        startingPrice: 1
-      };
-    }
-
-    if (sortBy === "priceHigh") {
-
-      sort = {
-        startingPrice: -1
-      };
-    }
-
-    if (sortBy === "rangeLow") {
-
-      sort = {
-        "specifications.range": 1
-      };
-    }
-
-    if (sortBy === "rangeHigh") {
-
-      sort = {
-        "specifications.range": -1
-      };
-    }
-
-    /* ---------- TOTAL ---------- */
-
-    const total =
-      await Car.countDocuments(filter);
-
-    /* ---------- FETCH CARS ---------- */
-
-    const cars =
-      await Car.find(filter)
-
-        .sort(sort)
-
-        .skip(skip)
-
-        .limit(pageSize);
-
-    /* ---------- RESPONSE ---------- */
-
-    res.json({
-
-      cars,
-
-      total,
-
-      page: pageNumber,
-
-      totalPages: Math.ceil(
-        total / pageSize
-      )
-    });
+    res.json(result);
 
   } catch (err) {
 
@@ -1277,33 +1171,31 @@ app.get(
 
     try {
 
-      const car =
-        await Car.findOne({
-          slug:
-            req.params.slug,
-        });
+      const hit =
+        await dualReadService.getVehicleBySlug(
+          req.params.slug
+        );
 
-      if (!car) {
-
-        return res
-          .status(404)
-          .json({
-            error:
-              "Car not found",
-          });
-      }
-
-      if (car.dealer) {
+      if (!hit?.vehicle) {
 
         return res
           .status(404)
           .json({
             error:
               "Car not found",
+            slug: req.params.slug,
           });
       }
 
-      res.json(car);
+      if (hit.source === "master") {
+        res.setHeader("X-Catalog-Source", "master");
+      } else if (hit.source === "tier-1-file") {
+        res.setHeader("X-Catalog-Source", "tier-1-file");
+      } else if (hit.source === "legacy") {
+        res.setHeader("X-Catalog-Source", "legacy");
+      }
+
+      res.json(hit.vehicle);
 
     } catch (err) {
 
@@ -1324,25 +1216,23 @@ app.get("/cars/:id", async (req, res) => {
 
   try {
 
-    const car = await Car.findById(
-      req.params.id
-    );
+    const hit =
+      await dualReadService.getVehicleById(
+        req.params.id
+      );
 
-    if (!car) {
+    if (!hit?.vehicle) {
 
       return res.status(404).json({
-        error: "Car not found"
+        error: "Car not found",
       });
     }
 
-    if (car.dealer) {
-
-      return res.status(404).json({
-        error: "Car not found"
-      });
+    if (hit.source === "master") {
+      res.setHeader("X-Catalog-Source", "master");
     }
 
-    res.json(car);
+    res.json(hit.vehicle);
 
   } catch (err) {
 
@@ -1352,7 +1242,7 @@ app.get("/cars/:id", async (req, res) => {
     );
 
     res.status(500).json({
-      error: err.message
+      error: err.message,
     });
   }
 });
@@ -1395,6 +1285,8 @@ app.post(
         vehicleId,
 
         sourcePage,
+
+        anonymousSessionId,
       } = req.body;
 
       const hasFullInquiry =
@@ -1544,6 +1436,47 @@ app.post(
 
         leadPayload.carId =
           resolvedCarId;
+      }
+
+      if (
+        anonymousSessionId &&
+        /^[a-zA-Z0-9_-]{16,64}$/.test(
+          String(anonymousSessionId)
+        )
+      ) {
+        leadPayload.anonymousSessionId =
+          String(anonymousSessionId).slice(
+            0,
+            64
+          );
+
+        try {
+          const {
+            BEHAVIORAL_INTELLIGENCE_ENABLED,
+          } = require("./config/behavioral");
+
+          if (BEHAVIORAL_INTELLIGENCE_ENABLED) {
+            const {
+              getSessionEvents,
+              buildLeadContext,
+            } = require("./services/buyer-intelligence");
+
+            const sessionEvents =
+              await getSessionEvents(
+                leadPayload.anonymousSessionId
+              );
+
+            const ctx =
+              buildLeadContext(sessionEvents);
+
+            if (ctx?.leadContext) {
+              leadPayload.buyerIntentContext =
+                ctx;
+            }
+          }
+        } catch {
+          /* non-blocking — lead still saves */
+        }
       }
 
       const lead =
@@ -1809,6 +1742,80 @@ app.get("/api/admin/leads", auth, async (req, res) => {
     res.status(500).json({ error: err.message });
   }
 });
+
+/* =========================================================
+   ========= ADMIN - VALIDATION SUMMARY (INTERNAL) ==========
+   ========================================================= */
+
+app.get(
+  "/api/admin/ops/validation-summary",
+  auth,
+  adminOnly,
+  async (req, res) => {
+    try {
+      const {
+        buildValidationDashboard,
+      } = require("./services/validation-dashboard");
+
+      const sinceDays = Math.min(
+        parseInt(req.query.days, 10) || 7,
+        90
+      );
+
+      const report = await buildValidationDashboard({
+        includeDb: true,
+        sinceDays,
+      });
+
+      res.json({
+        ...report,
+        _policy: {
+          adminOnly: true,
+          aggregatedOnly: true,
+          noPii: true,
+          notForPublicDealers: true,
+        },
+      });
+    } catch (err) {
+      res.status(500).json({ error: err.message });
+    }
+  }
+);
+
+/* =========================================================
+   ========= ADMIN - LEAD INTENT SUMMARY (INTERNAL) =========
+   ========================================================= */
+
+app.get(
+  "/api/admin/leads/:id/intent-summary",
+  auth,
+  adminOnly,
+  async (req, res) => {
+    try {
+      const lead = await Lead.findById(req.params.id)
+        .select("+buyerIntentContext +anonymousSessionId")
+        .lean();
+
+      if (!lead) {
+        return res.status(404).json({ error: "Lead not found" });
+      }
+
+      const {
+        buildDealerSafeLeadSummary,
+      } = require("./services/buyer-intelligence/dealerSafeSummary");
+      const {
+        buildLeadQualityIndicators,
+      } = require("./services/lead-quality-intelligence");
+
+      res.json({
+        ...buildDealerSafeLeadSummary(lead),
+        leadQuality: buildLeadQualityIndicators(lead),
+      });
+    } catch (err) {
+      res.status(500).json({ error: err.message });
+    }
+  }
+);
 
 /* =========================================================
    ================= MARK LEAD AS READ ======================
