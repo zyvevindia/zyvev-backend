@@ -385,6 +385,47 @@ const validateCar = ({
   };
 };
 
+const validateDealerSignup = ({
+  dealershipName,
+  contactName,
+  email,
+  phone,
+  citySlug,
+  brands,
+}) => {
+  const errors = [];
+
+  if (!isValidName(dealershipName)) {
+    errors.push("Dealership name required");
+  }
+
+  if (!isValidName(contactName)) {
+    errors.push("Contact name required");
+  }
+
+  if (!isValidEmail(email)) {
+    errors.push("Valid email required");
+  }
+
+  if (!isValidIndianPhone(phone)) {
+    errors.push("Valid Indian phone required");
+  }
+
+  if (!citySlug || !String(citySlug).trim()) {
+    errors.push("City selection required");
+  }
+
+  const brandList = Array.isArray(brands) ? brands : [];
+  if (!brandList.length) {
+    errors.push("Select at least one brand");
+  }
+
+  return {
+    isValid: errors.length === 0,
+    errors,
+  };
+};
+
 const validateDealerCreate = ({
   name,
   email,
@@ -464,4 +505,6 @@ module.exports = {
   validateCar,
 
   validateDealerCreate,
+
+  validateDealerSignup,
 };

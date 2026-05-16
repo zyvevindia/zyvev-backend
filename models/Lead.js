@@ -68,6 +68,29 @@ const leadSchema = new mongoose.Schema(
       default: ""
     },
 
+    leadSource: {
+      type: String,
+      trim: true,
+      default: "form",
+    },
+
+    familySlug: {
+      type: String,
+      trim: true,
+      default: "",
+    },
+
+    variantSlug: {
+      type: String,
+      trim: true,
+      default: "",
+    },
+
+    leadMetadata: {
+      type: mongoose.Schema.Types.Mixed,
+      default: null,
+    },
+
     /* =====================================================
        ===================== VEHICLE NAME ===================
        ===================================================== */
@@ -157,6 +180,7 @@ const leadSchema = new mongoose.Schema(
         "new",
         "assigned",
         "contacted",
+        "follow_up",
         "interested",
         "test_drive",
         "negotiation",
@@ -310,6 +334,8 @@ leadSchema.index({ status: 1 });
 leadSchema.index({ assignedTo: 1 });
 leadSchema.index({ dealer: 1 });
 leadSchema.index({ sourcePage: 1 });
+leadSchema.index({ leadSource: 1 });
+leadSchema.index({ familySlug: 1 });
 leadSchema.index({ city: 1 });
 leadSchema.index({ vehicleName: 1 });
 leadSchema.index({ dealer: 1, status: 1 });

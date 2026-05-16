@@ -4,6 +4,7 @@ const bcrypt = require("bcryptjs");
 const multer = require("multer");
 
 const Dealer = require("../models/Dealer");
+const DealerApplication = require("../models/DealerApplication");
 const Lead = require("../models/Lead");
 const Car = require("../models/Car");
 const Admin = require("../models/Admin");
@@ -12,6 +13,7 @@ const Notification = require("../models/Notification");
 const {
   validateLogin,
   validateCar,
+  validateDealerSignup,
   safeJsonParse,
 } = require("../utils/validators");
 
@@ -32,6 +34,8 @@ const CRM_PIPELINE_STATUSES = [
   "new",
 
   "contacted",
+
+  "follow_up",
 
   "interested",
 
@@ -57,6 +61,11 @@ const normalizeIncomingLeadStatus = (status) => {
   if (s === "converted") {
 
     return "won";
+  }
+
+  if (s === "follow-up" || s === "followup") {
+
+    return "follow_up";
   }
 
   return s;
@@ -177,6 +186,103 @@ const dealerAuth = async (
     });
   }
 };
+
+/* =========================================================
+   ==================== DEALER SIGNUP ======================
+   ========================================================= */
+
+router.post(
+  "/signup",
+  authLimiter,
+  async (req, res) => {
+    try {
+      const {
+        dealershipName,
+        contactName,
+        email,
+        phone,
+        citySlug,
+        brands,
+        address,
+        gstin,
+        notes,
+        leadQueue,
+        assignedTo,
+      } = req.body;
+
+      const validation = validateDealerSignup({
+        dealershipName,
+        contactName,
+        email,
+        phone,
+        citySlug,
+        brands,
+      });
+
+      if (!validation.isValid) {
+        return res.status(400).json({
+          success: false,
+          message: "Validation failed",
+          errors: validation.errors,
+        });
+      }
+
+      const emailNorm = String(email).toLowerCase().trim();
+
+      const existingDealer = await Dealer.findOne({ email: emailNorm });
+      if (existingDealer) {
+        return res.status(409).json({
+          success: false,
+          message: "A dealer account already exists for this email",
+        });
+      }
+
+      const pending = await DealerApplication.findOne({
+        email: emailNorm,
+        onboardingStatus: { $in: ["pending", "under_review"] },
+      });
+
+      if (pending) {
+        return res.status(409).json({
+          success: false,
+          message: "An application is already under review for this email",
+        });
+      }
+
+      const brandArr = Array.isArray(brands)
+        ? brands.map((b) => String(b).trim()).filter(Boolean)
+        : [];
+
+      const application = await DealerApplication.create({
+        dealershipName: String(dealershipName).trim(),
+        contactName: String(contactName).trim(),
+        email: emailNorm,
+        phone: String(phone).replace(/\D/g, ""),
+        citySlug: String(citySlug).trim().toLowerCase(),
+        brands: brandArr,
+        address: String(address || "").trim(),
+        gstin: String(gstin || "").trim(),
+        notes: String(notes || "").trim(),
+        onboardingStatus: "pending",
+        leadQueue: String(leadQueue || "dealer-onboarding").trim(),
+        assignedTo: String(assignedTo || "").trim(),
+      });
+
+      res.status(201).json({
+        success: true,
+        message: "Dealer application submitted",
+        applicationId: application._id,
+        onboardingStatus: application.onboardingStatus,
+      });
+    } catch (err) {
+      console.log("DEALER SIGNUP ERROR:", err);
+      res.status(500).json({
+        success: false,
+        message: "Unable to submit application",
+      });
+    }
+  }
+);
 
 /* =========================================================
    ===================== DEALER LOGIN ======================
@@ -333,6 +439,45 @@ router.get(
     });
   }
 );
+
+router.patch("/profile", async (req, res) => {
+  try {
+    const { name, phone, cities, brands } = req.body;
+    const dealer = await Dealer.findById(req.dealer._id);
+
+    if (!dealer) {
+      return res.status(404).json({ error: "Dealer not found" });
+    }
+
+    if (name) dealer.name = String(name).trim();
+    if (phone != null) dealer.phone = String(phone).trim();
+
+    if (cities != null) {
+      dealer.cities = Array.isArray(cities)
+        ? cities.map((c) => String(c).trim()).filter(Boolean)
+        : String(cities)
+            .split(",")
+            .map((c) => c.trim())
+            .filter(Boolean);
+    }
+
+    if (brands != null) {
+      dealer.brands = Array.isArray(brands)
+        ? brands.map((b) => String(b).trim()).filter(Boolean)
+        : String(brands)
+            .split(",")
+            .map((b) => b.trim())
+            .filter(Boolean);
+    }
+
+    await dealer.save();
+
+    const safe = await Dealer.findById(dealer._id).select("-password");
+    res.json({ dealer: safe });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
 
 router.get(
 

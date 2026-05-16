@@ -25,6 +25,7 @@ const Admin = require("./models/Admin");
 const View = require("./models/View");
 const Notification = require("./models/Notification");
 const Dealer = require("./models/Dealer");
+const DealerApplication = require("./models/DealerApplication");
 
 const dealerApiRouter = require("./routes/dealerApi");
 
@@ -467,6 +468,8 @@ const CRM_PIPELINE_STATUSES = [
 
   "contacted",
 
+  "follow_up",
+
   "interested",
 
   "test_drive",
@@ -491,6 +494,11 @@ const normalizeIncomingLeadStatus = (status) => {
   if (s === "converted") {
 
     return "won";
+  }
+
+  if (s === "follow-up" || s === "followup") {
+
+    return "follow_up";
   }
 
   return s;
@@ -1299,6 +1307,14 @@ app.post(
         sourcePage,
 
         anonymousSessionId,
+
+        leadSource,
+
+        leadMetadata,
+
+        familySlug,
+
+        variantSlug,
       } = req.body;
 
       const hasFullInquiry =
@@ -1442,6 +1458,30 @@ app.post(
             sourcePage:
               String(sourcePage || "")
                 .trim(),
+
+            leadSource:
+              String(leadSource || "form")
+                .trim()
+                .toLowerCase(),
+
+            familySlug:
+              String(
+                familySlug ||
+                  leadMetadata?.familySlug ||
+                  ""
+              ).trim(),
+
+            variantSlug:
+              String(
+                variantSlug ||
+                  leadMetadata?.variantSlug ||
+                  ""
+              ).trim(),
+
+            leadMetadata:
+              leadMetadata && typeof leadMetadata === "object"
+                ? leadMetadata
+                : null,
           }
         );
       } else if (resolvedCarId) {
@@ -2172,6 +2212,113 @@ app.get(
       res.status(500).json({
         error: err.message
       });
+    }
+  }
+);
+
+/* =========================================================
+   ============== DEALER APPLICATION REVIEW ===============
+   ========================================================= */
+
+app.get(
+  "/api/admin/dealer-applications",
+  auth,
+  adminOnly,
+  async (req, res) => {
+    try {
+      const { status } = req.query;
+      const filter = {};
+
+      if (status) {
+        filter.onboardingStatus = String(status).trim();
+      }
+
+      const applications = await DealerApplication.find(filter)
+        .populate("reviewedBy", "name email")
+        .populate("approvedDealer", "name email")
+        .sort({ createdAt: -1 });
+
+      res.json({ applications });
+    } catch (err) {
+      res.status(500).json({ error: err.message });
+    }
+  }
+);
+
+app.patch(
+  "/api/admin/dealer-applications/:id",
+  auth,
+  adminOnly,
+  async (req, res) => {
+    try {
+      const {
+        onboardingStatus,
+        reviewNotes,
+        assignedTo,
+        approvePassword,
+      } = req.body;
+
+      const application = await DealerApplication.findById(req.params.id);
+
+      if (!application) {
+        return res.status(404).json({ error: "Application not found" });
+      }
+
+      if (onboardingStatus) {
+        application.onboardingStatus = onboardingStatus;
+      }
+
+      if (reviewNotes != null) {
+        application.reviewNotes = String(reviewNotes).trim();
+      }
+
+      if (assignedTo != null) {
+        application.assignedTo = String(assignedTo).trim();
+      }
+
+      application.reviewedAt = new Date();
+      application.reviewedBy = req.admin.id;
+
+      if (onboardingStatus === "approved") {
+        const emailNorm = application.email;
+
+        let dealer = await Dealer.findOne({ email: emailNorm });
+
+        if (!dealer) {
+          if (!approvePassword || String(approvePassword).length < 6) {
+            return res.status(400).json({
+              error: "approvePassword required (min 6 chars) to create dealer account",
+            });
+          }
+
+          const hash = await bcrypt.hash(String(approvePassword), 10);
+
+          dealer = await Dealer.create({
+            name: application.dealershipName,
+            email: emailNorm,
+            password: hash,
+            phone: application.phone,
+            cities: [application.citySlug],
+            brands: application.brands,
+            isActive: true,
+            createdBy: req.admin.id,
+          });
+        }
+
+        application.approvedDealer = dealer._id;
+        application.onboardingStatus = "approved";
+      }
+
+      await application.save();
+
+      const updated = await DealerApplication.findById(application._id)
+        .populate("reviewedBy", "name email")
+        .populate("approvedDealer", "name email");
+
+      res.json({ application: updated });
+    } catch (err) {
+      console.log("DEALER APPLICATION REVIEW:", err);
+      res.status(500).json({ error: err.message });
     }
   }
 );
@@ -3336,6 +3483,18 @@ app.put(
 /* =========================================================
    ================= ANALYTICS ==============================
    ========================================================= */
+
+app.get("/api/admin/traffic-ops", auth, adminOnly, async (req, res) => {
+  try {
+    const days = Math.min(Math.max(parseInt(req.query.days || "7", 10), 1), 90);
+    const { buildTrafficOpsReport } = require("./services/operations/trafficOpsReport");
+    const report = await buildTrafficOpsReport(days);
+    res.json(report);
+  } catch (err) {
+    console.log("TRAFFIC OPS ERROR:", err);
+    res.status(500).json({ error: err.message });
+  }
+});
 
 app.get("/api/admin/analytics", auth, async (req, res) => {
   try {
