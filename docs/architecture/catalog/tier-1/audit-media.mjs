@@ -46,25 +46,34 @@ function checkUrl(slug, field, url) {
       });
     }
   }
-  if (!url.includes("cdn.evsavari.com/catalog/")) {
-    issues.push({
-      slug,
-      severity: "warn",
-      field,
-      message: "URL not on EVSavari catalog CDN",
-    });
-  }
-  const expectedSlug = `/catalog/${slug}/`;
-  if (
-    url.includes("cdn.evsavari.com") &&
-    !url.includes(expectedSlug) &&
-    !url.includes("/_fallbacks/")
-  ) {
+  if (url.includes("cdn.evsavari.com")) {
     issues.push({
       slug,
       severity: "error",
       field,
-      message: `CDN path does not include variant slug (${expectedSlug})`,
+      message: "legacy cdn.evsavari.com placeholder — use Cloudinary",
+    });
+  }
+  if (!url.includes("res.cloudinary.com")) {
+    issues.push({
+      slug,
+      severity: "warn",
+      field,
+      message: "URL not on Cloudinary delivery",
+    });
+  }
+  const familyOrVariant =
+    url.includes(`/families/`) || url.includes(`/variants/${slug}/`);
+  if (
+    url.includes("res.cloudinary.com") &&
+    !familyOrVariant &&
+    !url.includes("/_fallbacks/")
+  ) {
+    issues.push({
+      slug,
+      severity: "warn",
+      field,
+      message: "Cloudinary path not under families/ or variants/ slug scope",
     });
   }
 }
@@ -122,20 +131,26 @@ for (const slug of manifest.slugs) {
 
 for (const [url, users] of heroByUrl) {
   if (users.length > 1 && url.includes("/hero.jpg")) {
+    const sharedFamily = url.includes("/families/");
     issues.push({
       slug: users.join(", "),
-      severity: "error",
+      severity: sharedFamily ? "info" : "error",
       field: "heroImage",
-      message: `duplicate hero URL across variants: ${url}`,
+      message: sharedFamily
+        ? `shared family hero (expected): ${url}`
+        : `duplicate hero URL across variants: ${url}`,
     });
   }
 }
 
 const errors = issues.filter((i) => i.severity === "error");
 const warns = issues.filter((i) => i.severity === "warn");
+const infos = issues.filter((i) => i.severity === "info");
 
 console.log(`\nTier-1 media audit — ${manifest.slugs.length} variants\n`);
-console.log(`Errors: ${errors.length}  Warnings: ${warns.length}\n`);
+console.log(
+  `Errors: ${errors.length}  Warnings: ${warns.length}  Info: ${infos.length}\n`
+);
 
 for (const item of issues) {
   console.log(

@@ -1,4 +1,5 @@
 const Lead = require("../../models/Lead");
+const Dealer = require("../../models/Dealer");
 const BuyerBehaviorEvent = require("../../models/BuyerBehaviorEvent");
 const { buildInternalReport } = require("../buyer-intelligence");
 
@@ -205,6 +206,51 @@ async function buildTrafficOpsReport(sinceDays = 7) {
     .sort((a, b) => b.started - a.started)
     .slice(0, 12);
 
+  const compareWhatsAppMap = new Map();
+  for (const e of events) {
+    if (e.eventType !== "whatsapp_lead_clicked") continue;
+    const path = bucketPath(
+      e.payload?.sourcePage || e.payload?.discoveryPath || ""
+    );
+    if (path.includes("/compare/")) {
+      const slug = path.split("/compare/")[1]?.split("?")[0] || path;
+      incMap(compareWhatsAppMap, slug);
+    }
+  }
+
+  const compareToWhatsApp = compareTrends.map((row) => {
+    const wa = compareWhatsAppMap.get(row.slug) || 0;
+    return {
+      slug: row.slug,
+      compareStarted: row.started,
+      whatsappClicks: wa,
+      conversionRate:
+        row.started > 0 ? Math.round((wa / row.started) * 1000) / 10 : null,
+    };
+  });
+
+  const cityConversion = new Map();
+  const dealerConversion = new Map();
+
+  for (const lead of leads) {
+    if (lead.city) {
+      const c = String(lead.city).toLowerCase();
+      incMap(cityConversion, c);
+    }
+    if (lead.dealer) {
+      incMap(dealerConversion, String(lead.dealer));
+    }
+  }
+
+  const dealerDocs = await Dealer.find({
+    _id: { $in: [...dealerConversion.keys()] },
+  })
+    .select("name email")
+    .lean();
+  const dealerNameMap = new Map(
+    dealerDocs.map((d) => [String(d._id), d.name || d.email])
+  );
+
   const compareToLeadTrends = compareTrends.map((row) => {
     const compareLeads = leads.filter((l) =>
       String(l.sourcePage || "").includes(row.slug)
@@ -293,6 +339,34 @@ async function buildTrafficOpsReport(sinceDays = 7) {
         String(l.sourcePage || "").includes("/compare/")
       ).length,
     },
+    compareToWhatsApp: {
+      trends: compareToWhatsApp,
+      totalCompareWhatsApp: [...compareWhatsAppMap.values()].reduce(
+        (a, b) => a + b,
+        0
+      ),
+    },
+    cityWiseConversion: [...cityConversion.entries()]
+      .sort((a, b) => b[1] - a[1])
+      .slice(0, 15)
+      .map(([city, count]) => {
+        const views = [...cityHeatmap.entries()].find(([k]) => k === city)?.[1] || 0;
+        return {
+          city,
+          leads: count,
+          views,
+          conversionRate:
+            views > 0 ? Math.round((count / views) * 1000) / 10 : null,
+        };
+      }),
+    dealerWiseConversion: [...dealerConversion.entries()]
+      .sort((a, b) => b[1] - a[1])
+      .slice(0, 12)
+      .map(([id, count]) => ({
+        dealerId: id,
+        name: dealerNameMap.get(id) || "Dealer",
+        leads: count,
+      })),
     ctaClicks: toRanked(ctaByType, "type").map((r) => ({
       label: r.type,
       count: r.count,

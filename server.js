@@ -147,6 +147,16 @@ const defaultCorsOrigins = [
 
   "http://localhost:5173",
 
+  "http://localhost:5174",
+
+  "http://127.0.0.1:5173",
+
+  "http://127.0.0.1:5174",
+
+  "http://localhost:4173",
+
+  "http://127.0.0.1:4173",
+
   "https://zyvev-frontend.vercel.app",
 
   "https://evsavari.com",
@@ -1535,18 +1545,19 @@ app.post(
         }
       }
 
-      const lead =
-        await Lead.create(
-          leadPayload
-        );
-
+      let merged = false;
       let autoAssigned = false;
+      let lead;
+
       try {
-        const { onFormLeadCreated } = require("./services/lead/leadOperations");
-        const routed = await onFormLeadCreated(lead);
-        autoAssigned = routed.assigned;
+        const { createOrMergeFormLead } = require("./services/lead/leadOperations");
+        const result = await createOrMergeFormLead(leadPayload);
+        lead = result.lead;
+        merged = result.merged;
+        autoAssigned = result.autoAssigned;
       } catch (notifyErr) {
         console.log("LEAD OPS ERROR:", notifyErr.message);
+        lead = await Lead.create(leadPayload);
       }
 
       /* ================= RESPONSE ================= */
@@ -1555,11 +1566,13 @@ app.post(
 
         success: true,
 
-        message:
-          "Lead submitted successfully",
+        message: merged
+          ? "Enquiry linked to your earlier session"
+          : "Lead submitted successfully",
 
-        leadId:
-          lead._id,
+        leadId: lead._id,
+
+        merged,
 
         autoAssigned,
       });
@@ -1581,6 +1594,55 @@ app.post(
     }
   }
 );
+
+app.post("/api/feedback", async (req, res) => {
+  try {
+    const {
+      category,
+      description,
+      email,
+      name,
+      route,
+      context,
+      screenshotDataUrl,
+      userAgent,
+    } = req.body || {};
+
+    const text = String(description || "").trim();
+    if (!text || text.length < 8) {
+      return res.status(400).json({
+        success: false,
+        message: "Please provide a short description (8+ characters).",
+      });
+    }
+
+    const { appendOpsAuditEntry } = require("./services/operations/opsAuditService");
+
+    await appendOpsAuditEntry({
+      action: "site_feedback",
+      actorRole: "buyer",
+      actorLabel: String(name || email || "anonymous").slice(0, 120),
+      targetType: "page",
+      targetId: String(route || "unknown").slice(0, 500),
+      metadata: {
+        category: String(category || "other").slice(0, 64),
+        description: text.slice(0, 4000),
+        email: String(email || "").slice(0, 200),
+        context: context && typeof context === "object" ? context : {},
+        hasScreenshot: Boolean(screenshotDataUrl),
+        userAgent: String(userAgent || "").slice(0, 300),
+      },
+    });
+
+    res.status(201).json({ success: true });
+  } catch (err) {
+    console.log("FEEDBACK ERROR:", err);
+    res.status(500).json({
+      success: false,
+      message: "Unable to record feedback",
+    });
+  }
+});
 
 app.post("/api/leads/whatsapp-intent", async (req, res) => {
   try {
@@ -1607,6 +1669,27 @@ app.post("/api/leads/whatsapp-intent", async (req, res) => {
       intent: intent || "inquiry",
       brand,
     });
+
+    if (result?.leadId) {
+      try {
+        const { appendOpsAuditEntry } = require("./services/operations/opsAuditService");
+        await appendOpsAuditEntry({
+          action: "whatsapp_intent",
+          actorRole: "buyer",
+          targetType: "lead",
+          targetId: String(result.leadId),
+          metadata: {
+            sourcePage,
+            familySlug,
+            variantSlug,
+            city,
+            intent: intent || "inquiry",
+          },
+        });
+      } catch (auditErr) {
+        console.log("OPS AUDIT WA:", auditErr.message);
+      }
+    }
 
     res.status(201).json({
       success: true,
@@ -1775,33 +1858,61 @@ app.get("/api/admin/export-performance", auth, async (req, res) => {
 
 app.get("/api/admin/leads", auth, async (req, res) => {
   try {
-    const { page = 1, limit = 10 } = req.query;
+    const { page = 1, limit = 10, filter } = req.query;
 
     const skip = (page - 1) * limit;
+    const query = {};
 
-    const total = await Lead.countDocuments();
+    if (filter === "unmatched") {
+      query.dealer = null;
+      query.status = {
+        $in: [
+          "new",
+          "assigned",
+          "contacted",
+          "follow_up",
+          "interested",
+          "test_drive",
+          "negotiation",
+        ],
+      };
+    } else if (filter === "whatsapp") {
+      query.leadSource = "whatsapp";
+    } else if (filter === "overdue") {
+      query.status = { $nin: ["won", "lost", "converted"] };
+    }
 
-    const leads = await Lead.find()
-    .populate("carId")
-    .populate(
-      "assignedTo",
-      "name email role"
-    )
-    .populate(
-      "dealer",
-      "name email cities brands isActive"
-    )
-    .sort({ createdAt: -1 })
-    .skip(Number(skip))
-    .limit(Number(limit));
+    const total = await Lead.countDocuments(query);
+
+    let leads = await Lead.find(query)
+      .populate("carId")
+      .populate("assignedTo", "name email role")
+      .populate("dealer", "name email cities brands isActive")
+      .sort({ createdAt: -1 })
+      .skip(Number(skip))
+      .limit(Number(limit))
+      .lean();
+
+    if (filter === "overdue") {
+      const { isOverdue } = require("./services/operations/opsSummary");
+      leads = leads.filter((l) => isOverdue(l));
+    }
+
+    const { leadAgeHours, responseHours, isSlaBreached } = require("./services/operations/dealerMetrics");
+    const enriched = leads.map((l) => ({
+      ...l,
+      ageHours: leadAgeHours(l),
+      responseHours: responseHours(l),
+      slaBreached: isSlaBreached(l),
+    }));
 
     res.json({
-      leads,
+      leads: enriched,
       total,
       page: Number(page),
-      totalPages: Math.ceil(total / limit)
+      totalPages: Math.ceil(total / limit),
+      filter: filter || "all",
     });
-
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
@@ -1902,6 +2013,21 @@ app.put(
         }
       );
 
+      try {
+        const {
+          appendOpsAuditEntry,
+          auditFromRequest,
+        } = require("./services/operations/opsAuditService");
+        await appendOpsAuditEntry({
+          ...auditFromRequest(req),
+          action: "lead_read_admin",
+          targetType: "lead",
+          targetId: req.params.id,
+        });
+      } catch (auditErr) {
+        console.log("OPS AUDIT READ:", auditErr.message);
+      }
+
       res.json({
         success: true,
       });
@@ -1998,6 +2124,7 @@ app.put(
           }
 
           update.dealer = dealerId;
+          update.readByDealer = false;
         }
       }
 
@@ -2069,6 +2196,32 @@ app.put(
         } catch (notifyErr) {
           console.log("DEALER ASSIGN NOTIFY:", notifyErr.message);
         }
+      }
+
+      try {
+        const {
+          appendOpsAuditEntry,
+          auditFromRequest,
+        } = require("./services/operations/opsAuditService");
+        await appendOpsAuditEntry({
+          ...auditFromRequest(req),
+          action: "lead_assigned",
+          targetType: "lead",
+          targetId: lead._id.toString(),
+          metadata: {
+            summary: [
+              assignedTo && `sales:${assignedTo}`,
+              dealerId && `dealer:${dealerId}`,
+              assignedDealer && `desk:${assignedDealer}`,
+            ]
+              .filter(Boolean)
+              .join(" "),
+            assignedTo: assignedTo || null,
+            dealerId: dealerId || null,
+          },
+        });
+      } catch (auditErr) {
+        console.log("OPS AUDIT ASSIGN:", auditErr.message);
       }
 
       res.json(lead);
@@ -2338,6 +2491,25 @@ app.patch(
 
       await application.save();
 
+      try {
+        const {
+          appendOpsAuditEntry,
+          auditFromRequest,
+        } = require("./services/operations/opsAuditService");
+        await appendOpsAuditEntry({
+          ...auditFromRequest(req),
+          action: "dealer_application_review",
+          targetType: "application",
+          targetId: application._id.toString(),
+          metadata: {
+            onboardingStatus: application.onboardingStatus,
+            summary: application.dealershipName,
+          },
+        });
+      } catch (auditErr) {
+        console.log("OPS AUDIT DEALER APP:", auditErr.message);
+      }
+
       const updated = await DealerApplication.findById(application._id)
         .populate("reviewedBy", "name email")
         .populate("approvedDealer", "name email");
@@ -2435,6 +2607,24 @@ app.put(
       }
 
       await dealer.save();
+
+      if (typeof isActive === "boolean") {
+        try {
+          const {
+            appendOpsAuditEntry,
+            auditFromRequest,
+          } = require("./services/operations/opsAuditService");
+          await appendOpsAuditEntry({
+            ...auditFromRequest(req),
+            action: "dealer_override",
+            targetType: "dealer",
+            targetId: dealer._id.toString(),
+            metadata: { isActive: dealer.isActive },
+          });
+        } catch (auditErr) {
+          console.log("OPS AUDIT DEALER:", auditErr.message);
+        }
+      }
 
       const out =
         await Dealer.findById(
@@ -3507,9 +3697,104 @@ app.put(
   }
 );
 
+app.put(
+  "/api/admin/leads/:id/status",
+  auth,
+  adminOnly,
+  async (req, res) => {
+    try {
+      const { status } = req.body;
+      const lead = await Lead.findById(req.params.id);
+      if (!lead) {
+        return res.status(404).json({ error: "Lead not found" });
+      }
+      const previousStatus = lead.status;
+      if (status && previousStatus !== status) {
+        lead.statusHistory.push({
+          status,
+          at: new Date(),
+          changedBy: req.admin.id,
+        });
+        lead.status = status;
+        await lead.save();
+        const {
+          appendOpsAuditEntry,
+          auditFromRequest,
+        } = require("./services/operations/opsAuditService");
+        await appendOpsAuditEntry({
+          ...auditFromRequest(req),
+          action: "lead_status_changed",
+          targetType: "lead",
+          targetId: lead._id.toString(),
+          metadata: { status, previousStatus, admin: true },
+        });
+      }
+      res.json(lead);
+    } catch (err) {
+      res.status(500).json({ error: err.message });
+    }
+  }
+);
+
 /* =========================================================
    ================= ANALYTICS ==============================
    ========================================================= */
+
+/* =========================================================
+   ================= OPS AUDIT LOG ==========================
+   ========================================================= */
+
+app.get("/api/admin/ops-audit", auth, adminOnly, async (req, res) => {
+  try {
+    const { listOpsAuditEntries } = require("./services/operations/opsAuditService");
+    const result = await listOpsAuditEntries(req.query);
+    res.json(result);
+  } catch (err) {
+    console.log("OPS AUDIT LIST ERROR:", err);
+    res.status(500).json({ error: err.message });
+  }
+});
+
+app.post("/api/admin/ops-audit", auth, adminOnly, async (req, res) => {
+  try {
+    const {
+      appendOpsAuditEntry,
+      auditFromRequest,
+      ALLOWED_ACTIONS,
+    } = require("./services/operations/opsAuditService");
+
+    const body = req.body || {};
+    const action = body.action;
+
+    if (!action || !ALLOWED_ACTIONS.has(action)) {
+      return res.status(400).json({
+        error: "Invalid or missing action",
+      });
+    }
+
+    const actor = auditFromRequest(req);
+    const entry = await appendOpsAuditEntry({
+      clientId: body.id || body.clientId,
+      action,
+      actorRole: actor.actorRole,
+      actorId: actor.actorId,
+      actorLabel: body.actorLabel || actor.actorLabel,
+      targetType: body.targetType || "",
+      targetId: body.targetId || "",
+      metadata: body.metadata || {},
+      at: body.at,
+    });
+
+    if (!entry) {
+      return res.status(400).json({ error: "Could not record audit entry" });
+    }
+
+    res.status(201).json({ entry });
+  } catch (err) {
+    console.log("OPS AUDIT POST ERROR:", err);
+    res.status(500).json({ error: err.message });
+  }
+});
 
 app.get("/api/admin/ops-summary", auth, adminOnly, async (req, res) => {
   try {
@@ -3518,6 +3803,17 @@ app.get("/api/admin/ops-summary", auth, adminOnly, async (req, res) => {
     res.json(summary);
   } catch (err) {
     console.log("OPS SUMMARY ERROR:", err);
+    res.status(500).json({ error: err.message });
+  }
+});
+
+app.get("/api/admin/ops-queue", auth, adminOnly, async (req, res) => {
+  try {
+    const { buildAdminOpsQueue } = require("./services/operations/adminOpsQueue");
+    const queue = await buildAdminOpsQueue(req.query.filter || "all");
+    res.json(queue);
+  } catch (err) {
+    console.log("OPS QUEUE ERROR:", err);
     res.status(500).json({ error: err.message });
   }
 });

@@ -231,6 +231,11 @@ const leadSchema = new mongoose.Schema(
       default: false
     },
 
+    readByDealer: {
+      type: Boolean,
+      default: false
+    },
+
     /* =====================================================
        ========================= NOTES ======================
        ===================================================== */
@@ -339,6 +344,8 @@ leadSchema.index({ familySlug: 1 });
 leadSchema.index({ city: 1 });
 leadSchema.index({ vehicleName: 1 });
 leadSchema.index({ dealer: 1, status: 1 });
+leadSchema.index({ anonymousSessionId: 1, status: 1 });
+leadSchema.index({ dealer: 1, readByDealer: 1 });
 
 module.exports = mongoose.model(
   "Lead",

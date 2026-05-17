@@ -3,7 +3,13 @@ const { findMatchingDealer } = require("../operations/dealerRouting");
 const {
   notifyNewLead,
   notifyLeadAssigned,
+  notifyDealerNewLead,
 } = require("../notifications/opsNotify");
+const {
+  findOpenLeadBySession,
+  mergeFormIntoLead,
+  touchWhatsAppIntent,
+} = require("./leadDedup");
 
 function syntheticWhatsAppPhone(sessionKey = "") {
   const digits = String(sessionKey || Date.now())
@@ -13,9 +19,6 @@ function syntheticWhatsAppPhone(sessionKey = "") {
   return `9${digits.slice(1)}`;
 }
 
-/**
- * Auto-assign dealer when city + brand match an active dealer.
- */
 async function autoAssignDealerToLead(lead) {
   if (lead.dealer) {
     return { lead, assigned: false, reason: "already_assigned" };
@@ -40,9 +43,11 @@ async function autoAssignDealerToLead(lead) {
     at: new Date(),
   });
   lead.assignedDealer = dealer.name || dealer.email;
+  lead.readByDealer = false;
   await lead.save();
 
   await notifyLeadAssigned(lead, dealer);
+  await notifyDealerNewLead(dealer, lead);
 
   const updated = await Lead.findById(lead._id).populate(
     "dealer",
@@ -63,7 +68,31 @@ async function createWhatsAppIntentLead({
   brand = "",
 }) {
   const sessionKey =
-    anonymousSessionId || `wa_${Date.now()}_${Math.random().toString(36).slice(2, 8)}`;
+    anonymousSessionId ||
+    `wa_${Date.now()}_${Math.random().toString(36).slice(2, 8)}`;
+
+  const existing = await findOpenLeadBySession(sessionKey);
+  if (existing) {
+    const touched = await touchWhatsAppIntent(existing, {
+      sourcePage,
+      familySlug,
+      variantSlug,
+      city,
+      vehicleName,
+      intent,
+    });
+    const routed = touched.dealer
+      ? { lead: touched, assigned: true }
+      : await autoAssignDealerToLead(touched);
+
+    return {
+      leadId: routed.lead._id,
+      leadSource: "whatsapp",
+      autoAssigned: routed.assigned,
+      dealer: routed.lead.dealer || null,
+      deduplicated: true,
+    };
+  }
 
   const lead = await Lead.create({
     name: "WhatsApp enquiry",
@@ -82,9 +111,20 @@ async function createWhatsAppIntentLead({
       channel: "whatsapp",
       capturedAt: new Date().toISOString(),
       brand: brand || undefined,
+      attributionHistory: [
+        {
+          channel: "whatsapp",
+          sourcePage: String(sourcePage || "").trim(),
+          familySlug,
+          variantSlug,
+          city,
+          at: new Date(),
+        },
+      ],
     },
     status: "new",
     readByAdmin: false,
+    readByDealer: false,
     statusHistory: [{ status: "new", at: new Date() }],
   });
 
@@ -97,16 +137,67 @@ async function createWhatsAppIntentLead({
     leadSource: "whatsapp",
     autoAssigned: routed.assigned,
     dealer: routed.lead.dealer || null,
+    deduplicated: false,
   };
 }
 
-async function onFormLeadCreated(lead) {
-  await notifyNewLead(lead);
+/**
+ * Create form lead or merge into existing session lead (WhatsApp intent).
+ */
+async function createOrMergeFormLead(leadPayload) {
+  const sessionId = leadPayload.anonymousSessionId;
+
+  if (sessionId) {
+    const existing = await findOpenLeadBySession(sessionId);
+    if (existing) {
+      const merged = await mergeFormIntoLead(existing, leadPayload);
+      const routed = merged.dealer
+        ? { lead: merged, assigned: false }
+        : await autoAssignDealerToLead(merged);
+
+      return {
+        lead: routed.lead,
+        merged: true,
+        autoAssigned: routed.assigned,
+      };
+    }
+  }
+
+  const lead = await Lead.create({
+    ...leadPayload,
+    readByDealer: false,
+    leadMetadata: {
+      ...(leadPayload.leadMetadata || {}),
+      attributionHistory: [
+        {
+          channel: leadPayload.leadSource || "form",
+          sourcePage: leadPayload.sourcePage,
+          at: new Date(),
+        },
+      ],
+    },
+  });
+
+  const routed = await onFormLeadCreated(lead, { isNew: true });
+  return {
+    lead: routed.lead,
+    merged: false,
+    autoAssigned: routed.assigned,
+  };
+}
+
+async function onFormLeadCreated(lead, { isNew = true, merged = false } = {}) {
+  if (isNew && !merged) {
+    await notifyNewLead(lead);
+  } else if (merged) {
+    await notifyNewLead(lead);
+  }
   return autoAssignDealerToLead(lead);
 }
 
 module.exports = {
   createWhatsAppIntentLead,
+  createOrMergeFormLead,
   autoAssignDealerToLead,
   onFormLeadCreated,
   syntheticWhatsAppPhone,

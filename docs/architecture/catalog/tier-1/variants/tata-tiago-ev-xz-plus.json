@@ -136,26 +136,26 @@
     ]
   },
   "media": {
-    "heroImage": "https://cdn.evsavari.com/catalog/tata-tiago-ev-xz-plus/hero.jpg",
-    "listingThumbnail": "https://cdn.evsavari.com/catalog/tata-tiago-ev-xz-plus/listing-thumb.jpg",
-    "compareThumbnail": "https://cdn.evsavari.com/catalog/tata-tiago-ev-xz-plus/compare-thumb.jpg",
-    "ogImage": "https://cdn.evsavari.com/catalog/tata-tiago-ev-xz-plus/og.jpg",
+    "heroImage": "https://res.cloudinary.com/evsavari/image/upload/f_auto,q_auto,c_limit/evsavari/catalog/variants/tata-tiago-ev-xz-plus/hero.jpg",
+    "listingThumbnail": "https://res.cloudinary.com/evsavari/image/upload/f_auto,q_auto,c_limit/evsavari/catalog/variants/tata-tiago-ev-xz-plus/listing-thumb.jpg",
+    "compareThumbnail": "https://res.cloudinary.com/evsavari/image/upload/f_auto,q_auto,c_limit/evsavari/catalog/variants/tata-tiago-ev-xz-plus/compare-thumb.jpg",
+    "ogImage": "https://res.cloudinary.com/evsavari/image/upload/f_auto,q_auto,c_limit/evsavari/catalog/variants/tata-tiago-ev-xz-plus/og.jpg",
     "gallery": [
-      "https://cdn.evsavari.com/catalog/tata-tiago-ev-xz-plus/exterior-1.jpg",
-      "https://cdn.evsavari.com/catalog/tata-tiago-ev-xz-plus/exterior-2.jpg",
-      "https://cdn.evsavari.com/catalog/tata-tiago-ev-xz-plus/exterior-3.jpg"
+      "https://res.cloudinary.com/evsavari/image/upload/f_auto,q_auto,c_limit/evsavari/catalog/variants/tata-tiago-ev-xz-plus/exterior-1.jpg",
+      "https://res.cloudinary.com/evsavari/image/upload/f_auto,q_auto,c_limit/evsavari/catalog/variants/tata-tiago-ev-xz-plus/exterior-2.jpg",
+      "https://res.cloudinary.com/evsavari/image/upload/f_auto,q_auto,c_limit/evsavari/catalog/variants/tata-tiago-ev-xz-plus/exterior-3.jpg"
     ],
     "interior": [
-      "https://cdn.evsavari.com/catalog/tata-tiago-ev-xz-plus/interior-1.jpg"
+      "https://res.cloudinary.com/evsavari/image/upload/f_auto,q_auto,c_limit/evsavari/catalog/variants/tata-tiago-ev-xz-plus/interior-1.jpg"
     ],
     "charging": [
-      "https://cdn.evsavari.com/catalog/tata-tiago-ev-xz-plus/charging-port.jpg"
+      "https://res.cloudinary.com/evsavari/image/upload/f_auto,q_auto,c_limit/evsavari/catalog/variants/tata-tiago-ev-xz-plus/charging-port.jpg"
     ],
     "videos": [],
     "assets": [
       {
         "key": "hero",
-        "url": "https://cdn.evsavari.com/catalog/tata-tiago-ev-xz-plus/hero.jpg",
+        "url": "https://res.cloudinary.com/evsavari/image/upload/f_auto,q_auto,c_limit/evsavari/catalog/variants/tata-tiago-ev-xz-plus/hero.jpg",
         "filename": "hero.jpg",
         "role": "hero",
         "category": "exterior",
@@ -174,7 +174,7 @@
       },
       {
         "key": "listing_thumb",
-        "url": "https://cdn.evsavari.com/catalog/tata-tiago-ev-xz-plus/listing-thumb.jpg",
+        "url": "https://res.cloudinary.com/evsavari/image/upload/f_auto,q_auto,c_limit/evsavari/catalog/variants/tata-tiago-ev-xz-plus/listing-thumb.jpg",
         "filename": "listing-thumb.jpg",
         "role": "listing",
         "category": "exterior",
@@ -193,7 +193,7 @@
       },
       {
         "key": "compare_thumb",
-        "url": "https://cdn.evsavari.com/catalog/tata-tiago-ev-xz-plus/compare-thumb.jpg",
+        "url": "https://res.cloudinary.com/evsavari/image/upload/f_auto,q_auto,c_limit/evsavari/catalog/variants/tata-tiago-ev-xz-plus/compare-thumb.jpg",
         "filename": "compare-thumb.jpg",
         "role": "compare",
         "category": "exterior",
@@ -212,7 +212,7 @@
       },
       {
         "key": "og",
-        "url": "https://cdn.evsavari.com/catalog/tata-tiago-ev-xz-plus/og.jpg",
+        "url": "https://res.cloudinary.com/evsavari/image/upload/f_auto,q_auto,c_limit/evsavari/catalog/variants/tata-tiago-ev-xz-plus/og.jpg",
         "filename": "og.jpg",
         "role": "social",
         "category": "exterior",
@@ -231,7 +231,7 @@
       },
       {
         "key": "exterior_1",
-        "url": "https://cdn.evsavari.com/catalog/tata-tiago-ev-xz-plus/exterior-1.jpg",
+        "url": "https://res.cloudinary.com/evsavari/image/upload/f_auto,q_auto,c_limit/evsavari/catalog/variants/tata-tiago-ev-xz-plus/exterior-1.jpg",
         "filename": "exterior-1.jpg",
         "role": "gallery",
         "category": "exterior",
@@ -250,7 +250,7 @@
       },
       {
         "key": "exterior_2",
-        "url": "https://cdn.evsavari.com/catalog/tata-tiago-ev-xz-plus/exterior-2.jpg",
+        "url": "https://res.cloudinary.com/evsavari/image/upload/f_auto,q_auto,c_limit/evsavari/catalog/variants/tata-tiago-ev-xz-plus/exterior-2.jpg",
         "filename": "exterior-2.jpg",
         "role": "gallery",
         "category": "exterior",
@@ -269,7 +269,7 @@
       },
       {
         "key": "exterior_3",
-        "url": "https://cdn.evsavari.com/catalog/tata-tiago-ev-xz-plus/exterior-3.jpg",
+        "url": "https://res.cloudinary.com/evsavari/image/upload/f_auto,q_auto,c_limit/evsavari/catalog/variants/tata-tiago-ev-xz-plus/exterior-3.jpg",
         "filename": "exterior-3.jpg",
         "role": "gallery",
         "category": "exterior",
@@ -288,7 +288,7 @@
       },
       {
         "key": "interior_1",
-        "url": "https://cdn.evsavari.com/catalog/tata-tiago-ev-xz-plus/interior-1.jpg",
+        "url": "https://res.cloudinary.com/evsavari/image/upload/f_auto,q_auto,c_limit/evsavari/catalog/variants/tata-tiago-ev-xz-plus/interior-1.jpg",
         "filename": "interior-1.jpg",
         "role": "gallery",
         "category": "interior",
@@ -307,7 +307,7 @@
       },
       {
         "key": "charging_port",
-        "url": "https://cdn.evsavari.com/catalog/tata-tiago-ev-xz-plus/charging-port.jpg",
+        "url": "https://res.cloudinary.com/evsavari/image/upload/f_auto,q_auto,c_limit/evsavari/catalog/variants/tata-tiago-ev-xz-plus/charging-port.jpg",
         "filename": "charging-port.jpg",
         "role": "gallery",
         "category": "charging",
@@ -816,7 +816,7 @@
   },
   "intelligenceGovernance": {
     "schemaVersion": 1,
-    "generatedAt": "2026-05-16T08:45:52.209Z",
+    "generatedAt": "2026-05-17T06:11:40.208Z",
     "fields": {
       "pricing.exShowroom": {
         "metadata": {

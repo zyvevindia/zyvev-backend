@@ -522,7 +522,13 @@ router.get(
           )
           .sort({ createdAt: -1 });
 
-      res.json({ leads });
+      const unreadCount = await Lead.countDocuments({
+        dealer: req.dealer._id,
+        readByDealer: false,
+        status: { $nin: ["won", "lost", "converted"] },
+      });
+
+      res.json({ leads, unreadCount });
 
     } catch (err) {
 
@@ -537,6 +543,63 @@ router.get(
     }
   }
 );
+
+router.patch("/leads/:id/read", async (req, res) => {
+  try {
+    const lead = await Lead.findOneAndUpdate(
+      { _id: req.params.id, dealer: req.dealer._id },
+      { readByDealer: true },
+      { new: true }
+    );
+    if (!lead) {
+      return res.status(404).json({ error: "Lead not found" });
+    }
+    try {
+      const {
+        appendOpsAuditEntry,
+        auditFromRequest,
+      } = require("../services/operations/opsAuditService");
+      await appendOpsAuditEntry({
+        ...auditFromRequest(req),
+        action: "lead_read_dealer",
+        targetType: "lead",
+        targetId: lead._id.toString(),
+      });
+    } catch (auditErr) {
+      console.log("OPS AUDIT DEALER READ:", auditErr.message);
+    }
+    res.json({ success: true, lead });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+router.patch("/leads/read-all", async (req, res) => {
+  try {
+    const result = await Lead.updateMany(
+      { dealer: req.dealer._id, readByDealer: false },
+      { readByDealer: true }
+    );
+    try {
+      const {
+        appendOpsAuditEntry,
+        auditFromRequest,
+      } = require("../services/operations/opsAuditService");
+      await appendOpsAuditEntry({
+        ...auditFromRequest(req),
+        action: "lead_read_all_dealer",
+        targetType: "lead",
+        targetId: String(req.dealer._id),
+        metadata: { count: result.modifiedCount },
+      });
+    } catch (auditErr) {
+      console.log("OPS AUDIT READ ALL:", auditErr.message);
+    }
+    res.json({ success: true });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
 
 router.put(
 
@@ -612,6 +675,26 @@ router.put(
       }
 
       await lead.save();
+
+      try {
+        const {
+          appendOpsAuditEntry,
+          auditFromRequest,
+        } = require("../services/operations/opsAuditService");
+        await appendOpsAuditEntry({
+          ...auditFromRequest(req),
+          action: "lead_status_changed",
+          targetType: "lead",
+          targetId: lead._id.toString(),
+          metadata: {
+            status,
+            previousStatus,
+            firstRespondedAt: lead.firstRespondedAt,
+          },
+        });
+      } catch (auditErr) {
+        console.log("OPS AUDIT STATUS:", auditErr.message);
+      }
 
       const updated =
         await Lead.findById(
@@ -862,6 +945,12 @@ router.get(
           }
         ]);
 
+      const { buildDealerResponsiveness } = require("../services/operations/dealerMetrics");
+      const responsiveness = await buildDealerResponsiveness(
+        req.dealer._id,
+        30
+      );
+
       res.json({
 
         totalLeads,
@@ -872,7 +961,14 @@ router.get(
 
         topVehicles,
 
-        cityDistribution
+        cityDistribution,
+
+        responsiveness: {
+          responseScore: responsiveness.score,
+          avgFirstResponseHours: responsiveness.avgFirstResponseHours,
+          slaBreaches: responsiveness.slaBreaches,
+          respondedWithinSla: responsiveness.respondedWithinSla,
+        },
       });
 
     } catch (err) {

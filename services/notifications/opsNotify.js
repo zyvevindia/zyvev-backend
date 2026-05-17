@@ -107,6 +107,25 @@ async function notifyNewLead(lead) {
   });
 }
 
+async function notifyDealerNewLead(dealer, lead) {
+  if (!dealer?.email) return;
+
+  const title = "New lead assigned to you";
+  const message = `${lead.name} — ${lead.vehicleName || "EV enquiry"} (${lead.city || "city n/a"})`;
+
+  await postWebhook({
+    event: "dealer_new_lead",
+    title,
+    message,
+    meta: {
+      dealerEmail: dealer.email,
+      leadId: String(lead._id),
+      sourcePage: lead.sourcePage,
+      leadSource: lead.leadSource,
+    },
+  });
+}
+
 async function notifyLeadAssigned(lead, dealer) {
   if (!dealer) return;
 
@@ -144,6 +163,7 @@ module.exports = {
   notifyAdminsInApp,
   notifyDealerApplication,
   notifyNewLead,
+  notifyDealerNewLead,
   notifyLeadAssigned,
   postWebhook,
 };

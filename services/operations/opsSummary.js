@@ -111,6 +111,9 @@ async function buildOpsSummary() {
         ) / 10
       : null;
 
+  const { buildAllDealerScores } = require("./dealerMetrics");
+  const dealerScores = await buildAllDealerScores(7);
+
   return {
     generatedAt: new Date().toISOString(),
     statusCounts: statusAgg.map((r) => ({
@@ -130,6 +133,8 @@ async function buildOpsSummary() {
       won7d: r.won,
     })),
     recentHighlights: enriched.slice(0, 12),
+    dealerScores,
+    slaHours: OVERDUE_HOURS,
   };
 }
 
