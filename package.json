@@ -7,6 +7,7 @@
   "scripts": {
     "start": "node server.js",
     "dev": "node server.js",
+    "diagnose:mongo": "node scripts/diagnose-mongo-connection.js",
     "ops:seo": "node scripts/report-seo-operations.js",
     "ops:leads": "node scripts/report-lead-quality.js",
     "ops:trends": "node scripts/report-behavioral-trends.js",
@@ -37,6 +38,8 @@
     "obs:seed-batch3": "node scripts/seed-observation-batch3.mjs",
     "ops:production-activation": "node scripts/audit-production-activation.js",
     "ops:live-smoke": "node scripts/audit-live-smoke.js",
+    "ops:soft-launch-smoke": "node scripts/soft-launch-smoke.mjs",
+    "ops:export-backup": "node scripts/export-mongo-backup.js",
     "ops:daily-live-ops": "node scripts/report-daily-live-ops.js",
     "ops:weekly-live-ops": "node scripts/report-weekly-live-ops.js",
     "obs:seed-batch4": "node scripts/seed-observation-batch4.mjs",
@@ -72,6 +75,7 @@
     "morgan": "^1.10.1",
     "multer": "^2.1.1",
     "multer-storage-cloudinary": "^4.0.0",
+    "pino": "^9.6.0",
     "validator": "^13.15.35"
   }
 }

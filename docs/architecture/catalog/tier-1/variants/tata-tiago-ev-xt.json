@@ -2,42 +2,53 @@
   "identity": {
     "brandSlug": "tata",
     "modelSlug": "tiago-ev",
-    "variantName": "XT",
+    "variantName": "Smart 19 MR",
     "slug": "tata-tiago-ev-xt",
     "bodyType": "hatchback",
     "segment": "hatchback-ev",
     "launchStatus": "on-sale",
     "modelYear": 2024,
-    "fuelType": "electric"
+    "fuelType": "electric",
+    "canonicalSlug": "tata-tiago-ev-smart-19-mr",
+    "legacyAliases": [
+      "tata-tiago-ev-xt"
+    ]
   },
   "pricing": {
-    "exShowroom": 799000,
-    "priceLastUpdated": "2026-05-15T00:00:00.000Z"
+    "exShowroom": 699000,
+    "priceLastUpdated": "2026-06-07T15:54:36.180Z"
   },
   "battery": {
     "capacityKwh": 19.2,
-    "chemistry": "LFP"
+    "chemistry": "LFP",
+    "usableKwh": 18
   },
   "range": {
-    "claimedKm": 250,
-    "claimedStandard": "ARAI",
+    "claimedKm": 223,
+    "claimedStandard": "MIDC",
     "realWorldKm": {
-      "min": 180,
-      "max": 220,
-      "methodology": "EVSavari mixed city-highway estimate; flag for owner-data refresh"
+      "min": 160,
+      "max": 170,
+      "methodology": "Verified Dossier"
     }
   },
   "charging": {
-    "acKw": 7.2,
+    "acKw": 3.3,
+    "acTime0to100Hours": 6.9,
     "dcKw": 25,
+    "dcTime10to80Minutes": 57,
     "standards": [
-      "CCS2",
-      "Type2"
-    ]
+      "CCS2"
+    ],
+    "portableChargerIncluded": true,
+    "fastChargingSupported": true
   },
   "performance": {
-    "powerKw": 55,
-    "driveType": "FWD"
+    "powerKw": 45,
+    "torqueNm": 110,
+    "acceleration0to100": 6.2,
+    "driveType": "FWD",
+    "powerHp": 61
   },
   "practicality": {
     "bootSpaceL": 240,
@@ -116,7 +127,7 @@
   },
   "seo": {
     "metaTitle": "Tata Tiago EV XT Price, Range & Charging | EVSavari",
-    "metaDescription": "Tata Tiago EV XT ex-showroom from ₹7.99 lakh, 250 km ARAI range, charging, pros & cons on EVSavari.",
+    "metaDescription": "Tata Tiago EV XT ex-showroom from ₹7.99 lakh, 223 km MIDC range, charging, pros & cons on EVSavari.",
     "canonicalPath": "/cars/tata-tiago-ev-xt",
     "pros": [
       "Affordable EV entry",
@@ -135,10 +146,10 @@
     ]
   },
   "media": {
-    "heroImage": "https://res.cloudinary.com/evsavari/image/upload/f_auto,q_auto,c_limit/evsavari/catalog/variants/tata-tiago-ev-xt/hero.jpg",
-    "listingThumbnail": "https://res.cloudinary.com/evsavari/image/upload/f_auto,q_auto,c_limit/evsavari/catalog/variants/tata-tiago-ev-xt/listing-thumb.jpg",
-    "compareThumbnail": "https://res.cloudinary.com/evsavari/image/upload/f_auto,q_auto,c_limit/evsavari/catalog/variants/tata-tiago-ev-xt/compare-thumb.jpg",
-    "ogImage": "https://res.cloudinary.com/evsavari/image/upload/f_auto,q_auto,c_limit/evsavari/catalog/variants/tata-tiago-ev-xt/og.jpg",
+    "heroImage": "https://res.cloudinary.com/dznvmumze/image/upload/f_auto,q_auto,c_limit/evsavari/catalog/families/tata-tiago-ev/hero",
+    "listingThumbnail": "https://res.cloudinary.com/dznvmumze/image/upload/f_auto,q_auto,c_limit/evsavari/catalog/families/tata-tiago-ev/listing-thumb",
+    "compareThumbnail": "https://res.cloudinary.com/dznvmumze/image/upload/f_auto,q_auto,c_limit/evsavari/catalog/families/tata-tiago-ev/compare-thumb",
+    "ogImage": "https://res.cloudinary.com/dznvmumze/image/upload/f_auto,q_auto,c_limit/evsavari/catalog/families/tata-tiago-ev/hero",
     "gallery": [
       "https://res.cloudinary.com/evsavari/image/upload/f_auto,q_auto,c_limit/evsavari/catalog/variants/tata-tiago-ev-xt/exterior-1.jpg",
       "https://res.cloudinary.com/evsavari/image/upload/f_auto,q_auto,c_limit/evsavari/catalog/variants/tata-tiago-ev-xt/exterior-2.jpg",
@@ -332,46 +343,53 @@
     ]
   },
   "governance": {
-    "status": "review",
-    "source": "evsavari",
-    "dataQualityScore": 86,
+    "status": "published",
+    "source": "verified-dossier",
+    "dataQualityScore": 95,
     "version": 1,
     "publishedAt": null,
     "legacyCarId": null,
-    "confidence": "medium"
+    "confidence": "high"
   },
   "verification": {
-    "dataQualityScore": 86,
-    "confidence": "medium",
-    "flags": [
-      {
-        "path": "pricing.exShowroom",
-        "status": "estimated",
-        "note": "Entry Tiago EV trim pricing",
-        "reviewBy": "2026-06-15"
-      }
-    ],
-    "lastReviewedAt": null,
+    "verified": true,
+    "verificationSource": "Verified Dossier",
+    "dataQualityScore": 95,
+    "confidence": "high",
+    "flags": [],
+    "lastReviewedAt": "2026-05-20T00:00:00.000Z",
     "sources": [
       {
-        "type": "oem_web",
-        "note": "Primary specs — verify URL at import",
-        "accessedAt": "2026-05-15"
+        "type": "oem_brochure",
+        "note": "Tata Tiago EV verified production sheet",
+        "accessedAt": "2026-05-20"
       }
-    ]
+    ],
+    "verificationOwner": "Nitin Sharma",
+    "dossierVersion": "v1.0"
   },
   "safety": {
-    "bharatNcap": null,
-    "globalNcap": null,
+    "bharatNcap": {
+      "status": "not_tested",
+      "verified": true
+    },
+    "globalNcap": {
+      "status": "not_tested",
+      "verified": true
+    },
     "adultOccupantScore": null,
     "childOccupantScore": null,
     "airbags": {
       "count": 6,
-      "curtains": true
+      "curtains": true,
+      "verified": true
     },
     "adas": {
       "level": 0,
-      "features": []
+      "features": [],
+      "status": "not_tested",
+      "supported": false,
+      "verified": true
     },
     "cameraSystems": [
       "rear camera",
@@ -382,7 +400,8 @@
     ],
     "stability": {
       "esc": true,
-      "hillHold": true
+      "hillHold": true,
+      "verified": true
     }
   },
   "comfort": {
@@ -410,8 +429,8 @@
     },
     "fastChargeCurve": {
       "peakKw": 25,
-      "time10to80Min": null,
-      "note": "Indicative; real curve varies by charger and temperature"
+      "time10to80Min": 58,
+      "note": "OEM brochure — SOC 10–80% on 25 kW DC"
     },
     "estimatedChargingCost": {
       "dcPerKwhInr": 18,
@@ -441,7 +460,7 @@
     "ownershipConfidenceIndicator": 74,
     "chargingAnxietyReductionNotes": [
       "Plan weekly top-ups on AC if daily driving stays under ~60 km.",
-      "No DC fast charging on this trim — home/workplace AC is the primary refuel path."
+      "25 kW DC fast charging available — map CCS2 stops for occasional highway legs."
     ],
     "methodology": "EVSavari ownership practicality model — editorial scores, not OEM guarantees."
   },
@@ -995,5 +1014,10 @@
     "familySuitability": "Family suitability scores 62/100 in our model — better aligned with couples or compact-family needs; boot space around 240 L should be checked against your stroller or luggage routine.",
     "firstTimeEv": "First-time EV friendliness is rated 86/100 with anxiety-reduction at 74/100. This variant is practical for buyers who want clear warranty terms and manageable charging habits — less ideal if you expect zero planning on long routes.",
     "compare": "In the hatchback ev set on EVSavari, this variant is better aligned with buyers who prioritise lowest tata ev entry; trade-off: small boot."
-  }
+  },
+  "featureTags": [
+    "Best Value",
+    "City EV",
+    "Most Affordable"
+  ]
 }

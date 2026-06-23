@@ -2,16 +2,20 @@
   "identity": {
     "brandSlug": "tata",
     "modelSlug": "nexon-ev",
-    "variantName": "Creative+",
+    "variantName": "Creative+ MR",
     "slug": "tata-nexon-ev-creative-plus",
     "bodyType": "suv",
     "segment": "compact-suv",
     "launchStatus": "on-sale",
     "modelYear": 2024,
-    "fuelType": "electric"
+    "fuelType": "electric",
+    "canonicalSlug": "tata-nexon-ev-creative-plus-mr",
+    "legacyAliases": [
+      "tata-nexon-ev-creative-plus"
+    ]
   },
   "pricing": {
-    "exShowroom": 1449000,
+    "exShowroom": 1249000,
     "onRoadByCity": {
       "delhi": 1520000,
       "mumbai": 1550000,
@@ -36,30 +40,29 @@
       "insuranceInr": 320000,
       "computedAt": "2026-05-15T00:00:00.000Z"
     },
-    "priceLastUpdated": "2026-05-15T00:00:00.000Z"
+    "priceLastUpdated": "2026-06-06T05:45:27.196Z"
   },
   "battery": {
-    "capacityKwh": 30.2,
-    "usableKwh": 28.5,
+    "capacityKwh": 30,
+    "usableKwh": 28.2,
     "chemistry": "LFP"
   },
   "range": {
     "claimedKm": 275,
-    "claimedStandard": "ARAI",
+    "claimedStandard": "MIDC",
     "realWorldKm": {
-      "min": 193,
-      "max": 234,
-      "methodology": "EVSavari mixed city-highway estimate; flag for owner-data refresh"
+      "min": 210,
+      "max": 230,
+      "methodology": "Verified Dossier"
     }
   },
   "charging": {
     "acKw": 7.2,
-    "acTime0to100Hours": 5.5,
+    "acTime0to100Hours": 4.3,
     "dcKw": 50,
-    "dcTime10to80Minutes": 45,
+    "dcTime10to80Minutes": 56,
     "standards": [
-      "CCS2",
-      "Type2"
+      "CCS2"
     ],
     "v2l": {
       "supported": true,
@@ -72,13 +75,15 @@
       "low",
       "medium",
       "high"
-    ]
+    ],
+    "portableChargerIncluded": true,
+    "fastChargingSupported": true
   },
   "performance": {
-    "powerKw": 95,
-    "powerHp": 128,
+    "powerKw": 94.7,
+    "powerHp": 127,
     "torqueNm": 215,
-    "acceleration0to100": 11.2,
+    "acceleration0to100": 9.2,
     "driveType": "FWD",
     "driveModes": [
       "Eco",
@@ -226,10 +231,10 @@
     ]
   },
   "media": {
-    "heroImage": "https://res.cloudinary.com/evsavari/image/upload/f_auto,q_auto,c_limit/evsavari/catalog/families/tata-nexon-ev/hero.jpg",
-    "listingThumbnail": "https://res.cloudinary.com/evsavari/image/upload/f_auto,q_auto,c_limit/evsavari/catalog/families/tata-nexon-ev/listing-thumb.jpg",
-    "compareThumbnail": "https://res.cloudinary.com/evsavari/image/upload/f_auto,q_auto,c_limit/evsavari/catalog/families/tata-nexon-ev/compare-thumb.jpg",
-    "ogImage": "https://res.cloudinary.com/evsavari/image/upload/f_auto,q_auto,c_limit/evsavari/catalog/families/tata-nexon-ev/og.jpg",
+    "heroImage": "https://res.cloudinary.com/dznvmumze/image/upload/v1780678387/heroImage_y5qmzt.jpg",
+    "listingThumbnail": "https://res.cloudinary.com/dznvmumze/image/upload/v1780678067/listingImage.jpg",
+    "compareThumbnail": "https://res.cloudinary.com/dznvmumze/image/upload/v1780678042/compaeImage.jpg",
+    "ogImage": "https://res.cloudinary.com/dznvmumze/image/upload/v1780678387/heroImage_y5qmzt.jpg",
     "gallery": [
       "https://res.cloudinary.com/evsavari/image/upload/f_auto,q_auto,c_limit/evsavari/catalog/families/tata-nexon-ev/exterior-1.jpg",
       "https://res.cloudinary.com/evsavari/image/upload/f_auto,q_auto,c_limit/evsavari/catalog/families/tata-nexon-ev/exterior-2.jpg",
@@ -423,17 +428,17 @@
     ]
   },
   "governance": {
-    "status": "review",
-    "source": "evsavari",
-    "dataQualityScore": 88,
+    "status": "published",
+    "source": "verified-dossier",
+    "dataQualityScore": 95,
     "version": 1,
     "publishedAt": null,
     "legacyCarId": null,
-    "confidence": "medium"
+    "confidence": "high"
   },
   "verification": {
-    "dataQualityScore": 88,
-    "confidence": "medium",
+    "dataQualityScore": 95,
+    "confidence": "high",
     "flags": [
       {
         "path": "pricing.exShowroom",
@@ -461,7 +466,11 @@
         "note": "Primary specs — verify URL at import",
         "accessedAt": "2026-05-15"
       }
-    ]
+    ],
+    "verificationSource": "Verified Dossier",
+    "verificationOwner": "Nitin Sharma",
+    "dossierVersion": "v1",
+    "verified": true
   },
   "safety": {
     "bharatNcap": null,

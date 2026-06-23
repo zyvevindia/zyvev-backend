@@ -10,6 +10,20 @@ const {
   mergeFormIntoLead,
   touchWhatsAppIntent,
 } = require("./leadDedup");
+const {
+  findDuplicateLeadByPhoneAndEv,
+  refreshDuplicateInterest,
+} = require("./phoneEvDedup");
+const logger = require("../../utils/logger");
+const runtimeMetrics = require("../ops/runtimeMetrics");
+
+function normalizeLeadPhone(phone = "") {
+  const digits = String(phone).replace(/\D/g, "");
+  if (digits.length >= 10) {
+    return digits.slice(-10);
+  }
+  return digits;
+}
 
 function syntheticWhatsAppPhone(sessionKey = "") {
   const digits = String(sessionKey || Date.now())
@@ -145,12 +159,20 @@ async function createWhatsAppIntentLead({
  * Create form lead or merge into existing session lead (WhatsApp intent).
  */
 async function createOrMergeFormLead(leadPayload) {
-  const sessionId = leadPayload.anonymousSessionId;
+  const normalizedPayload = {
+    ...leadPayload,
+    phone: normalizeLeadPhone(leadPayload.phone),
+  };
+
+  const sessionId = normalizedPayload.anonymousSessionId;
 
   if (sessionId) {
     const existing = await findOpenLeadBySession(sessionId);
     if (existing) {
-      const merged = await mergeFormIntoLead(existing, leadPayload);
+      const merged = await mergeFormIntoLead(
+        existing,
+        normalizedPayload
+      );
       const routed = merged.dealer
         ? { lead: merged, assigned: false }
         : await autoAssignDealerToLead(merged);
@@ -159,12 +181,46 @@ async function createOrMergeFormLead(leadPayload) {
         lead: routed.lead,
         merged: true,
         autoAssigned: routed.assigned,
+        duplicateSuppressed: false,
       };
     }
   }
 
+  const duplicate = await findDuplicateLeadByPhoneAndEv(
+    normalizedPayload
+  );
+
+  if (duplicate) {
+    const refreshed = await refreshDuplicateInterest(
+      duplicate,
+      normalizedPayload
+    );
+
+    runtimeMetrics.recordDuplicateLead({
+      familySlug: refreshed.familySlug,
+    });
+
+    logger.info({
+      event: "duplicate_lead_suppressed",
+      leadId: String(refreshed._id),
+      phone: refreshed.phone,
+      familySlug: refreshed.familySlug,
+      variantSlug: refreshed.variantSlug,
+      interestCount: refreshed.interestCount,
+    });
+
+    return {
+      lead: refreshed,
+      merged: false,
+      autoAssigned: false,
+      duplicateSuppressed: true,
+    };
+  }
+
   const lead = await Lead.create({
-    ...leadPayload,
+    ...normalizedPayload,
+    interestCount: 1,
+    lastInterestedAt: new Date(),
     readByDealer: false,
     leadMetadata: {
       ...(leadPayload.leadMetadata || {}),
@@ -178,11 +234,23 @@ async function createOrMergeFormLead(leadPayload) {
     },
   });
 
+  runtimeMetrics.recordLeadSubmitted({
+    familySlug: lead.familySlug,
+  });
+
+  logger.info({
+    event: "lead_submitted",
+    leadId: String(lead._id),
+    leadSource: lead.leadSource,
+    familySlug: lead.familySlug,
+  });
+
   const routed = await onFormLeadCreated(lead, { isNew: true });
   return {
     lead: routed.lead,
     merged: false,
     autoAssigned: routed.assigned,
+    duplicateSuppressed: false,
   };
 }
 

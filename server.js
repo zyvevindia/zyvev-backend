@@ -4,6 +4,9 @@
 
 require("dotenv").config();
 
+const { initSentry } = require("./utils/sentry");
+initSentry();
+
 const express = require("express");
 const validateEnv = require(
   "./config/env"
@@ -11,6 +14,7 @@ const validateEnv = require(
 validateEnv();
 
 const mongoose = require("mongoose");
+const { connectDatabase } = require("./config/database");
 const cors = require("cors");
 const helmet = require("helmet");
 const hpp = require("hpp");
@@ -38,6 +42,8 @@ const createBehavioralRouter = require("./routes/behavioralRoutes");
 const createEditorialRouter = require("./routes/editorialRoutes");
 
 const dualReadService = require("./services/catalog/dualReadService");
+
+const logger = require("./utils/logger");
 
 const {
   resolveMarketplacePayload,
@@ -72,6 +78,11 @@ const errorHandler = require(
   "./middlewares/errorHandler"
 );
 
+const {
+  requestObservability,
+  observabilityErrorHandler,
+} = require("./middlewares/requestObservability");
+
 const notFound = require(
   "./middlewares/notFound"
 );
@@ -79,8 +90,13 @@ const notFound = require(
 const {
   apiLimiter,
   authLimiter,
+  leadSubmitLimiter,
 } = require(
   "./middlewares/rateLimiter"
+);
+
+const lowIntentFormsRouter = require(
+  "./routes/lowIntentForms"
 );
 
 const app = express();
@@ -248,6 +264,8 @@ app.use(
   })
 );
 
+app.use(requestObservability);
+
 /* =========================================================
    ===================== TEST ROUTE =========================
    ========================================================= */
@@ -270,6 +288,9 @@ app.use(
   "/api/dealer",
   dealerApiRouter
 );
+
+/* Low-intent forms: feedback, contact, newsletter (Turnstile + rate limits) */
+app.use("/api", lowIntentFormsRouter);
 
 /* =========================================================
    ===================== SEED DATA ==========================
@@ -322,13 +343,8 @@ const seedCars = async () => {
    ===================== DATABASE ===========================
    ========================================================= */
 
-mongoose
-  .connect(process.env.MONGO_URI, {
-    dbName: "zyvevDB",
-  })
+connectDatabase()
   .then(async () => {
-    console.log("MongoDB Connected ✅");
-
     // ---------- Seed Cars ----------
     if (process.env.SEED_DATA === "true") {
       await seedCars();
@@ -1291,7 +1307,7 @@ app.get("/cars/:id", async (req, res) => {
 
 app.post(
   "/leads",
-
+  leadSubmitLimiter,
   async (req, res) => {
 
     try {
@@ -1305,6 +1321,8 @@ app.post(
         email,
 
         city,
+
+        state,
 
         message,
 
@@ -1368,6 +1386,11 @@ app.post(
       if (
         !validation.isValid
       ) {
+        logger.info({
+          event: "validation_failed",
+          route: "POST /leads",
+          errors: validation.errors,
+        });
 
         return res.status(400).json({
 
@@ -1417,10 +1440,9 @@ app.post(
           String(name).trim(),
 
         phone:
-          String(phone).replace(
-            /\D/g,
-            ""
-          ),
+          String(phone)
+            .replace(/\D/g, "")
+            .slice(-10),
 
         carId:
           resolvedCarId,
@@ -1547,6 +1569,7 @@ app.post(
 
       let merged = false;
       let autoAssigned = false;
+      let duplicateSuppressed = false;
       let lead;
 
       try {
@@ -1555,34 +1578,56 @@ app.post(
         lead = result.lead;
         merged = result.merged;
         autoAssigned = result.autoAssigned;
+        duplicateSuppressed = Boolean(
+          result.duplicateSuppressed
+        );
       } catch (notifyErr) {
-        console.log("LEAD OPS ERROR:", notifyErr.message);
-        lead = await Lead.create(leadPayload);
+        logger.error({
+          event: "lead_ops_error",
+          message: notifyErr.message,
+        });
+        lead = await Lead.create({
+          ...leadPayload,
+          interestCount: 1,
+          lastInterestedAt: new Date(),
+        });
       }
 
       /* ================= RESPONSE ================= */
+
+      let responseMessage =
+        "Lead submitted successfully";
+
+      if (merged) {
+        responseMessage =
+          "Enquiry linked to your earlier session";
+      } else if (duplicateSuppressed) {
+        responseMessage =
+          "We already have your enquiry for this EV — our team will follow up.";
+      }
 
       res.status(201).json({
 
         success: true,
 
-        message: merged
-          ? "Enquiry linked to your earlier session"
-          : "Lead submitted successfully",
+        message: responseMessage,
 
         leadId: lead._id,
 
         merged,
 
         autoAssigned,
+
+        duplicateSuppressed,
       });
 
     } catch (err) {
 
-      console.log(
-        "LEAD CREATE ERROR:",
-        err
-      );
+      logger.error({
+        event: "lead_create_error",
+        message: err?.message,
+        stack: err?.stack,
+      });
 
       res.status(500).json({
 
@@ -1595,56 +1640,10 @@ app.post(
   }
 );
 
-app.post("/api/feedback", async (req, res) => {
-  try {
-    const {
-      category,
-      description,
-      email,
-      name,
-      route,
-      context,
-      screenshotDataUrl,
-      userAgent,
-    } = req.body || {};
-
-    const text = String(description || "").trim();
-    if (!text || text.length < 8) {
-      return res.status(400).json({
-        success: false,
-        message: "Please provide a short description (8+ characters).",
-      });
-    }
-
-    const { appendOpsAuditEntry } = require("./services/operations/opsAuditService");
-
-    await appendOpsAuditEntry({
-      action: "site_feedback",
-      actorRole: "buyer",
-      actorLabel: String(name || email || "anonymous").slice(0, 120),
-      targetType: "page",
-      targetId: String(route || "unknown").slice(0, 500),
-      metadata: {
-        category: String(category || "other").slice(0, 64),
-        description: text.slice(0, 4000),
-        email: String(email || "").slice(0, 200),
-        context: context && typeof context === "object" ? context : {},
-        hasScreenshot: Boolean(screenshotDataUrl),
-        userAgent: String(userAgent || "").slice(0, 300),
-      },
-    });
-
-    res.status(201).json({ success: true });
-  } catch (err) {
-    console.log("FEEDBACK ERROR:", err);
-    res.status(500).json({
-      success: false,
-      message: "Unable to record feedback",
-    });
-  }
-});
-
-app.post("/api/leads/whatsapp-intent", async (req, res) => {
+app.post(
+  "/api/leads/whatsapp-intent",
+  leadSubmitLimiter,
+  async (req, res) => {
   try {
     const {
       sourcePage,
@@ -3830,6 +3829,39 @@ app.get("/api/admin/traffic-ops", auth, adminOnly, async (req, res) => {
   }
 });
 
+app.get("/api/admin/ops-snapshot", auth, adminOnly, async (req, res) => {
+  try {
+    const runtimeMetrics = require("./services/ops/runtimeMetrics");
+    const snapshot = runtimeMetrics.getSnapshot();
+
+    let dbSummary = null;
+
+    if (req.query.db === "true" && process.env.MONGO_URI) {
+      try {
+        const {
+          buildOperationalDashboard,
+        } = require("./services/operational-dashboard");
+        dbSummary = await buildOperationalDashboard({
+          includeDb: true,
+        });
+      } catch (dbErr) {
+        dbSummary = { error: dbErr.message };
+      }
+    }
+
+    res.json({
+      ...snapshot,
+      dbSummary,
+    });
+  } catch (err) {
+    logger.error({
+      event: "ops_snapshot_error",
+      message: err?.message,
+    });
+    res.status(500).json({ error: err.message });
+  }
+});
+
 app.get("/api/admin/analytics", auth, async (req, res) => {
   try {
     /* ---------- DATE FILTER ---------- */
@@ -4116,6 +4148,8 @@ Sitemap: https://evsavari.com/sitemap.xml
    ========================================================= */
 
 app.use(notFound);
+
+app.use(observabilityErrorHandler);
 
 app.use(errorHandler);
 

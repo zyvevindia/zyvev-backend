@@ -3,20 +3,18 @@
     "brandSlug": "tata",
     "modelSlug": "punch-ev",
     "variantName": "Empowered+",
-    "slug": "tata-punch-ev-empowered-lr",
+    "slug": "tata-punch-ev-empowered-plus",
     "bodyType": "suv",
     "segment": "micro-suv",
     "launchStatus": "on-sale",
     "modelYear": 2024,
     "fuelType": "electric",
     "canonicalSlug": "tata-punch-ev-empowered-plus",
-    "legacyAliases": [
-      "tata-punch-ev-empowered-lr"
-    ]
+    "legacyAliases": []
   },
   "pricing": {
     "exShowroom": 1259000,
-    "priceLastUpdated": "2026-06-06T05:45:27.393Z",
+    "priceLastUpdated": "2026-06-06T05:45:27.389Z",
     "subsidy": {
       "notes": "Verify state incentives"
     }

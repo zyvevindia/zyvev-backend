@@ -2,40 +2,44 @@
   "identity": {
     "brandSlug": "tata",
     "modelSlug": "punch-ev",
-    "variantName": "Smart+",
+    "variantName": "Smart+ 40 kWh",
     "slug": "tata-punch-ev-smart-plus",
     "bodyType": "suv",
     "segment": "micro-suv",
     "launchStatus": "on-sale",
     "modelYear": 2024,
-    "fuelType": "electric"
+    "fuelType": "electric",
+    "canonicalSlug": "tata-punch-ev-smart-plus-40-kwh",
+    "legacyAliases": [
+      "tata-punch-ev-smart-plus"
+    ]
   },
   "pricing": {
-    "exShowroom": 1099000,
-    "priceLastUpdated": "2026-05-15T00:00:00.000Z",
+    "exShowroom": 1089000,
+    "priceLastUpdated": "2026-06-06T05:45:27.391Z",
     "subsidy": {
       "notes": "Verify state incentives"
     }
   },
   "battery": {
-    "capacityKwh": 25,
-    "chemistry": "LFP"
+    "capacityKwh": 40,
+    "chemistry": "LFP",
+    "usableKwh": 37.6
   },
   "range": {
-    "claimedKm": 315,
-    "claimedStandard": "ARAI",
+    "claimedKm": 468,
+    "claimedStandard": "MIDC",
     "realWorldKm": {
-      "min": 214,
-      "max": 258,
-      "methodology": "EVSavari mixed city-highway estimate; flag for owner-data refresh"
+      "min": 335,
+      "max": 355,
+      "methodology": "Verified Dossier"
     }
   },
   "charging": {
     "acKw": 7.2,
-    "dcKw": 50,
+    "dcKw": 65,
     "standards": [
-      "CCS2",
-      "Type2"
+      "CCS2"
     ],
     "v2l": {
       "supported": true,
@@ -48,12 +52,18 @@
       "low",
       "medium",
       "high"
-    ]
+    ],
+    "acTime0to100Hours": 5.333333333333333,
+    "dcTime10to80Minutes": 26,
+    "portableChargerIncluded": true,
+    "fastChargingSupported": true
   },
   "performance": {
-    "powerKw": 80,
+    "powerKw": 94.7,
     "driveType": "FWD",
-    "acceleration0to100": 11.5
+    "acceleration0to100": 9,
+    "powerHp": 127,
+    "torqueNm": 154
   },
   "practicality": {
     "bootSpaceL": 315,
@@ -166,10 +176,10 @@
     ]
   },
   "media": {
-    "heroImage": "https://res.cloudinary.com/evsavari/image/upload/f_auto,q_auto,c_limit/evsavari/catalog/families/tata-punch-ev/hero.jpg",
-    "listingThumbnail": "https://res.cloudinary.com/evsavari/image/upload/f_auto,q_auto,c_limit/evsavari/catalog/families/tata-punch-ev/listing-thumb.jpg",
-    "compareThumbnail": "https://res.cloudinary.com/evsavari/image/upload/f_auto,q_auto,c_limit/evsavari/catalog/families/tata-punch-ev/compare-thumb.jpg",
-    "ogImage": "https://res.cloudinary.com/evsavari/image/upload/f_auto,q_auto,c_limit/evsavari/catalog/families/tata-punch-ev/og.jpg",
+    "heroImage": "https://res.cloudinary.com/dznvmumze/image/upload/v1780681716/heroImage.png",
+    "listingThumbnail": "https://res.cloudinary.com/dznvmumze/image/upload/v1780681774/listingImage-2.jpg",
+    "compareThumbnail": "https://res.cloudinary.com/dznvmumze/image/upload/v1780681748/compareImage.png",
+    "ogImage": "https://res.cloudinary.com/dznvmumze/image/upload/v1780681716/heroImage.png",
     "gallery": [
       "https://res.cloudinary.com/evsavari/image/upload/f_auto,q_auto,c_limit/evsavari/catalog/families/tata-punch-ev/exterior-1.jpg",
       "https://res.cloudinary.com/evsavari/image/upload/f_auto,q_auto,c_limit/evsavari/catalog/families/tata-punch-ev/exterior-2.jpg",
@@ -363,17 +373,17 @@
     ]
   },
   "governance": {
-    "status": "review",
-    "source": "evsavari",
-    "dataQualityScore": 87,
+    "status": "published",
+    "source": "verified-dossier",
+    "dataQualityScore": 95,
     "version": 1,
     "publishedAt": null,
     "legacyCarId": null,
-    "confidence": "medium"
+    "confidence": "high"
   },
   "verification": {
-    "dataQualityScore": 87,
-    "confidence": "medium",
+    "dataQualityScore": 95,
+    "confidence": "high",
     "flags": [
       {
         "path": "pricing.exShowroom",
@@ -395,7 +405,11 @@
         "note": "Primary specs — verify URL at import",
         "accessedAt": "2026-05-15"
       }
-    ]
+    ],
+    "verificationSource": "Verified Dossier",
+    "verificationOwner": "Nitin Sharma",
+    "dossierVersion": "v1.0",
+    "verified": true
   },
   "safety": {
     "bharatNcap": null,

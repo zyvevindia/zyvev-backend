@@ -8,58 +8,59 @@
     "segment": "compact-suv",
     "launchStatus": "on-sale",
     "modelYear": 2024,
-    "fuelType": "electric"
+    "fuelType": "electric",
+    "canonicalSlug": "tata-nexon-ev-empowered-lr",
+    "legacyAliases": []
   },
   "pricing": {
-    "exShowroom": 1649000,
+    "exShowroom": 1599000,
     "onRoadByCity": {
-      "delhi": 1720000,
-      "mumbai": 1755000,
-      "bangalore": 1718000
+      "delhi": 1520000,
+      "mumbai": 1550000,
+      "bangalore": 1515000
     },
     "emi": {
-      "monthlyInr": 28900,
+      "monthlyInr": 25400,
       "tenureMonths": 60,
-      "downPaymentInr": 330000,
+      "downPaymentInr": 290000,
       "interestRateApr": 8.5,
-      "disclaimer": "Indicative"
+      "disclaimer": "Indicative; subject to lender approval"
     },
     "subsidy": {
       "centralFameInr": 0,
       "stateSubsidyInr": 0,
-      "notes": "Verify state policy"
+      "notes": "State EV incentives vary; verify at booking"
     },
     "ownershipCost5yr": {
-      "totalInr": 1850000,
-      "energyInr": 120000,
-      "serviceInr": 80000,
-      "insuranceInr": 350000,
+      "totalInr": 1620000,
+      "energyInr": 95000,
+      "serviceInr": 75000,
+      "insuranceInr": 320000,
       "computedAt": "2026-05-15T00:00:00.000Z"
     },
-    "priceLastUpdated": "2026-05-15T00:00:00.000Z"
+    "priceLastUpdated": "2026-06-06T05:45:27.185Z"
   },
   "battery": {
-    "capacityKwh": 40.5,
-    "usableKwh": 38.5,
+    "capacityKwh": 45,
+    "usableKwh": 42.3,
     "chemistry": "LFP"
   },
   "range": {
-    "claimedKm": 465,
-    "claimedStandard": "ARAI",
+    "claimedKm": 489,
+    "claimedStandard": "MIDC",
     "realWorldKm": {
-      "min": 316,
-      "max": 381,
-      "methodology": "EVSavari mixed city-highway estimate; flag for owner-data refresh"
+      "min": 350,
+      "max": 375,
+      "methodology": "Verified Dossier"
     }
   },
   "charging": {
     "acKw": 7.2,
-    "acTime0to100Hours": 6.5,
-    "dcKw": 50,
-    "dcTime10to80Minutes": 56,
+    "acTime0to100Hours": 6.6,
+    "dcKw": 60,
+    "dcTime10to80Minutes": 40,
     "standards": [
-      "CCS2",
-      "Type2"
+      "CCS2"
     ],
     "v2l": {
       "supported": true,
@@ -71,13 +72,14 @@
     "regenLevels": [
       "low",
       "medium",
-      "high",
-      "single-pedal"
-    ]
+      "high"
+    ],
+    "portableChargerIncluded": true,
+    "fastChargingSupported": true
   },
   "performance": {
-    "powerKw": 129,
-    "powerHp": 174,
+    "powerKw": 105.9,
+    "powerHp": 142,
     "torqueNm": 215,
     "acceleration0to100": 8.9,
     "driveType": "FWD",
@@ -89,9 +91,9 @@
   },
   "practicality": {
     "bootSpaceL": 350,
-    "familyScore": 78,
-    "highwayComfortScore": 72,
-    "cityUsabilityScore": 88,
+    "familyScore": 74,
+    "highwayComfortScore": 68,
+    "cityUsabilityScore": 86,
     "groundClearanceMm": 205,
     "turningRadiusM": 5.3,
     "seatingCapacity": 5
@@ -101,34 +103,33 @@
     "warrantyVehicleKm": 125000,
     "warrantyBatteryYears": 8,
     "warrantyBatteryKm": 160000,
-    "serviceCostPerKm": 0.45,
+    "serviceCostPerKm": 0.42,
     "chargingNetworkScore": 72,
-    "resaleConfidenceScore": 85,
-    "softwareUpdatePolicy": "OTA infotainment"
+    "resaleConfidenceScore": 84,
+    "softwareUpdatePolicy": "OTA infotainment; periodic service updates"
   },
   "psychology": {
     "tags": [
       "best_for_city",
-      "best_first_ev",
-      "best_for_family"
+      "best_first_ev"
     ],
     "scores": {
-      "best_for_family": 78,
-      "best_for_city": 88,
-      "best_first_ev": 85,
-      "premium_feel": 62,
-      "wow_factor": 55,
-      "silent_comfort": 80,
-      "tech_appeal": 70,
-      "anxietyReduction": 79,
-      "firstTimeEvFriendliness": 85,
-      "premiumPerception": 62,
-      "enthusiastAppeal": 70,
+      "best_for_family": 72,
+      "best_for_city": 86,
+      "best_first_ev": 88,
+      "premium_feel": 58,
+      "wow_factor": 50,
+      "silent_comfort": 78,
+      "tech_appeal": 65,
+      "anxietyReduction": 78,
+      "firstTimeEvFriendliness": 88,
+      "premiumPerception": 58,
+      "enthusiastAppeal": 65,
       "chauffeurSuitability": 60,
-      "womenDriverFriendliness": 84,
-      "seniorCitizenFriendliness": 76
+      "womenDriverFriendliness": 82,
+      "seniorCitizenFriendliness": 73
     },
-    "narrative": "India's benchmark mass-market electric SUV for buyers who want range confidence, service reach, and predictable ownership costs in one package."
+    "narrative": "The most approachable Nexon EV for city-first buyers who want Tata service reach without paying for the long-range pack."
   },
   "availability": {
     "availableCities": [
@@ -137,98 +138,101 @@
       "bangalore",
       "hyderabad",
       "pune",
-      "chennai",
-      "kolkata"
+      "chennai"
     ],
     "dealerCountNational": 450,
-    "waitingPeriodWeeks": 3,
+    "waitingPeriodWeeks": 2,
     "testDriveAvailable": true
   },
   "compare": {
     "segmentRivalSlugs": [
-      "mahindra-xuv400-el-pro",
-      "mg-zs-ev-exclusive-plus",
-      "byd-atto-3-dynamic"
+      "tata-punch-ev-empowered-lr",
+      "mahindra-xuv400-ec-pro",
+      "mg-zs-ev-excite"
     ],
     "strongestAdvantages": [
       {
         "key": "adv_1",
-        "label": "Best-in-class service footprint for mass-market EV SUVs"
+        "label": "Lowest entry price in Nexon EV lineup with proven Tata service density"
       },
       {
         "key": "adv_2",
-        "label": "Strong city efficiency and approachable driving manners"
+        "label": "Easy to park and drive in dense city traffic"
       },
       {
         "key": "adv_3",
-        "label": "Competitive ex-showroom vs range equation"
+        "label": "LFP battery with long warranty for peace of mind"
       }
     ],
     "weakestAreas": [
       {
         "key": "weak_1",
-        "label": "50 kW DC peak is slower than several newer rivals"
+        "label": "Shorter certified range than Long Range rivals in segment"
       },
       {
         "key": "weak_2",
-        "label": "Cabin perceived premium lags Atto 3 / Kona at similar price bands"
+        "label": "Highway touring requires more frequent DC stops"
       }
     ],
-    "valueScore": 84,
+    "valueScore": 86,
     "featureMatrix": {
       "adasLevel2": false,
       "connectedCar": true,
+      "heatPump": false,
       "v2l": true
     },
     "picks": {
-      "strongestAdvantageLabel": "Best-in-class service footprint for mass-market EV SUVs",
-      "biggestWeaknessLabel": "50 kW DC peak is slower than several newer rivals",
+      "strongestAdvantageLabel": "Lowest entry price in Nexon EV lineup with proven Tata service density",
+      "biggestWeaknessLabel": "Shorter certified range than Long Range rivals in segment",
       "bestValuePick": true,
       "bestLongTermOwnershipPick": true
     },
     "narrative": {
       "betterFor": [
         "daily city commuting",
-        "family weekend trips",
-        "planned long-distance travel",
-        "first-time EV buyers"
+        "first-time EV buyers",
+        "home or workplace AC charging routines"
       ],
-      "betterAlignedReason": "Better aligned with buyers who need daily city commuting — strength area: strong class service footprint for mass-market EV SUVs.",
-      "tradeoffSummary": "Trade-off to weigh: 50 kW DC peak is slower than several newer rivals. Compare charging access and on-road price in your city before deciding."
+      "betterAlignedReason": "Better aligned with buyers who need daily city commuting — strength area: Lowest entry price in Nexon EV lineup with proven Tata service density.",
+      "tradeoffSummary": "Trade-off to weigh: Shorter certified range than Long Range rivals in segment. Compare charging access and on-road price in your city before deciding."
     }
   },
   "seo": {
-    "metaTitle": "Tata Nexon EV Empowered LR Price, Range & Charging | EVSavari",
-    "metaDescription": "Tata Nexon EV Empowered LR ex-showroom from ₹16.49 lakh, 465 km ARAI range, charging, pros & cons on EVSavari. Compare with XUV400, ZS EV, Atto 3.",
-    "canonicalPath": "/cars/tata-nexon-ev-empowered-lr",
+    "metaTitle": "Tata Nexon EV Creative+ Price, Range & Charging | EVSavari",
+    "metaDescription": "Tata Nexon EV Creative+ ex-showroom from ₹14.49 lakh, 275 km ARAI range, charging, pros & cons on EVSavari. Compare with Punch EV, XUV400.",
+    "canonicalPath": "/cars/tata-nexon-ev-creative-plus",
     "pros": [
-      "Segment-leading service and resale confidence for mass EV SUVs",
-      "465 km ARAI range suits mixed city-highway lifestyles",
-      "LFP battery with 8-year warranty narrative buyers understand"
+      "Most affordable Nexon EV trim for urban buyers",
+      "Wide Tata service and charging partner visibility in Tier 1–3 cities",
+      "LFP pack focused on durability and warranty confidence"
     ],
     "cons": [
-      "DC fast-charge speed not class-leading",
-      "Interior and ADAS not as futuristic as BYD or Hyundai alternatives"
+      "Range and DC charging comfort trail Long Range variants and some rivals",
+      "Not ideal as primary highway inter-city car"
     ],
-    "expertSummary": "Empowered LR remains the default recommendation for first-time EV SUV buyers who trust service density over maximum tech wow. Cross-shop XUV400 for a sportier drive and Atto 3 for cabin tech if budget allows.",
+    "expertSummary": "Choose Creative+ if your daily use is overwhelmingly city driving and you want India's safest default EV brand experience without overspending on battery size. For weekly highway runs, step up to Empowered LR or cross-shop XUV400 and ZS EV.",
     "faq": [
       {
-        "q": "Nexon EV Empowered LR vs XUV400 — which is better?",
-        "a": "Nexon wins on service reach and value; XUV400 appeals to drivers wanting stronger performance and a different cabin character. Compare on EVSavari."
+        "q": "Who should buy the Nexon EV Creative+?",
+        "a": "Daily city commuters under ~60 km/day who prioritize service network and value over maximum range."
+      },
+      {
+        "q": "Can Creative+ support weekend highway trips?",
+        "a": "Yes with planning, but expect more charging stops than long-range competitors."
       }
     ],
     "chargingFaq": [
       {
-        "q": "How long does a DC fast charge take?",
-        "a": "Plan roughly 45–60 minutes for a useful 10–80% session on a typical 50 kW CCS2 charger."
+        "q": "What home charger do I need?",
+        "a": "A 7.2 kW Type 2 AC wall box is typical; full charge overnight on standard home supply."
       }
     ]
   },
   "media": {
-    "heroImage": "https://res.cloudinary.com/evsavari/image/upload/f_auto,q_auto,c_limit/evsavari/catalog/families/tata-nexon-ev/hero.jpg",
-    "listingThumbnail": "https://res.cloudinary.com/evsavari/image/upload/f_auto,q_auto,c_limit/evsavari/catalog/families/tata-nexon-ev/listing-thumb.jpg",
-    "compareThumbnail": "https://res.cloudinary.com/evsavari/image/upload/f_auto,q_auto,c_limit/evsavari/catalog/families/tata-nexon-ev/compare-thumb.jpg",
-    "ogImage": "https://res.cloudinary.com/evsavari/image/upload/f_auto,q_auto,c_limit/evsavari/catalog/families/tata-nexon-ev/og.jpg",
+    "heroImage": "https://res.cloudinary.com/dznvmumze/image/upload/v1780678387/heroImage_y5qmzt.jpg",
+    "listingThumbnail": "https://res.cloudinary.com/dznvmumze/image/upload/v1780678067/listingImage.jpg",
+    "compareThumbnail": "https://res.cloudinary.com/dznvmumze/image/upload/v1780678042/compaeImage.jpg",
+    "ogImage": "https://res.cloudinary.com/dznvmumze/image/upload/v1780678387/heroImage_y5qmzt.jpg",
     "gallery": [
       "https://res.cloudinary.com/evsavari/image/upload/f_auto,q_auto,c_limit/evsavari/catalog/families/tata-nexon-ev/exterior-1.jpg",
       "https://res.cloudinary.com/evsavari/image/upload/f_auto,q_auto,c_limit/evsavari/catalog/families/tata-nexon-ev/exterior-2.jpg",
@@ -422,16 +426,16 @@
     ]
   },
   "governance": {
-    "status": "review",
-    "source": "evsavari",
-    "dataQualityScore": 91,
+    "status": "published",
+    "source": "verified-dossier",
+    "dataQualityScore": 95,
     "version": 1,
     "publishedAt": null,
     "legacyCarId": null,
     "confidence": "high"
   },
   "verification": {
-    "dataQualityScore": 91,
+    "dataQualityScore": 95,
     "confidence": "high",
     "flags": [
       {
@@ -443,13 +447,13 @@
       {
         "path": "range.realWorldKm",
         "status": "verified",
-        "note": "LR band editorially signed for top-traffic compare",
+        "note": "Conservative planning band — observation pilot aligned",
         "reviewBy": "2026-06-15"
       },
       {
-        "path": "charging.dcTime10to80Minutes",
+        "path": "trustPresentation",
         "status": "verified",
-        "note": "OEM-class DC window for highway planning copy",
+        "note": "Flagship editorial hardening — Nexon Creative+",
         "reviewBy": "2026-06-15"
       }
     ],
@@ -460,7 +464,11 @@
         "note": "Primary specs — verify URL at import",
         "accessedAt": "2026-05-15"
       }
-    ]
+    ],
+    "verificationSource": "Verified Dossier",
+    "verificationOwner": "Nitin Sharma",
+    "dossierVersion": "v1",
+    "verified": true
   },
   "safety": {
     "bharatNcap": null,
@@ -490,10 +498,10 @@
   "comfort": {
     "seatVentilation": false,
     "seatHeating": false,
-    "rearSeatComfortScore": 78,
+    "rearSeatComfortScore": 74,
     "bootPracticalityScore": 93.75,
-    "familySuitabilityScore": 78,
-    "cityManeuverabilityScore": 88,
+    "familySuitabilityScore": 74,
+    "cityManeuverabilityScore": 86,
     "ingressEgressScore": 74,
     "rearAcVents": true,
     "panoramicRoof": false
@@ -512,7 +520,7 @@
     },
     "fastChargeCurve": {
       "peakKw": 50,
-      "time10to80Min": 56,
+      "time10to80Min": 45,
       "note": "Indicative; real curve varies by charger and temperature"
     },
     "estimatedChargingCost": {
@@ -522,25 +530,25 @@
     }
   },
   "ownershipIntelligence": {
-    "estimatedServiceCostPerKm": 0.45,
+    "estimatedServiceCostPerKm": 0.42,
     "annualServiceInr": null,
     "batteryReplacementEstimateInr": null,
     "insuranceAnnualRangeInr": {
-      "min": 29682,
-      "max": 52768
+      "min": 26082,
+      "max": 46368
     },
-    "resaleConfidenceScore": 85,
+    "resaleConfidenceScore": 84,
     "resaleHorizonYears": 5
   },
   "ownershipPracticality": {
     "apartmentChargingSuitability": 82.4,
-    "highwayUsability": 72,
-    "familyPracticality": 78,
+    "highwayUsability": 48,
+    "familyPracticality": 74,
     "luggagePracticality": 95,
-    "cityDrivingPracticality": 88,
+    "cityDrivingPracticality": 86,
     "ingressEgressPracticality": 72,
-    "rearSeatPracticality": 75,
-    "ownershipConfidenceIndicator": 79,
+    "rearSeatPracticality": 73,
+    "ownershipConfidenceIndicator": 78,
     "chargingAnxietyReductionNotes": [
       "Plan weekly top-ups on AC if daily driving stays under ~60 km.",
       "Use DC stops for planned highway legs — not as a daily fuel-station substitute."
@@ -549,37 +557,37 @@
   },
   "psychologyExtended": {
     "scores": {
-      "anxietyReduction": 79,
-      "firstTimeEvFriendliness": 85,
-      "premiumPerception": 62,
-      "enthusiastAppeal": 70,
+      "anxietyReduction": 78,
+      "firstTimeEvFriendliness": 88,
+      "premiumPerception": 58,
+      "enthusiastAppeal": 65,
       "chauffeurSuitability": 60,
-      "womenDriverFriendliness": 84,
-      "seniorCitizenFriendliness": 76
+      "womenDriverFriendliness": 82,
+      "seniorCitizenFriendliness": 73
     },
-    "narrative": "India's benchmark mass-market electric SUV for buyers who want range confidence, service reach, and predictable ownership costs in one package."
+    "narrative": "The most approachable Nexon EV for city-first buyers who want Tata service reach without paying for the long-range pack."
   },
   "decision": {
     "whoShouldBuy": [
       "Daily city commuters who want low running cost and easy parking",
-      "Buyers with regular highway use who plan DC fast-charging on routes",
-      "First-time EV buyers who value warranty clarity and service reach",
-      "Small families needing rear space and predictable ownership costs"
+      "First-time EV buyers who value warranty clarity and service reach"
     ],
     "whoShouldAvoid": [
+      "Frequent inter-city drivers without home or workplace charging access",
+      "High-speed highway specialists who prioritize long-range touring comfort",
       "Luxury-first buyers expecting top-tier cabin refinement and ADAS"
     ],
-    "bestAlternativeSlug": "mahindra-xuv400-el-pro",
-    "upgradePathSlug": "mahindra-xuv400-el-pro",
-    "downgradePathSlug": "tata-nexon-ev-creative-plus"
+    "bestAlternativeSlug": "tata-punch-ev-empowered-lr",
+    "upgradePathSlug": "tata-nexon-ev-empowered-lr",
+    "downgradePathSlug": null
   },
   "personaFit": {
-    "cityCommuter": 88,
-    "familyEv": 78,
-    "highwayTourer": 72,
-    "firstEv": 85,
-    "premiumEv": 62,
-    "valueEv": 84
+    "cityCommuter": 86,
+    "familyEv": 72,
+    "highwayTourer": 68,
+    "firstEv": 88,
+    "premiumEv": 58,
+    "valueEv": 86
   },
   "commercial": {
     "subscription": {
@@ -591,7 +599,7 @@
       "notes": null
     },
     "fleet": {
-      "suitabilityScore": 78
+      "suitabilityScore": 74
     },
     "taxiCommercial": {
       "suitabilityScore": 50
@@ -600,42 +608,42 @@
   },
   "rangeReality": {
     "citySummerKm": {
-      "min": 316,
-      "max": 381,
+      "min": 193,
+      "max": 234,
       "note": "Mixed city traffic, moderate AC use",
       "disclaimer": "Editorial estimate for planning — not ARAI certified. Actual range varies with driving style, traffic, and temperature."
     },
     "cityWinterKm": {
-      "min": 278,
-      "max": 343,
+      "min": 170,
+      "max": 211,
       "note": "Cooler ambient temperatures; conservative AC/heating impact",
       "disclaimer": "Editorial estimate for planning — not ARAI certified. Actual range varies with driving style, traffic, and temperature."
     },
     "highwayKm": {
-      "min": 242,
-      "max": 316,
+      "min": 143,
+      "max": 187,
       "note": "Steady highway speeds 80–100 km/h; fewer regenerative gains",
       "disclaimer": "Editorial estimate for planning — not ARAI certified. Actual range varies with driving style, traffic, and temperature."
     },
     "withACKm": {
-      "min": 284,
-      "max": 351,
+      "min": 174,
+      "max": 215,
       "note": "AC on throughout trip",
       "disclaimer": "Editorial estimate for planning — not ARAI certified. Actual range varies with driving style, traffic, and temperature."
     },
     "fullLoadKm": {
-      "min": 278,
-      "max": 343,
+      "min": 170,
+      "max": 211,
       "note": "Passengers + luggage",
       "disclaimer": "Editorial estimate for planning — not ARAI certified. Actual range varies with driving style, traffic, and temperature."
     },
     "ecoDrivingKm": {
-      "min": 362,
-      "max": 389,
+      "min": 222,
+      "max": 239,
       "note": "Gentle driving; still below certified claim",
       "disclaimer": "Editorial estimate for planning — not ARAI certified. Actual range varies with driving style, traffic, and temperature."
     },
-    "claimedKm": 465,
+    "claimedKm": 275,
     "confidenceBand": {
       "level": "medium",
       "methodology": "evsavari_conservative_derived_v1",
@@ -655,8 +663,8 @@
     "apartmentFriendly": true,
     "officeChargingFriendly": true,
     "societyApprovalRisk": "medium",
-    "chargingStressLevel": "medium",
-    "roadTripConfidence": "medium",
+    "chargingStressLevel": "high",
+    "roadTripConfidence": "low",
     "indiaNotes": [
       "RWAs may restrict home charger installation — confirm society bylaws before purchase.",
       "Office charging depends on employer policy; not assumed in range planning.",
@@ -673,32 +681,32 @@
   },
   "buyerAssurance": {
     "firstEVFriendly": {
-      "score": 85,
+      "score": 88,
       "label": "First-time EV readiness",
       "disclaimer": "Editorial confidence score — not a warranty or guarantee."
     },
     "servicePredictability": {
-      "score": 88,
+      "score": 86,
       "label": "Service & support predictability",
       "disclaimer": "Editorial confidence score — not a warranty or guarantee."
     },
     "batteryConfidence": {
-      "score": 90,
+      "score": 89,
       "label": "Battery peace-of-mind",
       "disclaimer": "Editorial confidence score — not a warranty or guarantee."
     },
     "maintenanceStress": {
-      "score": 64,
+      "score": 66,
       "label": "Maintenance stress (higher = lower stress)",
       "disclaimer": "Editorial confidence score — not a warranty or guarantee."
     },
     "familyConfidence": {
-      "score": 78,
+      "score": 74,
       "label": "Family daily-use confidence",
       "disclaimer": "Editorial confidence score — not a warranty or guarantee."
     },
     "dailyUseConfidence": {
-      "score": 79,
+      "score": 71,
       "label": "Everyday usability confidence",
       "disclaimer": "Editorial confidence score — not a warranty or guarantee."
     },
@@ -712,11 +720,14 @@
     }
   },
   "ownershipTradeoffs": {
-    "primaryStrength": "strong class service footprint for mass-market EV SUVs",
-    "primaryCompromise": "50 kW DC peak is slower than several newer rivals",
-    "idealUsagePattern": "daily city commuting with predictable home or office charging; planned highway use with mapped DC stops; first EV purchase with warranty clarity",
+    "primaryStrength": "Lowest entry price in Nexon EV lineup with proven Tata service density",
+    "primaryCompromise": "Shorter certified range than Long Range rivals in segment",
+    "idealUsagePattern": "daily city commuting with predictable home or office charging; first EV purchase with warranty clarity",
     "lessSuitableFor": [
-      "Luxury-first buyers expecting top-tier cabin refinement and ADAS"
+      "Frequent inter-city drivers without home or workplace charging access",
+      "High-speed highway specialists who prioritize long-range touring comfort",
+      "Luxury-first buyers expecting top-tier cabin refinement and ADAS",
+      "Frequent unplanned long highway travel without charging backup"
     ],
     "metadata": {
       "sourceType": "EDITORIAL_ESTIMATE",
@@ -730,8 +741,8 @@
   "scenarioCompare": {
     "dailyOfficeCommute": {
       "alignmentScore": 75,
-      "explanation": "Well suited for office commutes when daily distance fits a 316–381 km real-world city band.",
-      "tradeoffSummary": "50 kW DC peak is slower than several newer rivals"
+      "explanation": "Well suited for office commutes when daily distance fits a 193–234 km real-world city band.",
+      "tradeoffSummary": "Shorter certified range than Long Range rivals in segment"
     },
     "familyWeekendTrips": {
       "alignmentScore": 70,
@@ -739,13 +750,13 @@
       "tradeoffSummary": "Packed highway weekends need charging discipline — not a petrol-style fill-and-go rhythm."
     },
     "budgetOwnership": {
-      "alignmentScore": 84,
-      "explanation": "Better aligned with value-focused buyers at this ex-showroom band (EVSavari value score 84/100).",
+      "alignmentScore": 94,
+      "explanation": "Better aligned with value-focused buyers at this ex-showroom band (EVSavari value score 86/100).",
       "tradeoffSummary": "Lower upfront price trims may trade range, features, or highway comfort versus rivals."
     },
     "highwayConfidence": {
       "alignmentScore": 65,
-      "explanation": "Highway planning band roughly 242–316 km — road-trip confidence rated medium.",
+      "explanation": "Highway planning band roughly 143–187 km — road-trip confidence rated low.",
       "tradeoffSummary": "Frequent high-speed touring without charging planning is less suitable."
     },
     "firstTimeEVOwnership": {
@@ -765,17 +776,17 @@
   "rangeRealityExpanded": {
     "confidenceBands": {
       "cityDriving": "strong",
-      "highway": "strong",
-      "acImpact": "moderate",
+      "highway": "limited",
+      "acImpact": "noticeable",
       "traffic": "moderate",
       "drivingStyle": "moderate",
       "seasonal": "moderate"
     },
     "editorialSummaries": [
-      "LR bands improve inter-city confidence versus Creative+ — still plan fast-charge stops.",
+      "Plan daily driving inside EVSavari city bands — not the ARAI headline alone.",
+      "Highway weekends need charging stops; 50 kW DC suits planned routes.",
       "Excellent for dense city commuting when daily distance stays within conservative planning bands.",
-      "Highway range confidence is relatively strong for planned inter-city legs with DC stops.",
-      "AC usage has moderate range impact in Indian summers."
+      "Highway touring needs careful route planning — treat ARAI claim as an upper planning ceiling only."
     ],
     "planningNote": "Use EVSavari planning bands below ARAI claim — not certified real-world guarantees.",
     "referencesExistingBands": true,
@@ -794,13 +805,13 @@
     "overnightFriendliness": "strong",
     "fastChargePracticality": "moderate",
     "cityChargingFriendliness": "strong",
-    "chargingAnxietyLevel": "medium",
-    "networkDependency": "moderate",
+    "chargingAnxietyLevel": "high",
+    "networkDependency": "high",
     "editorialNotes": [
-      "56-minute indicative DC window — workable for disciplined highway legs.",
+      "Overnight 7.2 kW AC is the everyday rhythm — confirm parking access first.",
       "Works well for overnight home or dedicated parking charging.",
       "Reasonably suited for apartment owners with reliable parking access.",
-      "Fast-charging sessions are practical for planned highway legs (~56 min 10–80% indicative)."
+      "Fast-charging sessions are practical for planned highway legs (~45 min 10–80% indicative)."
     ],
     "metadata": {
       "sourceType": "EDITORIAL_ESTIMATE",
@@ -816,14 +827,15 @@
     "familyConfidence": "moderate",
     "cityPracticality": "strong",
     "longTermOwnership": "strong",
-    "maintenanceSimplicity": "limited",
-    "easeOfUse": "strong",
+    "maintenanceSimplicity": "moderate",
+    "easeOfUse": "moderate",
     "seniorPracticality": "moderate",
     "ingressPracticality": "moderate",
     "chauffeurPracticality": "limited",
     "editorialGuidance": [
       "Beginner-friendly ownership profile when you can charge overnight or at work.",
-      "City driving and parking footprint suit dense urban routines."
+      "City driving and parking footprint suit dense urban routines.",
+      "Service intervals are generally predictable — confirm local workshop EV readiness."
     ],
     "metadata": {
       "sourceType": "EDITORIAL_ESTIMATE",
@@ -848,8 +860,8 @@
       },
       {
         "id": "highway",
-        "label": "Highway practicality: strong",
-        "tone": "positive"
+        "label": "Highway practicality: limited",
+        "tone": "neutral"
       },
       {
         "id": "family",
@@ -858,8 +870,8 @@
       },
       {
         "id": "charging_stress",
-        "label": "Charging planning stress: moderate",
-        "tone": "neutral"
+        "label": "Charging planning stress: higher",
+        "tone": "caution"
       },
       {
         "id": "city",
@@ -867,7 +879,7 @@
         "tone": "positive"
       }
     ],
-    "headline": "Long-range Nexon for buyers who want Tata service reach with fewer highway compromises.",
+    "headline": "India's most cross-shopped compact EV — best when your daily km fit conservative city bands.",
     "disclaimer": "Editorial confidence guidance for Indian ownership — not reviews, ratings, or range guarantees."
   },
   "compareTrust": {
@@ -892,8 +904,8 @@
     "highwayUsability": {
       "dimension": "highway",
       "label": "Highway usability",
-      "strength": "strong",
-      "note": "Highway range confidence is relatively strong for planned inter-city legs with DC stops."
+      "strength": "limited",
+      "note": "Highway touring needs careful route planning — treat ARAI claim as an upper planning ceiling only."
     },
     "cityUsability": {
       "dimension": "city",
@@ -916,7 +928,7 @@
   },
   "intelligenceGovernance": {
     "schemaVersion": 1,
-    "generatedAt": "2026-05-17T06:11:40.191Z",
+    "generatedAt": "2026-05-17T06:11:40.183Z",
     "fields": {
       "pricing.exShowroom": {
         "metadata": {
@@ -1083,18 +1095,18 @@
     }
   },
   "scenarioFit": {
-    "dailyOfficeCommute": 88,
-    "familyWeekendTrips": 78,
-    "longDistanceTravel": 85,
+    "dailyOfficeCommute": 86,
+    "familyWeekendTrips": 74,
+    "longDistanceTravel": 60,
     "apartmentChargingFriendliness": 78,
-    "firstTimeEVBuyer": 85,
+    "firstTimeEVBuyer": 88,
     "chauffeurDrivenUsage": 60
   },
   "editorialNarratives": {
-    "ownership": "Ownership on tata EVs is generally practical for Indian buyers who value predictable service intervals and an 8-year battery warranty narrative. Resale confidence is modeled at 85/100 — interpret as editorial guidance, not a guarantee. Indicative 5-year costs are planning figures; confirm insurance and energy rates in your city.",
-    "charging": "Home or workplace AC charging at 7.2 kW is well suited for overnight top-ups; DC sessions around 56 minutes (10–80%) are practical for planned highway stops — not a fuel-station-style minute fill; against a certified 465 km ARAI figure.",
-    "familySuitability": "Family suitability scores 78/100 in our model — well suited for small families with regular city and weekend use; boot space around 350 L should be checked against your stroller or luggage routine.",
-    "firstTimeEv": "First-time EV friendliness is rated 85/100 with anxiety-reduction at 79/100. This variant is practical for buyers who want clear warranty terms and manageable charging habits — less ideal if you expect zero planning on long routes.",
-    "compare": "In the compact suv set on EVSavari, this variant is better aligned with buyers who prioritise strong class service footprint for mass-market ev suvs; trade-off: 50 kw dc peak is slower than several newer rivals."
+    "ownership": "Ownership on tata EVs is generally practical for Indian buyers who value predictable service intervals and an 8-year battery warranty narrative. Resale confidence is modeled at 84/100 — interpret as editorial guidance, not a guarantee. Indicative 5-year costs are planning figures; confirm insurance and energy rates in your city.",
+    "charging": "Home or workplace AC charging at 7.2 kW is well suited for overnight top-ups; DC sessions around 45 minutes (10–80%) are practical for planned highway stops — not a fuel-station-style minute fill; against a certified 275 km ARAI figure.",
+    "familySuitability": "Family suitability scores 74/100 in our model — better aligned with couples or compact-family needs; boot space around 350 L should be checked against your stroller or luggage routine.",
+    "firstTimeEv": "First-time EV friendliness is rated 88/100 with anxiety-reduction at 78/100. This variant is practical for buyers who want clear warranty terms and manageable charging habits — less ideal if you expect zero planning on long routes.",
+    "compare": "In the compact suv set on EVSavari, this variant is better aligned with buyers who prioritise lowest entry price in nexon ev lineup with proven tata service density; trade-off: shorter certified range than long range rivals in segment."
   }
 }

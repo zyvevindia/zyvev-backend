@@ -1,63 +1,82 @@
-/* =========================================================
-   ================= REQUIRED ENV VARS =====================
-   ========================================================= */
+const logger = require("../utils/logger");
 
-const requiredEnv = [
-
+const REQUIRED_ALWAYS = [
   "MONGO_URI",
-
   "JWT_SECRET",
-
   "CLOUDINARY_CLOUD_NAME",
-
   "CLOUDINARY_API_KEY",
-
   "CLOUDINARY_API_SECRET",
 ];
 
-/* =========================================================
-   ================= VALIDATE ENV ==========================
-   ========================================================= */
+const REQUIRED_PRODUCTION = [
+  "TURNSTILE_SECRET_KEY",
+  "TURNSTILE_SITE_KEY",
+];
 
-const validateEnv = () => {
+function isProduction() {
+  return process.env.NODE_ENV === "production";
+}
 
+function validateEnv() {
   const missing = [];
+  const warnings = [];
 
-  requiredEnv.forEach((key) => {
+  [...REQUIRED_ALWAYS, ...(isProduction() ? REQUIRED_PRODUCTION : [])].forEach(
+    (key) => {
+      const value = String(process.env[key] || "").trim();
 
-    if (!process.env[key]) {
-
-      missing.push(key);
+      if (!value) {
+        missing.push(key);
+      }
     }
-  });
+  );
 
-  /* ================= ERROR ================= */
+  if (isProduction()) {
+    if (
+      !process.env.CORS_ORIGINS ||
+      !String(process.env.CORS_ORIGINS).trim()
+    ) {
+      warnings.push(
+        "CORS_ORIGINS is empty — browser clients may be blocked in production"
+      );
+    }
+  } else if (
+    !process.env.TURNSTILE_SECRET_KEY ||
+    !process.env.TURNSTILE_SITE_KEY
+  ) {
+    warnings.push(
+      "TURNSTILE_SECRET_KEY / TURNSTILE_SITE_KEY not set — low-intent forms skip CAPTCHA in development"
+    );
+  }
 
   if (missing.length > 0) {
-
-    console.error(
-      "\n❌ Missing environment variables:\n"
-    );
-
-    missing.forEach((item) => {
-
-      console.error(
-        `- ${item}`
-      );
+    logger.error({
+      event: "env_validation_failed",
+      missing,
     });
 
     console.error(
-      "\n🛑 Server stopped.\n"
+      "\n❌ Missing or empty environment variables:\n"
+    );
+
+    missing.forEach((item) => {
+      console.error(`  - ${item}`);
+    });
+
+    console.error(
+      "\nCopy .env.example → .env and set values before starting the server.\n"
     );
 
     process.exit(1);
   }
 
-  /* ================= SUCCESS ================= */
+  if (warnings.length > 0) {
+    warnings.forEach((message) => {
+      logger.warn({ event: "env_validation_warning", message });
+    });
+  }
 
-  console.log(
-    "✅ Environment variables validated"
-  );
-};
+  logger.info({ event: "env_validated" });
+}
 
 module.exports = validateEnv;

@@ -2,42 +2,53 @@
   "identity": {
     "brandSlug": "tata",
     "modelSlug": "tiago-ev",
-    "variantName": "XZ+",
+    "variantName": "Creative+ 24 LR",
     "slug": "tata-tiago-ev-xz-plus",
     "bodyType": "hatchback",
     "segment": "hatchback-ev",
     "launchStatus": "on-sale",
     "modelYear": 2024,
-    "fuelType": "electric"
+    "fuelType": "electric",
+    "canonicalSlug": "tata-tiago-ev-creative-plus-24-lr",
+    "legacyAliases": [
+      "tata-tiago-ev-xz-plus"
+    ]
   },
   "pricing": {
-    "exShowroom": 1199000,
-    "priceLastUpdated": "2026-05-15T00:00:00.000Z"
+    "exShowroom": 899000,
+    "priceLastUpdated": "2026-06-07T15:54:36.183Z"
   },
   "battery": {
     "capacityKwh": 24,
-    "chemistry": "LFP"
+    "chemistry": "LFP",
+    "usableKwh": 22.6
   },
   "range": {
     "claimedKm": 315,
-    "claimedStandard": "ARAI",
+    "claimedStandard": "MIDC",
     "realWorldKm": {
-      "min": 227,
-      "max": 277,
-      "methodology": "EVSavari mixed city-highway estimate; flag for owner-data refresh"
+      "min": 205,
+      "max": 215,
+      "methodology": "Verified Dossier"
     }
   },
   "charging": {
     "acKw": 7.2,
+    "acTime0to100Hours": 8.7,
     "dcKw": 25,
+    "dcTime10to80Minutes": 57,
     "standards": [
-      "CCS2",
-      "Type2"
-    ]
+      "CCS2"
+    ],
+    "portableChargerIncluded": true,
+    "fastChargingSupported": true
   },
   "performance": {
-    "powerKw": 75,
-    "driveType": "FWD"
+    "powerKw": 55,
+    "torqueNm": 114,
+    "acceleration0to100": 5.7,
+    "driveType": "FWD",
+    "powerHp": 75
   },
   "practicality": {
     "bootSpaceL": 240,
@@ -74,8 +85,7 @@
   },
   "compare": {
     "segmentRivalSlugs": [
-      "mg-comet-ev-plush-plus",
-      "tata-punch-ev-smart-plus"
+      "mg-comet-ev-play"
     ],
     "strongestAdvantages": [
       {
@@ -97,7 +107,7 @@
         "label": "Limited highway DC performance on base trims"
       }
     ],
-    "valueScore": 86,
+    "valueScore": 90,
     "featureMatrix": {},
     "picks": {
       "strongestAdvantageLabel": "Lowest Tata EV entry",
@@ -116,9 +126,9 @@
     }
   },
   "seo": {
-    "metaTitle": "Tata Tiago EV XZ+ Price, Range & Charging | EVSavari",
-    "metaDescription": "Tata Tiago EV XZ+ ex-showroom from ₹11.99 lakh, 315 km ARAI range, charging, pros & cons on EVSavari.",
-    "canonicalPath": "/cars/tata-tiago-ev-xz-plus",
+    "metaTitle": "Tata Tiago EV XT Price, Range & Charging | EVSavari",
+    "metaDescription": "Tata Tiago EV XT ex-showroom from ₹7.99 lakh, 223 km MIDC range, charging, pros & cons on EVSavari.",
+    "canonicalPath": "/cars/tata-tiago-ev-xt",
     "pros": [
       "Affordable EV entry",
       "City-friendly size"
@@ -131,31 +141,31 @@
     "chargingFaq": [
       {
         "q": "First-time EV buyer — is home charging enough?",
-        "a": "For typical city use below 315 km ARAI, overnight AC works for many buyers — confirm society/workplace access first."
+        "a": "For typical city use below 250 km ARAI, overnight AC works for many buyers — confirm society/workplace access first."
       }
     ]
   },
   "media": {
-    "heroImage": "https://res.cloudinary.com/evsavari/image/upload/f_auto,q_auto,c_limit/evsavari/catalog/variants/tata-tiago-ev-xz-plus/hero.jpg",
-    "listingThumbnail": "https://res.cloudinary.com/evsavari/image/upload/f_auto,q_auto,c_limit/evsavari/catalog/variants/tata-tiago-ev-xz-plus/listing-thumb.jpg",
-    "compareThumbnail": "https://res.cloudinary.com/evsavari/image/upload/f_auto,q_auto,c_limit/evsavari/catalog/variants/tata-tiago-ev-xz-plus/compare-thumb.jpg",
-    "ogImage": "https://res.cloudinary.com/evsavari/image/upload/f_auto,q_auto,c_limit/evsavari/catalog/variants/tata-tiago-ev-xz-plus/og.jpg",
+    "heroImage": "https://res.cloudinary.com/dznvmumze/image/upload/f_auto,q_auto,c_limit/evsavari/catalog/families/tata-tiago-ev/hero",
+    "listingThumbnail": "https://res.cloudinary.com/dznvmumze/image/upload/f_auto,q_auto,c_limit/evsavari/catalog/families/tata-tiago-ev/listing-thumb",
+    "compareThumbnail": "https://res.cloudinary.com/dznvmumze/image/upload/f_auto,q_auto,c_limit/evsavari/catalog/families/tata-tiago-ev/compare-thumb",
+    "ogImage": "https://res.cloudinary.com/dznvmumze/image/upload/f_auto,q_auto,c_limit/evsavari/catalog/families/tata-tiago-ev/hero",
     "gallery": [
-      "https://res.cloudinary.com/evsavari/image/upload/f_auto,q_auto,c_limit/evsavari/catalog/variants/tata-tiago-ev-xz-plus/exterior-1.jpg",
-      "https://res.cloudinary.com/evsavari/image/upload/f_auto,q_auto,c_limit/evsavari/catalog/variants/tata-tiago-ev-xz-plus/exterior-2.jpg",
-      "https://res.cloudinary.com/evsavari/image/upload/f_auto,q_auto,c_limit/evsavari/catalog/variants/tata-tiago-ev-xz-plus/exterior-3.jpg"
+      "https://res.cloudinary.com/evsavari/image/upload/f_auto,q_auto,c_limit/evsavari/catalog/variants/tata-tiago-ev-xt/exterior-1.jpg",
+      "https://res.cloudinary.com/evsavari/image/upload/f_auto,q_auto,c_limit/evsavari/catalog/variants/tata-tiago-ev-xt/exterior-2.jpg",
+      "https://res.cloudinary.com/evsavari/image/upload/f_auto,q_auto,c_limit/evsavari/catalog/variants/tata-tiago-ev-xt/exterior-3.jpg"
     ],
     "interior": [
-      "https://res.cloudinary.com/evsavari/image/upload/f_auto,q_auto,c_limit/evsavari/catalog/variants/tata-tiago-ev-xz-plus/interior-1.jpg"
+      "https://res.cloudinary.com/evsavari/image/upload/f_auto,q_auto,c_limit/evsavari/catalog/variants/tata-tiago-ev-xt/interior-1.jpg"
     ],
     "charging": [
-      "https://res.cloudinary.com/evsavari/image/upload/f_auto,q_auto,c_limit/evsavari/catalog/variants/tata-tiago-ev-xz-plus/charging-port.jpg"
+      "https://res.cloudinary.com/evsavari/image/upload/f_auto,q_auto,c_limit/evsavari/catalog/variants/tata-tiago-ev-xt/charging-port.jpg"
     ],
     "videos": [],
     "assets": [
       {
         "key": "hero",
-        "url": "https://res.cloudinary.com/evsavari/image/upload/f_auto,q_auto,c_limit/evsavari/catalog/variants/tata-tiago-ev-xz-plus/hero.jpg",
+        "url": "https://res.cloudinary.com/evsavari/image/upload/f_auto,q_auto,c_limit/evsavari/catalog/variants/tata-tiago-ev-xt/hero.jpg",
         "filename": "hero.jpg",
         "role": "hero",
         "category": "exterior",
@@ -174,7 +184,7 @@
       },
       {
         "key": "listing_thumb",
-        "url": "https://res.cloudinary.com/evsavari/image/upload/f_auto,q_auto,c_limit/evsavari/catalog/variants/tata-tiago-ev-xz-plus/listing-thumb.jpg",
+        "url": "https://res.cloudinary.com/evsavari/image/upload/f_auto,q_auto,c_limit/evsavari/catalog/variants/tata-tiago-ev-xt/listing-thumb.jpg",
         "filename": "listing-thumb.jpg",
         "role": "listing",
         "category": "exterior",
@@ -193,7 +203,7 @@
       },
       {
         "key": "compare_thumb",
-        "url": "https://res.cloudinary.com/evsavari/image/upload/f_auto,q_auto,c_limit/evsavari/catalog/variants/tata-tiago-ev-xz-plus/compare-thumb.jpg",
+        "url": "https://res.cloudinary.com/evsavari/image/upload/f_auto,q_auto,c_limit/evsavari/catalog/variants/tata-tiago-ev-xt/compare-thumb.jpg",
         "filename": "compare-thumb.jpg",
         "role": "compare",
         "category": "exterior",
@@ -212,7 +222,7 @@
       },
       {
         "key": "og",
-        "url": "https://res.cloudinary.com/evsavari/image/upload/f_auto,q_auto,c_limit/evsavari/catalog/variants/tata-tiago-ev-xz-plus/og.jpg",
+        "url": "https://res.cloudinary.com/evsavari/image/upload/f_auto,q_auto,c_limit/evsavari/catalog/variants/tata-tiago-ev-xt/og.jpg",
         "filename": "og.jpg",
         "role": "social",
         "category": "exterior",
@@ -231,7 +241,7 @@
       },
       {
         "key": "exterior_1",
-        "url": "https://res.cloudinary.com/evsavari/image/upload/f_auto,q_auto,c_limit/evsavari/catalog/variants/tata-tiago-ev-xz-plus/exterior-1.jpg",
+        "url": "https://res.cloudinary.com/evsavari/image/upload/f_auto,q_auto,c_limit/evsavari/catalog/variants/tata-tiago-ev-xt/exterior-1.jpg",
         "filename": "exterior-1.jpg",
         "role": "gallery",
         "category": "exterior",
@@ -250,7 +260,7 @@
       },
       {
         "key": "exterior_2",
-        "url": "https://res.cloudinary.com/evsavari/image/upload/f_auto,q_auto,c_limit/evsavari/catalog/variants/tata-tiago-ev-xz-plus/exterior-2.jpg",
+        "url": "https://res.cloudinary.com/evsavari/image/upload/f_auto,q_auto,c_limit/evsavari/catalog/variants/tata-tiago-ev-xt/exterior-2.jpg",
         "filename": "exterior-2.jpg",
         "role": "gallery",
         "category": "exterior",
@@ -269,7 +279,7 @@
       },
       {
         "key": "exterior_3",
-        "url": "https://res.cloudinary.com/evsavari/image/upload/f_auto,q_auto,c_limit/evsavari/catalog/variants/tata-tiago-ev-xz-plus/exterior-3.jpg",
+        "url": "https://res.cloudinary.com/evsavari/image/upload/f_auto,q_auto,c_limit/evsavari/catalog/variants/tata-tiago-ev-xt/exterior-3.jpg",
         "filename": "exterior-3.jpg",
         "role": "gallery",
         "category": "exterior",
@@ -288,7 +298,7 @@
       },
       {
         "key": "interior_1",
-        "url": "https://res.cloudinary.com/evsavari/image/upload/f_auto,q_auto,c_limit/evsavari/catalog/variants/tata-tiago-ev-xz-plus/interior-1.jpg",
+        "url": "https://res.cloudinary.com/evsavari/image/upload/f_auto,q_auto,c_limit/evsavari/catalog/variants/tata-tiago-ev-xt/interior-1.jpg",
         "filename": "interior-1.jpg",
         "role": "gallery",
         "category": "interior",
@@ -307,7 +317,7 @@
       },
       {
         "key": "charging_port",
-        "url": "https://res.cloudinary.com/evsavari/image/upload/f_auto,q_auto,c_limit/evsavari/catalog/variants/tata-tiago-ev-xz-plus/charging-port.jpg",
+        "url": "https://res.cloudinary.com/evsavari/image/upload/f_auto,q_auto,c_limit/evsavari/catalog/variants/tata-tiago-ev-xt/charging-port.jpg",
         "filename": "charging-port.jpg",
         "role": "gallery",
         "category": "charging",
@@ -333,46 +343,53 @@
     ]
   },
   "governance": {
-    "status": "review",
-    "source": "evsavari",
-    "dataQualityScore": 88,
+    "status": "published",
+    "source": "verified-dossier",
+    "dataQualityScore": 95,
     "version": 1,
     "publishedAt": null,
     "legacyCarId": null,
-    "confidence": "medium"
+    "confidence": "high"
   },
   "verification": {
-    "dataQualityScore": 88,
-    "confidence": "medium",
-    "flags": [
-      {
-        "path": "pricing.exShowroom",
-        "status": "estimated",
-        "note": "Verify top Tiago EV trim",
-        "reviewBy": "2026-06-15"
-      }
-    ],
-    "lastReviewedAt": null,
+    "verified": true,
+    "verificationSource": "Verified Dossier",
+    "dataQualityScore": 95,
+    "confidence": "high",
+    "flags": [],
+    "lastReviewedAt": "2026-05-20T00:00:00.000Z",
     "sources": [
       {
-        "type": "oem_web",
-        "note": "Primary specs — verify URL at import",
-        "accessedAt": "2026-05-15"
+        "type": "oem_brochure",
+        "note": "Tata Tiago EV verified production sheet",
+        "accessedAt": "2026-05-20"
       }
-    ]
+    ],
+    "verificationOwner": "Nitin Sharma",
+    "dossierVersion": "v1.0"
   },
   "safety": {
-    "bharatNcap": null,
-    "globalNcap": null,
+    "bharatNcap": {
+      "status": "not_tested",
+      "verified": true
+    },
+    "globalNcap": {
+      "status": "not_tested",
+      "verified": true
+    },
     "adultOccupantScore": null,
     "childOccupantScore": null,
     "airbags": {
       "count": 6,
-      "curtains": true
+      "curtains": true,
+      "verified": true
     },
     "adas": {
       "level": 0,
-      "features": []
+      "features": [],
+      "status": "not_tested",
+      "supported": false,
+      "verified": true
     },
     "cameraSystems": [
       "rear camera",
@@ -383,7 +400,8 @@
     ],
     "stability": {
       "esc": true,
-      "hillHold": true
+      "hillHold": true,
+      "verified": true
     }
   },
   "comfort": {
@@ -411,8 +429,8 @@
     },
     "fastChargeCurve": {
       "peakKw": 25,
-      "time10to80Min": null,
-      "note": "Indicative; real curve varies by charger and temperature"
+      "time10to80Min": 58,
+      "note": "OEM brochure — SOC 10–80% on 25 kW DC"
     },
     "estimatedChargingCost": {
       "dcPerKwhInr": 18,
@@ -425,15 +443,15 @@
     "annualServiceInr": null,
     "batteryReplacementEstimateInr": null,
     "insuranceAnnualRangeInr": {
-      "min": 21582,
-      "max": 38368
+      "min": 14382,
+      "max": 25568
     },
     "resaleConfidenceScore": 78,
     "resaleHorizonYears": 5
   },
   "ownershipPracticality": {
     "apartmentChargingSuitability": 82.4,
-    "highwayUsability": 62,
+    "highwayUsability": 48,
     "familyPracticality": 62,
     "luggagePracticality": 84.28571428571428,
     "cityDrivingPracticality": 92,
@@ -442,7 +460,7 @@
     "ownershipConfidenceIndicator": 74,
     "chargingAnxietyReductionNotes": [
       "Plan weekly top-ups on AC if daily driving stays under ~60 km.",
-      "No DC fast charging on this trim — home/workplace AC is the primary refuel path."
+      "25 kW DC fast charging available — map CCS2 stops for occasional highway legs."
     ],
     "methodology": "EVSavari ownership practicality model — editorial scores, not OEM guarantees."
   },
@@ -466,17 +484,17 @@
       "Frequent inter-city drivers without home or workplace charging access",
       "Luxury-first buyers expecting top-tier cabin refinement and ADAS"
     ],
-    "bestAlternativeSlug": "mg-comet-ev-plush-plus",
-    "upgradePathSlug": "mg-comet-ev-plush-plus",
-    "downgradePathSlug": "tata-tiago-ev-xt"
+    "bestAlternativeSlug": "mg-comet-ev-play",
+    "upgradePathSlug": "tata-tiago-ev-xz-plus",
+    "downgradePathSlug": null
   },
   "personaFit": {
     "cityCommuter": 92,
     "familyEv": 62,
-    "highwayTourer": 63,
+    "highwayTourer": 50,
     "firstEv": 86,
     "premiumEv": 48,
-    "valueEv": 86
+    "valueEv": 90
   },
   "commercial": {
     "subscription": {
@@ -497,42 +515,42 @@
   },
   "rangeReality": {
     "citySummerKm": {
-      "min": 227,
-      "max": 277,
+      "min": 180,
+      "max": 220,
       "note": "Mixed city traffic, moderate AC use",
       "disclaimer": "Editorial estimate for planning — not ARAI certified. Actual range varies with driving style, traffic, and temperature."
     },
     "cityWinterKm": {
-      "min": 200,
-      "max": 249,
+      "min": 158,
+      "max": 198,
       "note": "Cooler ambient temperatures; conservative AC/heating impact",
       "disclaimer": "Editorial estimate for planning — not ARAI certified. Actual range varies with driving style, traffic, and temperature."
     },
     "highwayKm": {
-      "min": 164,
-      "max": 214,
+      "min": 130,
+      "max": 170,
       "note": "Steady highway speeds 80–100 km/h; fewer regenerative gains",
       "disclaimer": "Editorial estimate for planning — not ARAI certified. Actual range varies with driving style, traffic, and temperature."
     },
     "withACKm": {
-      "min": 204,
-      "max": 255,
+      "min": 162,
+      "max": 202,
       "note": "AC on throughout trip",
       "disclaimer": "Editorial estimate for planning — not ARAI certified. Actual range varies with driving style, traffic, and temperature."
     },
     "fullLoadKm": {
-      "min": 200,
-      "max": 249,
+      "min": 158,
+      "max": 198,
       "note": "Passengers + luggage",
       "disclaimer": "Editorial estimate for planning — not ARAI certified. Actual range varies with driving style, traffic, and temperature."
     },
     "ecoDrivingKm": {
-      "min": 263,
-      "max": 283,
+      "min": 209,
+      "max": 224,
       "note": "Gentle driving; still below certified claim",
       "disclaimer": "Editorial estimate for planning — not ARAI certified. Actual range varies with driving style, traffic, and temperature."
     },
-    "claimedKm": 315,
+    "claimedKm": 250,
     "confidenceBand": {
       "level": "medium",
       "methodology": "evsavari_conservative_derived_v1",
@@ -552,7 +570,7 @@
     "apartmentFriendly": true,
     "officeChargingFriendly": true,
     "societyApprovalRisk": "medium",
-    "chargingStressLevel": "medium",
+    "chargingStressLevel": "high",
     "roadTripConfidence": "low",
     "indiaNotes": [
       "RWAs may restrict home charger installation — confirm society bylaws before purchase.",
@@ -575,7 +593,7 @@
       "disclaimer": "Editorial confidence score — not a warranty or guarantee."
     },
     "servicePredictability": {
-      "score": 83,
+      "score": 82,
       "label": "Service & support predictability",
       "disclaimer": "Editorial confidence score — not a warranty or guarantee."
     },
@@ -595,7 +613,7 @@
       "disclaimer": "Editorial confidence score — not a warranty or guarantee."
     },
     "dailyUseConfidence": {
-      "score": 81,
+      "score": 74,
       "label": "Everyday usability confidence",
       "disclaimer": "Editorial confidence score — not a warranty or guarantee."
     },
@@ -630,7 +648,7 @@
   "scenarioCompare": {
     "dailyOfficeCommute": {
       "alignmentScore": 75,
-      "explanation": "Well suited for office commutes when daily distance fits a 227–277 km real-world city band.",
+      "explanation": "Well suited for office commutes when daily distance fits a 180–220 km real-world city band.",
       "tradeoffSummary": "Small boot"
     },
     "familyWeekendTrips": {
@@ -639,13 +657,13 @@
       "tradeoffSummary": "Packed highway weekends need charging discipline — not a petrol-style fill-and-go rhythm."
     },
     "budgetOwnership": {
-      "alignmentScore": 94,
-      "explanation": "Better aligned with value-focused buyers at this ex-showroom band (EVSavari value score 86/100).",
+      "alignmentScore": 95,
+      "explanation": "Better aligned with value-focused buyers at this ex-showroom band (EVSavari value score 90/100).",
       "tradeoffSummary": "Lower upfront price trims may trade range, features, or highway comfort versus rivals."
     },
     "highwayConfidence": {
       "alignmentScore": 65,
-      "explanation": "Highway planning band roughly 164–214 km — road-trip confidence rated low.",
+      "explanation": "Highway planning band roughly 130–170 km — road-trip confidence rated low.",
       "tradeoffSummary": "Frequent high-speed touring without charging planning is less suitable."
     },
     "firstTimeEVOwnership": {
@@ -666,7 +684,7 @@
     "confidenceBands": {
       "cityDriving": "strong",
       "highway": "limited",
-      "acImpact": "moderate",
+      "acImpact": "noticeable",
       "traffic": "moderate",
       "drivingStyle": "moderate",
       "seasonal": "moderate"
@@ -674,7 +692,7 @@
     "editorialSummaries": [
       "Excellent for dense city commuting when daily distance stays within conservative planning bands.",
       "Highway touring needs careful route planning — treat ARAI claim as an upper planning ceiling only.",
-      "AC usage has moderate range impact in Indian summers."
+      "AC usage can noticeably reduce usable range in peak summer heat."
     ],
     "planningNote": "Use EVSavari planning bands below ARAI claim — not certified real-world guarantees.",
     "referencesExistingBands": true,
@@ -693,7 +711,7 @@
     "overnightFriendliness": "strong",
     "fastChargePracticality": "limited",
     "cityChargingFriendliness": "strong",
-    "chargingAnxietyLevel": "medium",
+    "chargingAnxietyLevel": "high",
     "networkDependency": "high",
     "editorialNotes": [
       "Works well for overnight home or dedicated parking charging.",
@@ -758,8 +776,8 @@
       },
       {
         "id": "charging_stress",
-        "label": "Charging planning stress: moderate",
-        "tone": "neutral"
+        "label": "Charging planning stress: higher",
+        "tone": "caution"
       },
       {
         "id": "city",
@@ -767,8 +785,8 @@
         "tone": "positive"
       }
     ],
-    "headline": "Top Tiago EV trim — city-first hatch with Tata service reach.",
-    "disclaimer": "Editorial confidence guidance for Indian ownership — not reviews, ratings, or range guarantees."
+    "headline": "Practical EV for buyers who match its charging and range profile.",
+    "disclaimer": "Editorial confidence indicators — not user reviews, star ratings, or guarantees."
   },
   "compareTrust": {
     "chargingPracticality": {
@@ -816,7 +834,7 @@
   },
   "intelligenceGovernance": {
     "schemaVersion": 1,
-    "generatedAt": "2026-05-17T06:11:40.208Z",
+    "generatedAt": "2026-05-17T06:11:40.205Z",
     "fields": {
       "pricing.exShowroom": {
         "metadata": {
@@ -985,16 +1003,21 @@
   "scenarioFit": {
     "dailyOfficeCommute": 92,
     "familyWeekendTrips": 62,
-    "longDistanceTravel": 64,
+    "longDistanceTravel": 56,
     "apartmentChargingFriendliness": 78,
     "firstTimeEVBuyer": 86,
     "chauffeurDrivenUsage": 60
   },
   "editorialNarratives": {
     "ownership": "Ownership on tata EVs is generally practical for Indian buyers who value predictable service intervals and an 8-year battery warranty narrative. Resale confidence is modeled at 78/100 — interpret as editorial guidance, not a guarantee.",
-    "charging": "Home or workplace AC charging at 7.2 kW is well suited for overnight top-ups; against a certified 315 km ARAI figure.",
+    "charging": "Home or workplace AC charging at 7.2 kW is well suited for overnight top-ups; against a certified 250 km ARAI figure.",
     "familySuitability": "Family suitability scores 62/100 in our model — better aligned with couples or compact-family needs; boot space around 240 L should be checked against your stroller or luggage routine.",
     "firstTimeEv": "First-time EV friendliness is rated 86/100 with anxiety-reduction at 74/100. This variant is practical for buyers who want clear warranty terms and manageable charging habits — less ideal if you expect zero planning on long routes.",
     "compare": "In the hatchback ev set on EVSavari, this variant is better aligned with buyers who prioritise lowest tata ev entry; trade-off: small boot."
-  }
+  },
+  "featureTags": [
+    "Top Variant",
+    "Most Feature Rich",
+    "Advanced Safety"
+  ]
 }

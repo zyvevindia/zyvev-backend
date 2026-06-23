@@ -319,6 +319,21 @@ const leadSchema = new mongoose.Schema(
       select: false,
     },
 
+    /* =====================================================
+       ========= DUPLICATE SUPPRESSION (PHONE + EV) ==========
+       ===================================================== */
+
+    interestCount: {
+      type: Number,
+      default: 1,
+      min: 1,
+    },
+
+    lastInterestedAt: {
+      type: Date,
+      default: null,
+    },
+
   },
 
   /* =======================================================
@@ -346,6 +361,9 @@ leadSchema.index({ vehicleName: 1 });
 leadSchema.index({ dealer: 1, status: 1 });
 leadSchema.index({ anonymousSessionId: 1, status: 1 });
 leadSchema.index({ dealer: 1, readByDealer: 1 });
+leadSchema.index({ phone: 1, familySlug: 1, status: 1 });
+leadSchema.index({ phone: 1, variantSlug: 1, status: 1 });
+leadSchema.index({ lastInterestedAt: -1 });
 
 module.exports = mongoose.model(
   "Lead",

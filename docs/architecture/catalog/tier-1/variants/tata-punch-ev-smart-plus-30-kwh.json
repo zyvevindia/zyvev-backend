@@ -2,36 +2,34 @@
   "identity": {
     "brandSlug": "tata",
     "modelSlug": "punch-ev",
-    "variantName": "Empowered+",
-    "slug": "tata-punch-ev-empowered-lr",
+    "variantName": "Smart+ 30 kWh",
+    "slug": "tata-punch-ev-smart-plus-30-kwh",
     "bodyType": "suv",
     "segment": "micro-suv",
     "launchStatus": "on-sale",
     "modelYear": 2024,
     "fuelType": "electric",
-    "canonicalSlug": "tata-punch-ev-empowered-plus",
-    "legacyAliases": [
-      "tata-punch-ev-empowered-lr"
-    ]
+    "canonicalSlug": "tata-punch-ev-smart-plus-30-kwh",
+    "legacyAliases": []
   },
   "pricing": {
-    "exShowroom": 1259000,
-    "priceLastUpdated": "2026-06-06T05:45:27.393Z",
+    "exShowroom": 1029000,
+    "priceLastUpdated": "2026-06-06T05:45:27.381Z",
     "subsidy": {
       "notes": "Verify state incentives"
     }
   },
   "battery": {
-    "capacityKwh": 40,
+    "capacityKwh": 30,
     "chemistry": "LFP",
-    "usableKwh": 37.6
+    "usableKwh": 28.2
   },
   "range": {
-    "claimedKm": 468,
+    "claimedKm": 370,
     "claimedStandard": "MIDC",
     "realWorldKm": {
-      "min": 335,
-      "max": 355,
+      "min": 260,
+      "max": 275,
       "methodology": "Verified Dossier"
     }
   },
@@ -53,16 +51,16 @@
       "medium",
       "high"
     ],
-    "acTime0to100Hours": 5.333333333333333,
+    "acTime0to100Hours": 4.5,
     "dcTime10to80Minutes": 26,
     "portableChargerIncluded": true,
     "fastChargingSupported": true
   },
   "performance": {
-    "powerKw": 94.7,
+    "powerKw": 64.9,
     "driveType": "FWD",
-    "acceleration0to100": 9,
-    "powerHp": 127,
+    "acceleration0to100": 13.5,
+    "powerHp": 87,
     "torqueNm": 154
   },
   "practicality": {
